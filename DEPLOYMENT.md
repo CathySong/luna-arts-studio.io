@@ -3,7 +3,7 @@
 ## Last Deployment
 - **Date**: 2026-03-19
 - **Status**: Ready for Vercel deployment
-- **Project**: Luna Arts Studio
+- **Project**: Luna Art Studio
 - **Framework**: Next.js 14
 - **Repository**: https://github.com/CathySong/luna-arts-studio.io.git
 

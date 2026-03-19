@@ -75,7 +75,7 @@ export default function AboutPreview() {
           </h2>
 
           <p className="font-body text-parchment/50 leading-relaxed mb-6 font-light">
-            Luna Arts Studio was born from a simple belief: that creativity is not a gift reserved for a few,
+            Luna Art Studio was born from a simple belief: that creativity is not a gift reserved for a few,
             but a language anyone can learn. Nestled in the heart of New Jersey, our studio offers a warm,
             inspiring environment where students of all levels find their voice through paint, charcoal, and imagination.
           </p>

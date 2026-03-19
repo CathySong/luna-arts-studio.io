@@ -1,6 +1,6 @@
-# 🌙 Luna Arts Studio
+# 🌙 Luna Art Studio
 
-A cinematic, production-ready website for **Luna Arts Studio** — built with Next.js 14, Tailwind CSS, and TypeScript. Deployable to Vercel in minutes.
+A cinematic, production-ready website for **Luna Art Studio** — built with Next.js 14, Tailwind CSS, and TypeScript. Deployable to Vercel in minutes.
 
 ![Luna Arts Studio](https://img.shields.io/badge/Next.js-14-black?logo=next.js) ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-blue?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript) ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)
 
@@ -42,7 +42,7 @@ Edit `.env.local`:
 
 ```env
 RESEND_API_KEY=re_your_key_here
-STUDIO_EMAIL=hello@lunaartsstudio.com
+STUDIO_EMAIL=hello@lunaartstudio.com
 ```
 
 ### 3. Run locally
@@ -70,7 +70,7 @@ vercel --prod
 ```bash
 git init
 git add .
-git commit -m "feat: initial Luna Arts Studio site"
+git commit -m "feat: initial Luna Art Studio site"
 git remote add origin https://github.com/YOUR_USERNAME/luna-arts-studio.git
 git branch -M main
 git push -u origin main
@@ -190,7 +190,7 @@ luna-arts-studio/
 
 ## 📄 License
 
-MIT — free to use and modify for Luna Arts Studio.
+MIT — free to use and modify for Luna Art Studio.
 
 ---
 

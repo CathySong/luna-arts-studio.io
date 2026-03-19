@@ -12,7 +12,7 @@ export default function Footer() {
                 LUNA
               </span>
               <span className="font-mono text-[9px] tracking-ultra text-gold" style={{ letterSpacing: "0.35em" }}>
-                Arts Studio
+                Art Studio
               </span>
             </div>
             <p className="font-body text-parchment/30 text-sm leading-relaxed font-light max-w-xs">
@@ -55,14 +55,14 @@ export default function Footer() {
               <p className="font-body text-sm text-parchment/40 font-light">258 King George Rd</p>
               <p className="font-body text-sm text-parchment/40 font-light">Warren, NJ 07059, USA</p>
               <p className="font-body text-sm text-parchment/40 font-light mt-4">(908) 555-0192</p>
-              <p className="font-body text-sm text-gold/50 font-light">hello@lunaartsstudio.com</p>
+              <p className="font-body text-sm text-gold/50 font-light">hello@lunaartstudio.com</p>
             </address>
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gold/5">
           <p className="font-mono text-[9px] tracking-widest uppercase text-parchment/20">
-            © {new Date().getFullYear()} Luna Arts Studio · All rights reserved
+            © {new Date().getFullYear()} Luna Art Studio · All rights reserved
           </p>
           <div className="flex gap-6">
             <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-parchment/20 hover:text-parchment/50 transition-colors">
