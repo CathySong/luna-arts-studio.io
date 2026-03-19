@@ -42,7 +42,7 @@ Edit `.env.local`:
 
 ```env
 RESEND_API_KEY=re_your_key_here
-STUDIO_EMAIL=hello@lunaartstudio.com
+STUDIO_EMAIL=Ninglu1088@gmail.com
 ```
 
 ### 3. Run locally

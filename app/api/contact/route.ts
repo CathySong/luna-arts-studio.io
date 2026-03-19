@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     // const resend = new Resend(process.env.RESEND_API_KEY);
     // await resend.emails.send({
     //   from: "onboarding@resend.dev",
-    //   to: "hello@lunaartstudio.com",
+    //   to: "Ninglu1088@gmail.com",
     //   subject: `New Inquiry from ${name}`,
     //   html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Phone:</b> ${phone}</p><p><b>Interest:</b> ${interest}</p><p><b>Message:</b> ${message}</p>`,
     // });
