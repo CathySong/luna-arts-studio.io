@@ -1,48 +1,67 @@
 "use client";
 import { useRef } from "react";
 import { useInView } from "@/lib/useInView";
-import Image from "next/image";
 
-const scheduleImages = [
+const weeklySchedules = [
   {
     id: 1,
-    title: "Monday Schedule",
-    description: "Start your week with creative inspiration",
-    image: "/schedule-images/luna-schedule1.jpg",
     day: "Monday",
-    focus: "Foundation & Drawing"
+    focus: "Foundation & Drawing",
+    description: "Start your week with solid foundational skills",
+    classes: [
+      { time: "10:00 AM", name: "Foundation Drawing", instructor: "Ms. Chen", level: "Beginner", spots: 4 },
+      { time: "6:30 PM", name: "Oil Painting", instructor: "Mr. Rivera", level: "Intermediate", spots: 2 },
+    ],
+    color: "#c9a96e"
   },
   {
     id: 2,
-    title: "Tuesday Schedule",
-    description: "Explore watercolor and figure drawing techniques",
-    image: "/schedule-images/luna-schedule2.jpg",
     day: "Tuesday",
-    focus: "Watercolor & Figure"
+    focus: "Watercolor & Figure",
+    description: "Explore fluid mediums and human form",
+    classes: [
+      { time: "9:00 AM", name: "Watercolor & Ink", instructor: "Ms. Park", level: "All Levels", spots: 6 },
+      { time: "5:00 PM", name: "Figure Drawing", instructor: "Mr. Rivera", level: "Intermediate+", spots: 8 },
+      { time: "7:00 PM", name: "Acrylic Abstraction", instructor: "Ms. Chen", level: "All Levels", spots: 3 },
+    ],
+    color: "#7a8c7e"
   },
   {
     id: 3,
-    title: "Wednesday Schedule",
-    description: "Youth programs and foundation classes",
-    image: "/schedule-images/luna-schedule3.jpg",
     day: "Wednesday",
-    focus: "Youth & Foundation"
+    focus: "Youth & Foundation",
+    description: "Young artists and building core skills",
+    classes: [
+      { time: "10:00 AM", name: "Kids Art Camp", instructor: "Ms. Thompson", level: "Youth", spots: 5 },
+      { time: "6:00 PM", name: "Foundation Drawing", instructor: "Ms. Park", level: "Beginner", spots: 7 },
+    ],
+    color: "#b0d4b8"
   },
   {
     id: 4,
-    title: "Thursday Schedule",
-    description: "Oil painting mastery and watercolor sessions",
-    image: "/schedule-images/luna-schedule4.jpg",
     day: "Thursday",
-    focus: "Oil & Watercolor"
+    focus: "Oil & Watercolor",
+    description: "Master traditional painting techniques",
+    classes: [
+      { time: "10:00 AM", name: "Oil Painting", instructor: "Mr. Rivera", level: "Intermediate", spots: 1 },
+      { time: "6:30 PM", name: "Watercolor & Ink", instructor: "Ms. Chen", level: "All Levels", spots: 5 },
+    ],
+    color: "#c4785a"
   },
   {
     id: 5,
-    title: "Weekend Schedule",
-    description: "Extended hours for weekend creativity",
-    image: "/schedule-images/luna-schedule5.jpg",
-    day: "Friday-Sunday",
-    focus: "Weekend Workshops"
+    day: "Friday - Sunday",
+    focus: "Weekend Workshops",
+    description: "Extended hours for immersive creative sessions",
+    classes: [
+      { time: "9:00 AM", name: "Acrylic Abstraction", instructor: "Ms. Park", level: "All Levels", spots: 4 },
+      { time: "5:30 PM", name: "Figure Drawing", instructor: "Mr. Rivera", level: "Intermediate+", spots: 6 },
+      { time: "10:00 AM", name: "Kids Art Camp", instructor: "Ms. Thompson", level: "Youth", spots: 8 },
+      { time: "1:00 PM", name: "Foundation Drawing", instructor: "Ms. Chen", level: "Beginner", spots: 3 },
+      { time: "3:30 PM", name: "Oil Painting", instructor: "Mr. Rivera", level: "Intermediate", spots: 2 },
+      { time: "6:00 PM", name: "Open Studio", instructor: "Self-Guided", level: "All Levels", spots: 10 },
+    ],
+    color: "#6a8a80"
   }
 ];
 
@@ -66,59 +85,71 @@ export default function WeeklyScheduleImages() {
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-gold/60" />
             <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
-              Visual Schedule
+              Weekly Overview
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-            Weekly <span className="italic text-gold">Visual</span> Guide
+            Day-by-Day <span className="italic text-gold">Schedule</span>
           </h2>
           <p className="font-body text-parchment/50 text-lg mt-6 max-w-2xl leading-relaxed font-light">
-            Browse our beautifully designed weekly schedules. Each day has its own creative focus and 
-            specialized programming to match your artistic journey.
+            A detailed breakdown of our weekly programming. Each day has a specific focus 
+            to help you plan your creative journey throughout the week.
           </p>
         </div>
 
-        {/* Schedule Images Grid */}
+        {/* Weekly Schedule Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {scheduleImages.slice(0, 3).map((item) => (
-            <ScheduleImageCard key={item.id} item={item} />
+          {weeklySchedules.slice(0, 3).map((schedule) => (
+            <ScheduleCard key={schedule.id} schedule={schedule} />
           ))}
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mt-8">
-          {scheduleImages.slice(3).map((item) => (
-            <ScheduleImageCard key={item.id} item={item} />
+          {weeklySchedules.slice(3).map((schedule) => (
+            <ScheduleCard key={schedule.id} schedule={schedule} />
           ))}
         </div>
 
-        {/* Legend */}
+        {/* Schedule Legend */}
         <div className="mt-12 pt-8 border-t border-gold/10">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
-              <h3 className="font-display text-xl text-parchment font-light mb-3">How to Read Our Visual Schedules</h3>
+              <h3 className="font-display text-xl text-parchment font-light mb-3">Schedule Key</h3>
               <p className="font-body text-parchment/40 text-sm font-light max-w-2xl">
-                Each schedule is color-coded by class type and includes instructor details, 
-                skill levels, and real-time availability. Look for the spot indicators to 
-                see current openings.
+                Each day is color-coded by focus area. Class details include time, instructor, 
+                skill level, and current availability. Spots update in real-time.
               </p>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-gold" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Drawing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-clay" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Painting</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-sage" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Watercolor</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-blue-400/60" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Youth</span>
-              </div>
+              {[
+                { color: "#c9a96e", label: "Drawing Focus" },
+                { color: "#7a8c7e", label: "Watercolor" },
+                { color: "#b0d4b8", label: "Youth Programs" },
+                { color: "#c4785a", label: "Painting" },
+                { color: "#6a8a80", label: "Weekend" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ background: item.color }} />
+                  <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Comparison Note */}
+        <div className="mt-10 p-6 border border-gold/10 bg-ink/50">
+          <div className="flex items-start gap-4">
+            <div className="w-8 h-8 border border-gold/20 flex items-center justify-center shrink-0">
+              <span className="font-mono text-[10px] text-gold">i</span>
+            </div>
+            <div>
+              <h4 className="font-display text-lg text-parchment font-light mb-2">How This Complements Our Interactive Schedule</h4>
+              <p className="font-body text-parchment/40 text-sm font-light">
+                This day-by-day overview gives you the big picture of our weekly focus areas. 
+                For detailed class times, real-time availability, and registration, 
+                use the interactive schedule below where you can filter by day and see exact spot counts.
+              </p>
             </div>
           </div>
         </div>
@@ -127,45 +158,71 @@ export default function WeeklyScheduleImages() {
   );
 }
 
-function ScheduleImageCard({ item }: { item: typeof scheduleImages[0] }) {
+function ScheduleCard({ schedule }: { schedule: typeof weeklySchedules[0] }) {
   return (
-    <div className="group relative overflow-hidden border border-gold/10 hover:border-gold/30 transition-all duration-500">
-      {/* Image Container */}
-      <div className="relative h-64 md:h-80 overflow-hidden bg-ink/50">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-700"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/0 to-ink/0" />
-        
-        {/* Day Badge */}
-        <div className="absolute top-4 left-4">
-          <span className="font-mono text-[8px] tracking-widest uppercase bg-ink/90 text-gold px-3 py-1.5 border border-gold/30">
-            {item.day}
-          </span>
+    <div className="group relative overflow-hidden border border-gold/10 hover:border-gold/30 transition-all duration-500 bg-ink">
+      {/* Header */}
+      <div className="p-6 border-b border-gold/5">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h3 className="font-display text-2xl text-parchment font-light">{schedule.day}</h3>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="w-2 h-2 rounded-full" style={{ background: schedule.color }} />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/40">
+                {schedule.focus}
+              </span>
+            </div>
+          </div>
+          <div className="text-right">
+            <span className="font-mono text-[8px] tracking-widest uppercase text-gold/60">
+              {schedule.classes.length} {schedule.classes.length === 1 ? "class" : "classes"}
+            </span>
+          </div>
         </div>
+        
+        <p className="font-body text-parchment/50 text-sm font-light leading-relaxed">
+          {schedule.description}
+        </p>
       </div>
 
-      {/* Content */}
-      <div className="p-6 bg-ink">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-display text-xl text-parchment font-light">{item.title}</h3>
-          <div className="w-2 h-2 rounded-full bg-gold group-hover:scale-150 transition-transform duration-300" />
+      {/* Classes List */}
+      <div className="p-6">
+        <div className="space-y-4">
+          {schedule.classes.map((cls, index) => (
+            <div key={index} className="flex items-start justify-between pb-4 border-b border-gold/5 last:border-0 last:pb-0">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-mono text-[10px] tracking-widest uppercase text-gold/70">{cls.time}</span>
+                  <div className="w-1 h-1 rounded-full bg-parchment/20" />
+                  <span className="font-mono text-[8px] tracking-widest uppercase text-parchment/30">
+                    {cls.level}
+                  </span>
+                </div>
+                <h4 className="font-display text-base text-parchment font-light">{cls.name}</h4>
+                <p className="font-body text-parchment/40 text-xs font-light mt-1">with {cls.instructor}</p>
+              </div>
+              
+              <div className="text-right">
+                <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-sm ${
+                  cls.spots <= 3 ? "bg-clay/10" : "bg-sage/10"
+                }`}>
+                  <div className={`w-1.5 h-1.5 rounded-full ${cls.spots <= 3 ? "bg-clay" : "bg-sage"}`} />
+                  <span className="font-mono text-[8px] tracking-widest uppercase text-parchment/40">
+                    {cls.spots} spot{cls.spots !== 1 ? "s" : ""}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        
-        <p className="font-body text-parchment/50 text-sm mb-4 font-light leading-relaxed">
-          {item.description}
-        </p>
-        
-        <div className="flex items-center justify-between pt-4 border-t border-gold/5">
-          <span className="font-mono text-[9px] tracking-widest uppercase text-gold/60">
-            Focus: {item.focus}
+
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-4 mt-4 border-t border-gold/5">
+          <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">
+            Daily focus: {schedule.focus}
           </span>
-          <button className="font-mono text-[8px] tracking-widest uppercase text-parchment/40 hover:text-gold transition-colors flex items-center gap-1">
-            View Details
+          <button className="font-mono text-[8px] tracking-widest uppercase text-parchment/40 hover:text-gold transition-colors flex items-center gap-1 group">
+            View details
             <span className="text-gold group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
