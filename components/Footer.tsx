@@ -52,8 +52,8 @@ export default function Footer() {
           <div>
             <p className="font-mono text-[9px] tracking-widest uppercase text-parchment/30 mb-5">Visit</p>
             <address className="not-italic space-y-3">
-              <p className="font-body text-sm text-parchment/40 font-light">123 Art Lane</p>
-              <p className="font-body text-sm text-parchment/40 font-light">Basking Ridge, NJ 07920</p>
+              <p className="font-body text-sm text-parchment/40 font-light">258 King George Rd</p>
+              <p className="font-body text-sm text-parchment/40 font-light">Warren, NJ 07059, USA</p>
               <p className="font-body text-sm text-parchment/40 font-light mt-4">(908) 555-0192</p>
               <p className="font-body text-sm text-gold/50 font-light">hello@lunaartsstudio.com</p>
             </address>

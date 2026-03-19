@@ -87,7 +87,7 @@ export default function ContactSection() {
 
             <div className="space-y-6">
               {[
-                { icon: MapPin, label: "Studio", value: "123 Art Lane, Basking Ridge, NJ 07920" },
+                { icon: MapPin, label: "Studio", value: "258 King George Rd, Warren, NJ 07059, USA" },
                 { icon: Clock, label: "Hours", value: "Mon–Fri 9AM–8PM · Sat–Sun 10AM–6PM" },
                 { icon: Mail, label: "Email", value: "hello@lunaartsstudio.com" },
                 { icon: Phone, label: "Phone", value: "(908) 555-0192" },
