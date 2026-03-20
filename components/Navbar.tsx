@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -31,19 +32,30 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
         {/* Logo */}
-        <Link href="/" className="flex flex-col leading-none group">
-          <span
-            className="font-display text-2xl font-light tracking-widest text-parchment"
-            style={{ letterSpacing: "0.2em" }}
-          >
-            LUNA
-          </span>
-          <span
-            className="font-mono text-[9px] tracking-ultra text-gold uppercase"
-            style={{ letterSpacing: "0.35em" }}
-          >
-            Art Studio
-          </span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10">
+            <Image
+              src="/luna.png"
+              alt="Luna Arts Studio Logo"
+              fill
+              className="object-contain"
+              sizes="40px"
+            />
+          </div>
+          <div className="flex flex-col leading-none">
+            <span
+              className="font-display text-2xl font-light tracking-widest text-parchment"
+              style={{ letterSpacing: "0.2em" }}
+            >
+              LUNA
+            </span>
+            <span
+              className="font-mono text-[9px] tracking-ultra text-gold uppercase"
+              style={{ letterSpacing: "0.35em" }}
+            >
+              Arts Studio
+            </span>
+          </div>
         </Link>
 
         {/* Desktop links */}

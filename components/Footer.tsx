@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,13 +8,24 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex flex-col leading-none mb-6">
-              <span className="font-display text-3xl font-light tracking-widest text-parchment" style={{ letterSpacing: "0.2em" }}>
-                LUNA
-              </span>
-              <span className="font-mono text-[9px] tracking-ultra text-gold" style={{ letterSpacing: "0.35em" }}>
-                Art Studio
-              </span>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/luna.png"
+                  alt="Luna Arts Studio Logo"
+                  fill
+                  className="object-contain"
+                  sizes="48px"
+                />
+              </div>
+              <div className="flex flex-col leading-none">
+                <span className="font-display text-3xl font-light tracking-widest text-parchment" style={{ letterSpacing: "0.2em" }}>
+                  LUNA
+                </span>
+                <span className="font-mono text-[9px] tracking-ultra text-gold" style={{ letterSpacing: "0.35em" }}>
+                  Arts Studio
+                </span>
+              </div>
             </div>
             <p className="font-body text-parchment/30 text-sm leading-relaxed font-light max-w-xs">
               A creative sanctuary where art is practiced, celebrated, and shared — for all ages and all levels.
