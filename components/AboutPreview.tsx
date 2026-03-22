@@ -8,51 +8,28 @@ export default function AboutPreview() {
   const inView = useInView(ref, { threshold: 0.2 });
 
   return (
-    <section id="about" className="py-32 bg-ink relative overflow-hidden">
-      {/* Decorative numeral */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-parchment/[0.02] leading-none select-none pointer-events-none pr-4">
-        01
-      </div>
-
+    <section id="about" className="py-32 bg-ink relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-center">
-        {/* Left: image collage */}
         <div
           ref={ref}
           className={`relative transition-all duration-1000 ${
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
           }`}
         >
-          <div className="relative aspect-[4/5] bg-gradient-to-br from-parchment/10 to-sage/10 border border-gold/10 overflow-hidden">
-            {/* 照片背景 */}
-            <div className="absolute inset-0">
-              <Image
-                src="/images/backgrounds/about-background.jpg"
-                alt="Luna Art Studio - Art is the language of the soul"
-                fill
-                className="object-cover"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* 叠加层 - 增强文字可读性 */}
-              <div className="absolute inset-0 bg-ink/30" />
-            </div>
-            
-            <div className="absolute bottom-6 left-6 right-6 z-10">
-              <p className="font-display italic text-2xl text-gold/70 font-light leading-snug">
-                "Art is the language of the soul"
-              </p>
-            </div>
-          </div>
-
-          {/* Floating accent card */}
-          <div className="absolute -bottom-6 -right-6 bg-ink border border-gold/20 p-6 w-44 z-20">
-            <p className="font-mono text-[9px] tracking-widest uppercase text-gold/60 mb-2">Founded</p>
-            <p className="font-display text-4xl text-parchment font-light">2020</p>
-            <p className="font-mono text-[9px] tracking-wide text-parchment/40 mt-1">New Jersey</p>
+          <div className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src="/images/backgrounds/about-background.jpg"
+              alt="Luna Art Studio creative space"
+              fill
+              className="object-cover"
+              quality={95}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
           </div>
         </div>
 
-        {/* Right: text */}
+        {/* Right: 文字内容 - 保持不变 */}
         <div
           className={`transition-all duration-1000 delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
