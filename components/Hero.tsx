@@ -7,7 +7,7 @@ export default function Hero() {
       {/* 照片背景 */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/backgrounds/hero-background.jpg" // 请替换为你的照片路径
+          src="/images/backgrounds/hero-background.jpg"
           alt="Luna Art Studio background - Art is the language of soul"
           fill
           priority
