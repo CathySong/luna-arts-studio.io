@@ -36,7 +36,7 @@ export default function Navbar() {
           <div className="relative w-10 h-10">
             <Image
               src="/luna.png"
-              alt="Luna Arts Studio Logo"
+              alt="Luna Art Studio Logo"
               fill
               className="object-contain"
               sizes="40px"
@@ -53,7 +53,7 @@ export default function Navbar() {
               className="font-mono text-[9px] tracking-ultra text-gold uppercase"
               style={{ letterSpacing: "0.35em" }}
             >
-              Art studio
+              Art Studio
             </span>
           </div>
         </Link>

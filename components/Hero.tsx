@@ -46,7 +46,7 @@ export default function Hero() {
             className="block text-[clamp(1.2rem,4vw,3.5rem)] tracking-ultra text-gold/80 font-light italic"
             style={{ letterSpacing: "0.3em" }}
           >
-            Art studio
+            Art Studio
           </span>
         </h1>
 
