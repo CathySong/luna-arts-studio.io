@@ -1,7 +1,6 @@
 "use client";
 import { useInView } from "@/lib/useInView";
 import { useRef } from "react";
-import Image from "next/image";
 
 export default function AboutPreview() {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,21 +22,24 @@ export default function AboutPreview() {
           }`}
         >
           <div className="relative aspect-[4/5] bg-gradient-to-br from-parchment/10 to-sage/10 border border-gold/10 overflow-hidden">
-            {/* 照片背景 */}
-            <div className="absolute inset-0">
-              <Image
-                src="/images/backgrounds/about-background.jpg"
-                alt="Luna Art Studio - Art is the language of the soul"
-                fill
-                className="object-cover"
-                quality={85}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* 叠加层 - 增强文字可读性 */}
-              <div className="absolute inset-0 bg-ink/30" />
-            </div>
-            
-            <div className="absolute bottom-6 left-6 right-6 z-10">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(122,140,126,0.06) 50%, rgba(196,120,90,0.05) 100%)",
+              }}
+            />
+            {/* Placeholder artwork pattern */}
+            <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 500">
+              <circle cx="200" cy="200" r="120" fill="none" stroke="#c9a96e" strokeWidth="0.5" />
+              <circle cx="200" cy="200" r="80" fill="none" stroke="#c9a96e" strokeWidth="0.5" />
+              <circle cx="200" cy="200" r="40" fill="none" stroke="#c9a96e" strokeWidth="0.5" />
+              <line x1="80" y1="200" x2="320" y2="200" stroke="#c9a96e" strokeWidth="0.5" />
+              <line x1="200" y1="80" x2="200" y2="320" stroke="#c9a96e" strokeWidth="0.5" />
+              <ellipse cx="200" cy="350" rx="60" ry="80" fill="none" stroke="#7a8c7e" strokeWidth="0.5" opacity="0.6" />
+              <path d="M 80 400 Q 150 350 200 380 Q 250 350 320 400" fill="none" stroke="#c4785a" strokeWidth="0.5" opacity="0.8" />
+            </svg>
+            <div className="absolute bottom-6 left-6 right-6">
               <p className="font-display italic text-2xl text-gold/70 font-light leading-snug">
                 "Art is the language of the soul"
               </p>
@@ -45,7 +47,7 @@ export default function AboutPreview() {
           </div>
 
           {/* Floating accent card */}
-          <div className="absolute -bottom-6 -right-6 bg-ink border border-gold/20 p-6 w-44 z-20">
+          <div className="absolute -bottom-6 -right-6 bg-ink border border-gold/20 p-6 w-44">
             <p className="font-mono text-[9px] tracking-widest uppercase text-gold/60 mb-2">Founded</p>
             <p className="font-display text-4xl text-parchment font-light">2020</p>
             <p className="font-mono text-[9px] tracking-wide text-parchment/40 mt-1">New Jersey</p>
