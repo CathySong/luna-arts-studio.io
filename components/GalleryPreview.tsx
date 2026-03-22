@@ -1,74 +1,93 @@
 "use client";
 import { useRef, useState } from "react";
 import { useInView } from "@/lib/useInView";
+import Image from "next/image";
 
 const artworks = [
   {
-    id: 1,
-    title: "Golden Hour",
-    medium: "Oil on Canvas",
-    size: "24 × 36 in",
-    year: "2024",
-    color: "from-amber-900/40 to-gold/20",
-    accent: "#c9a96e",
-    available: true,
-    price: "$1,200",
+    "id": 1,
+    "title": "Golden Hour",
+    "medium": "Oil on Canvas",
+    "size": "24 \u00d7 36 in",
+    "year": "2024",
+    "color": "from-amber-900/40 to-gold/20",
+    "accent": "#c9a96e",
+    "available": true,
+    "price": "$1,200",
+    "imagePath": "/images/artworks/artwork1.jpg"
   },
   {
-    id: 2,
-    title: "Sage Silence",
-    medium: "Watercolor",
-    size: "18 × 24 in",
-    year: "2024",
-    color: "from-sage/30 to-emerald-900/20",
-    accent: "#7a8c7e",
-    available: false,
-    price: "$680",
+    "id": 2,
+    "title": "Sage Silence",
+    "medium": "Watercolor",
+    "size": "18 \u00d7 24 in",
+    "year": "2024",
+    "color": "from-sage/30 to-emerald-900/20",
+    "accent": "#7a8c7e",
+    "available": false,
+    "price": "$680",
+    "imagePath": "/images/artworks/artwork2.jpg"
   },
   {
-    id: 3,
-    title: "Terra Firma",
-    medium: "Acrylic & Charcoal",
-    size: "30 × 40 in",
-    year: "2023",
-    color: "from-clay/30 to-amber-900/20",
-    accent: "#c4785a",
-    available: true,
-    price: "$1,800",
+    "id": 3,
+    "title": "Terra Firma",
+    "medium": "Acrylic & Charcoal",
+    "size": "30 \u00d7 40 in",
+    "year": "2023",
+    "color": "from-clay/30 to-amber-900/20",
+    "accent": "#c4785a",
+    "available": true,
+    "price": "$1,800",
+    "imagePath": "/images/artworks/artwork3.jpg"
   },
   {
-    id: 4,
-    title: "Lunar Drift",
-    medium: "Ink & Gouache",
-    size: "16 × 20 in",
-    year: "2024",
-    color: "from-slate-700/40 to-mist/20",
-    accent: "#9ba8b0",
-    available: true,
-    price: "$540",
+    "id": 4,
+    "title": "Lunar Drift",
+    "medium": "Ink & Gouache",
+    "size": "16 \u00d7 20 in",
+    "year": "2024",
+    "color": "from-slate-700/40 to-mist/20",
+    "accent": "#9ba8b0",
+    "available": true,
+    "price": "$540",
+    "imagePath": "/images/artworks/artwork4.jpg"
   },
   {
-    id: 5,
-    title: "Embers",
-    medium: "Oil Pastel",
-    size: "12 × 16 in",
-    year: "2023",
-    color: "from-red-900/30 to-amber-700/20",
-    accent: "#d4845a",
-    available: false,
-    price: "$420",
+    "id": 5,
+    "title": "Embers",
+    "medium": "Oil Pastel",
+    "size": "12 \u00d7 16 in",
+    "year": "2023",
+    "color": "from-red-900/30 to-amber-700/20",
+    "accent": "#d4845a",
+    "available": false,
+    "price": "$420",
+    "imagePath": "/images/artworks/artwork5.jpg"
   },
   {
-    id: 6,
-    title: "Still Waters",
-    medium: "Watercolor",
-    size: "20 × 28 in",
-    year: "2024",
-    color: "from-blue-900/30 to-cyan-900/20",
-    accent: "#6a9ab0",
-    available: true,
-    price: "$760",
+    "id": 6,
+    "title": "Still Waters",
+    "medium": "Watercolor",
+    "size": "20 \u00d7 28 in",
+    "year": "2024",
+    "color": "from-blue-900/30 to-cyan-900/20",
+    "accent": "#6a9ab0",
+    "available": true,
+    "price": "$760",
+    "imagePath": "/images/artworks/artwork6.jpg"
   },
+  {
+    "id": 7,
+    "title": "Violet Dreams",
+    "medium": "Mixed Media",
+    "size": "22 \u00d7 30 in",
+    "year": "2024",
+    "color": "from-purple-900/30 to-violet-900/20",
+    "accent": "#8a6bb0",
+    "available": true,
+    "price": "$890",
+    "imagePath": "/images/artworks/artwork7.jpg"
+  }
 ];
 
 function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
@@ -88,65 +107,20 @@ function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Artwork placeholder */}
+      {/* Artwork image */}
       <div className={`relative aspect-[3/4] bg-gradient-to-br ${art.color} border border-white/5 overflow-hidden`}>
-        {/* Generative art pattern */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <radialGradient id={`grad${art.id}`} cx="50%" cy="40%" r="60%">
-              <stop offset="0%" stopColor={art.accent} stopOpacity="0.3" />
-              <stop offset="100%" stopColor={art.accent} stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <rect width="300" height="400" fill={`url(#grad${art.id})`} />
-          {art.id === 1 && (
-            <>
-              <circle cx="150" cy="160" r="90" fill="none" stroke={art.accent} strokeWidth="0.4" opacity="0.6" />
-              <circle cx="150" cy="160" r="60" fill={art.accent} opacity="0.15" />
-              <line x1="0" y1="220" x2="300" y2="180" stroke={art.accent} strokeWidth="0.3" opacity="0.4" />
-              <line x1="0" y1="240" x2="300" y2="200" stroke={art.accent} strokeWidth="0.3" opacity="0.3" />
-            </>
-          )}
-          {art.id === 2 && (
-            <>
-              <ellipse cx="150" cy="200" rx="100" ry="140" fill="none" stroke={art.accent} strokeWidth="0.4" opacity="0.5" />
-              <path d="M50,350 Q150,200 250,350" fill={art.accent} opacity="0.1" />
-              <path d="M80,320 Q150,180 220,320" fill="none" stroke={art.accent} strokeWidth="0.4" opacity="0.4" />
-            </>
-          )}
-          {art.id === 3 && (
-            <>
-              <rect x="40" y="60" width="220" height="280" fill="none" stroke={art.accent} strokeWidth="0.4" opacity="0.4" />
-              <rect x="70" y="90" width="160" height="220" fill={art.accent} opacity="0.08" />
-              <line x1="40" y1="60" x2="260" y2="340" stroke={art.accent} strokeWidth="0.3" opacity="0.3" />
-            </>
-          )}
-          {art.id === 4 && (
-            <>
-              <path d="M20,400 Q100,100 280,200 Q200,350 150,50" fill="none" stroke={art.accent} strokeWidth="0.5" opacity="0.5" />
-              <circle cx="150" cy="200" r="30" fill={art.accent} opacity="0.2" />
-            </>
-          )}
-          {art.id === 5 && (
-            <>
-              {[0, 1, 2, 3, 4].map((i) => (
-                <ellipse key={i} cx={80 + i * 40} cy={200 + (i % 2) * 30} rx="20" ry="60" fill={art.accent} opacity="0.12" transform={`rotate(${i * 15} ${80 + i * 40} ${200 + (i % 2) * 30})`} />
-              ))}
-            </>
-          )}
-          {art.id === 6 && (
-            <>
-              <path d="M0,250 Q75,180 150,250 Q225,320 300,250" fill="none" stroke={art.accent} strokeWidth="0.5" opacity="0.6" />
-              <path d="M0,230 Q75,160 150,230 Q225,300 300,230" fill="none" stroke={art.accent} strokeWidth="0.3" opacity="0.3" />
-            </>
-          )}
-        </svg>
-
+        <Image
+          src={art.imagePath}
+          alt={`${art.title} - ${art.medium}`}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 50vw, 33vw"
+          priority={art.id <= 3}
+        />
+        
         {/* Hover overlay */}
         <div
-          className={`absolute inset-0 bg-ink/80 flex flex-col justify-end p-5 transition-all duration-400 ${
-            hovered ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-ink/80 flex flex-col justify-end p-5 transition-all duration-400 ${hovered ? "opacity-100" : "opacity-0"}`}
         >
           <p className="font-mono text-[9px] tracking-widest uppercase text-gold/70 mb-1">{art.medium}</p>
           <p className="font-display text-xl text-parchment font-light mb-1">{art.title}</p>
