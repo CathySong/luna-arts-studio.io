@@ -1,5 +1,4 @@
 "use client";
-import Hero from "@/components/Hero";
 import AboutPreview from "@/components/AboutPreview";
 import GalleryPreview from "@/components/GalleryPreview";
 import ClassesPreview from "@/components/ClassesPreview";
@@ -10,7 +9,7 @@ import ContactSection from "@/components/ContactSection";
 export default function Home() {
   return (
     <>
-      <Hero />
+      {/* 移除Hero组件，直接从AboutPreview开始 */}
       <AboutPreview />
       <GalleryPreview />
       <ClassesPreview />

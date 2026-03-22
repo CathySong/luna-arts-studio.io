@@ -53,7 +53,7 @@ export default function Navbar() {
               className="font-mono text-[9px] tracking-ultra text-gold uppercase"
               style={{ letterSpacing: "0.35em" }}
             >
-              Arts Studio
+              Art studio
             </span>
           </div>
         </Link>

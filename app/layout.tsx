@@ -27,20 +27,20 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Luna Art Studio — Fine Art & Creative Classes",
+  title: "Luna Art studio — Fine Art & Creative Classes",
   description:
-    "Luna Art Studio offers fine art exhibitions, painting and drawing classes, and a vibrant creative community. Explore our gallery and join our weekly classes.",
+    "Luna Art studio offers fine art exhibitions, painting and drawing classes, and a vibrant creative community. Explore our gallery and join our weekly classes.",
   keywords:
     "art studio, painting classes, drawing, fine art, art gallery, creative classes, New Jersey",
   openGraph: {
-    title: "Luna Art Studio",
+    title: "Luna Art studio",
     description: "Fine Art & Creative Classes — Basking Ridge, NJ",
     type: "website",
-    siteName: "Luna Art Studio",
+    siteName: "Luna Art studio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luna Art Studio",
+    title: "Luna Art studio",
     description: "Fine Art & Creative Classes",
   },
 };
