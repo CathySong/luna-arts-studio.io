@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useInView } from "@/lib/useInView";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -159,7 +159,7 @@ function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
   return (
     <div
       ref={ref}
-      className={`group relative cursor-pointer transition-all duration-700 flex-shrink-0 w-full`}
+      className={`group relative cursor-pointer transition-all duration-700 flex-shrink-0 w-[calc(50%-0.5rem)] md:w-[calc(50%-1rem)]`}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(40px)",
@@ -205,75 +205,27 @@ function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
 
 export default function GalleryPreview() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   
-  // Calculate total groups (6 items per view, 2 columns × 3 rows)
-  const itemsPerView = 6;
-  const totalGroups = Math.ceil(artworks.length / itemsPerView);
+  // Group artworks into sets of 6 (for 2 columns × 3 rows)
+  const itemsPerGroup = 6;
+  const totalGroups = Math.ceil(artworks.length / itemsPerGroup);
   
-  // Update scroll buttons state
-  const updateScrollButtons = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10); // 10px tolerance
-    }
-  };
-  
-  // Scroll to specific group
-  const scrollToGroup = (groupIndex: number) => {
+  // Scroll functions
+  const scrollLeft = () => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const itemWidth = container.scrollWidth / artworks.length;
-      const scrollPosition = groupIndex * (itemsPerView * itemWidth);
-      
-      container.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-      });
-      setCurrentIndex(groupIndex);
-    }
-  };
-  
-  // Scroll left/right
-  const scrollLeft = () => {
-    if (currentIndex > 0) {
-      scrollToGroup(currentIndex - 1);
+      const scrollAmount = container.clientWidth;
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   };
   
   const scrollRight = () => {
-    if (currentIndex < totalGroups - 1) {
-      scrollToGroup(currentIndex + 1);
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const scrollAmount = container.clientWidth;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
-  
-  // Handle scroll events
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', updateScrollButtons);
-      updateScrollButtons(); // Initial check
-      
-      return () => container.removeEventListener('scroll', updateScrollButtons);
-    }
-  }, []);
-  
-  // Handle keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        scrollLeft();
-      } else if (e.key === 'ArrowRight') {
-        scrollRight();
-      }
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex]);
 
   return (
     <section id="gallery" className="py-32 bg-ink relative overflow-hidden">
@@ -287,29 +239,17 @@ export default function GalleryPreview() {
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-gold/60" />
               <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
-                Featured Gallery
+                Gallery
               </span>
             </div>
             <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-              Scroll Through <span className="italic text-gold">Art</span>
+              Featured <span className="italic text-gold">Works</span>
             </h2>
           </div>
-          <div className="flex flex-col gap-3">
-            <p className="font-body text-parchment/40 max-w-sm font-light leading-relaxed text-sm">
-              Explore our curated collection. Scroll horizontally to view more works.
-              Each piece tells a unique story. <span className="text-gold/60">Purchase inquiries welcome.</span>
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gold" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Available</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-parchment/30" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Sold</span>
-              </div>
-            </div>
-          </div>
+          <p className="font-body text-parchment/40 max-w-sm font-light leading-relaxed text-sm">
+            Scroll horizontally to view our collection. Each group shows 6 artworks at a time.
+            <span className="text-gold/60"> Purchase inquiries welcome.</span>
+          </p>
         </div>
 
         {/* Scroll Controls */}
@@ -317,56 +257,66 @@ export default function GalleryPreview() {
           <div className="flex items-center gap-4">
             <button
               onClick={scrollLeft}
-              disabled={!canScrollLeft}
-              className={`p-2 border ${canScrollLeft ? 'border-gold/40 text-gold hover:bg-gold/10' : 'border-parchment/10 text-parchment/20 cursor-not-allowed'} transition-all duration-300`}
+              className="p-2 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300"
               aria-label="Scroll left"
             >
               <ChevronLeft size={16} />
             </button>
             <button
               onClick={scrollRight}
-              disabled={!canScrollRight}
-              className={`p-2 border ${canScrollRight ? 'border-gold/40 text-gold hover:bg-gold/10' : 'border-parchment/10 text-parchment/20 cursor-not-allowed'} transition-all duration-300`}
+              className="p-2 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300"
               aria-label="Scroll right"
             >
               <ChevronRight size={16} />
             </button>
             <span className="font-mono text-[10px] tracking-widest uppercase text-parchment/40">
-              {currentIndex + 1} / {totalGroups}
+              Scroll to view {totalGroups} groups
             </span>
           </div>
           
           <div className="hidden md:flex items-center gap-2">
-            <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Use ← → arrows or drag to scroll</span>
+            <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">6 artworks per view</span>
           </div>
         </div>
 
-        {/* Horizontal Scroll Gallery */}
+        {/* Horizontal Scroll Gallery - Two Column Layout */}
         <div className="relative">
           <div 
             ref={scrollContainerRef}
             className="overflow-x-auto scrollbar-hide pb-6"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            style={{ 
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
           >
-            <div className="flex gap-4 lg:gap-6" style={{ width: `${artworks.length * 25}%` }}>
-              {/* Group artworks into sets of 6 (2 columns × 3 rows) */}
-              {Array.from({ length: totalGroups }).map((_, groupIndex) => (
-                <div 
-                  key={groupIndex} 
-                  className="flex-shrink-0 w-full"
-                  style={{ width: '100vw', maxWidth: 'calc(100vw - 3rem)' }}
-                >
-                  <div className="grid grid-cols-2 gap-4 lg:gap-6">
-                    {artworks.slice(groupIndex * itemsPerView, (groupIndex + 1) * itemsPerView).map((art, index) => (
-                      <ArtCard 
-                        key={art.id} 
-                        art={art} 
-                        delay={index * 80} 
-                      />
-                    ))}
+            <div className="flex gap-4 lg:gap-6">
+              {/* Create groups of 6 artworks each */}
+              {Array.from({ length: totalGroups }).map((_, groupIndex) => {
+                const groupArtworks = artworks.slice(
+                  groupIndex * itemsPerGroup,
+                  (groupIndex + 1) * itemsPerGroup
+                );
+                
+                return (
+                  <div 
+                    key={groupIndex} 
+                    className="flex-shrink-0 w-full"
+                    style={{ width: '100vw', maxWidth: 'calc(100vw - 3rem)' }}
+                  >
+                    {/* Two column grid for 6 items (2 columns × 3 rows) */}
+                    <div className="grid grid-cols-2 gap-4 lg:gap-6">
+                      {groupArtworks.map((art, index) => (
+                        <ArtCard 
+                          key={art.id} 
+                          art={art} 
+                          delay={index * 80} 
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           
@@ -375,28 +325,16 @@ export default function GalleryPreview() {
           <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-ink to-transparent pointer-events-none" />
         </div>
 
-        {/* Navigation Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: totalGroups }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToGroup(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-gold scale-125' : 'bg-parchment/20 hover:bg-parchment/40'}`}
-              aria-label={`Go to group ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Call to Action */}
+        {/* Gallery Info */}
         <div className="mt-14 text-center">
           <p className="font-mono text-[10px] tracking-widest uppercase text-parchment/30 mb-4">
-            Full collection available by appointment • {artworks.length} works in total
+            {artworks.length} artworks in collection • Scroll horizontally to view all
           </p>
           <a
             href="#contact"
             className="inline-flex items-center gap-3 font-body text-xs tracking-widest uppercase text-gold border-b border-gold/30 pb-0.5 hover:border-gold transition-colors duration-300"
           >
-            Schedule a Private Viewing →
+            View Full Collection →
           </a>
         </div>
       </div>
