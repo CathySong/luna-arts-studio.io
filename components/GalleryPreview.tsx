@@ -239,16 +239,16 @@ export default function GalleryPreview() {
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-gold/60" />
               <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
-                Gallery View
+                My Gallery
               </span>
             </div>
             <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-              2×3 <span className="italic text-gold">Grid</span> Scroll
+              My <span className="italic text-gold">Gallery</span>
             </h2>
           </div>
           <p className="font-body text-parchment/40 max-w-sm font-light leading-relaxed text-sm">
-            Browse artworks in a 2-row, 3-column grid. Scroll horizontally to see more.
-            Each view shows 6 pieces at once. <span className="text-gold/60">Click arrows to navigate.</span>
+            A curated collection of my finest works. Scroll to explore the complete series.
+            <span className="text-gold/60"> Each piece tells its own story.</span>
           </p>
         </div>
 
