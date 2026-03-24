@@ -159,7 +159,7 @@ function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
   return (
     <div
       ref={ref}
-      className={`group relative cursor-pointer transition-all duration-700 flex-shrink-0 w-[calc(50%-0.5rem)] md:w-[calc(50%-1rem)]`}
+      className={`group relative cursor-pointer transition-all duration-700 flex-shrink-0`}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(40px)",
@@ -169,13 +169,13 @@ function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Artwork image */}
-      <div className={`relative aspect-[3/4] bg-gradient-to-br ${art.color} border border-white/5 overflow-hidden`}>
+      <div className={`relative aspect-[4/3] bg-gradient-to-br ${art.color} border border-white/5 overflow-hidden`}>
         <Image
           src={art.imagePath}
           alt={`${art.title} - ${art.medium}`}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 50vw, 25vw"
+          sizes="(max-width: 768px) 33vw, 20vw"
           priority={art.id <= 3}
         />
         
@@ -206,7 +206,7 @@ function ArtCard({ art, delay }: { art: (typeof artworks)[0]; delay: number }) {
 export default function GalleryPreview() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
-  // Group artworks into sets of 6 (for 2 columns × 3 rows)
+  // 2 rows × 3 columns = 6 items per group
   const itemsPerGroup = 6;
   const totalGroups = Math.ceil(artworks.length / itemsPerGroup);
   
@@ -239,16 +239,16 @@ export default function GalleryPreview() {
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-gold/60" />
               <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
-                Gallery
+                Gallery View
               </span>
             </div>
             <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-              Featured <span className="italic text-gold">Works</span>
+              2×3 <span className="italic text-gold">Grid</span> Scroll
             </h2>
           </div>
           <p className="font-body text-parchment/40 max-w-sm font-light leading-relaxed text-sm">
-            Scroll horizontally to view our collection. Each group shows 6 artworks at a time.
-            <span className="text-gold/60"> Purchase inquiries welcome.</span>
+            Browse artworks in a 2-row, 3-column grid. Scroll horizontally to see more.
+            Each view shows 6 pieces at once. <span className="text-gold/60">Click arrows to navigate.</span>
           </p>
         </div>
 
@@ -257,29 +257,36 @@ export default function GalleryPreview() {
           <div className="flex items-center gap-4">
             <button
               onClick={scrollLeft}
-              className="p-2 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300"
+              className="p-3 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300"
               aria-label="Scroll left"
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft size={18} />
             </button>
             <button
               onClick={scrollRight}
-              className="p-2 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300"
+              className="p-3 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300"
               aria-label="Scroll right"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={18} />
             </button>
             <span className="font-mono text-[10px] tracking-widest uppercase text-parchment/40">
-              Scroll to view {totalGroups} groups
+              Group 1 of {totalGroups} • 6 artworks per view
             </span>
           </div>
           
           <div className="hidden md:flex items-center gap-2">
-            <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">6 artworks per view</span>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-gold" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Available</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-parchment/30" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">Sold</span>
+            </div>
           </div>
         </div>
 
-        {/* Horizontal Scroll Gallery - Two Column Layout */}
+        {/* Horizontal Scroll Gallery - 2 Rows × 3 Columns Layout */}
         <div className="relative">
           <div 
             ref={scrollContainerRef}
@@ -290,8 +297,8 @@ export default function GalleryPreview() {
               WebkitOverflowScrolling: 'touch'
             }}
           >
-            <div className="flex gap-4 lg:gap-6">
-              {/* Create groups of 6 artworks each */}
+            <div className="flex gap-6 lg:gap-8">
+              {/* Create groups of 6 artworks each (2 rows × 3 columns) */}
               {Array.from({ length: totalGroups }).map((_, groupIndex) => {
                 const groupArtworks = artworks.slice(
                   groupIndex * itemsPerGroup,
@@ -304,8 +311,8 @@ export default function GalleryPreview() {
                     className="flex-shrink-0 w-full"
                     style={{ width: '100vw', maxWidth: 'calc(100vw - 3rem)' }}
                   >
-                    {/* Two column grid for 6 items (2 columns × 3 rows) */}
-                    <div className="grid grid-cols-2 gap-4 lg:gap-6">
+                    {/* 2 rows × 3 columns grid */}
+                    <div className="grid grid-cols-3 grid-rows-2 gap-4 lg:gap-6">
                       {groupArtworks.map((art, index) => (
                         <ArtCard 
                           key={art.id} 
@@ -321,20 +328,35 @@ export default function GalleryPreview() {
           </div>
           
           {/* Scroll gradient overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-ink to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-ink to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-ink to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-ink to-transparent pointer-events-none" />
         </div>
 
         {/* Gallery Info */}
         <div className="mt-14 text-center">
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-0.5 bg-gold" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">2 Rows</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-0.5 bg-gold" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">3 Columns</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-0.5 bg-gold" />
+              <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">6 per View</span>
+            </div>
+          </div>
+          
           <p className="font-mono text-[10px] tracking-widest uppercase text-parchment/30 mb-4">
-            {artworks.length} artworks in collection • Scroll horizontally to view all
+            {artworks.length} total artworks • Scroll horizontally or use arrows
           </p>
           <a
             href="#contact"
             className="inline-flex items-center gap-3 font-body text-xs tracking-widest uppercase text-gold border-b border-gold/30 pb-0.5 hover:border-gold transition-colors duration-300"
           >
-            View Full Collection →
+            Inquire About Artworks →
           </a>
         </div>
       </div>
