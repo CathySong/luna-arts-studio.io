@@ -2,6 +2,7 @@
 import AboutPreview from "@/components/AboutPreview";
 import GalleryPreview from "@/components/GalleryPreview";
 import ClassesPreview from "@/components/ClassesPreview";
+import ScheduleSection from "@/components/ScheduleSection";
 import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <AboutPreview />
       <GalleryPreview />
       <ClassesPreview />
+      <ScheduleSection />
       <ContactSection />
     </>
   );
