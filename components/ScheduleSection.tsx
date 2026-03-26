@@ -57,7 +57,7 @@ export default function ScheduleSection() {
       >
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-px w-8 bg-gold/60" />
+            <div className="h-px w-8 bg-accent-warm/60" />
             <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Weekly Timetable
             </span>
@@ -75,8 +75,8 @@ export default function ScheduleSection() {
               onClick={() => setActiveDay(day)}
               className={`px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-all duration-300 ${
                 activeDay === day
-                  ? "bg-gold text-ink"
-                  : "border border-parchment/10 text-gray hover:border-gray-light hover:text-accent-warm/60"
+                  ? "bg-accent-warm text-white"
+                  : "border border-gray-lightest text-gray hover:border-gray-light hover:text-accent-warm/60"
               }`}
             >
               {day.slice(0, 3)}
@@ -97,7 +97,7 @@ export default function ScheduleSection() {
           {(schedule[activeDay] || []).map((item, i) => (
             <div
               key={i}
-              className="grid grid-cols-5 gap-0 px-6 py-5 border-b border-parchment/5 hover:bg-parchment/[0.02] transition-colors duration-200 group"
+              className="grid grid-cols-5 gap-0 px-6 py-5 border-b border-gray-lightest hover:bg-gray-lightest/50 transition-colors duration-200 group"
             >
               <div>
                 <p className="font-mono text-xs text-gray-darkest/70">{item.time}</p>

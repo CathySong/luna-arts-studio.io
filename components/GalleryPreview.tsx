@@ -405,7 +405,7 @@ function GallerySection({
       {/* Section Header */}
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-px w-6 bg-gold/60" />
+          <div className="h-px w-6 bg-accent-warm/60" />
           <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
             {sectionId}
           </span>
@@ -487,19 +487,19 @@ function GallerySection({
         </div>
         
         {/* Scroll gradient overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-ink to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-ink to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       </div>
 
       {/* Section Footer */}
       <div className="mt-6 flex items-center justify-between text-gray">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-0.5 bg-gold" />
+            <div className="w-2 h-0.5 bg-accent-warm" />
             <span className="font-mono text-[8px] tracking-widest uppercase">{itemsPerView} per view</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-0.5 bg-gold" />
+            <div className="w-2 h-0.5 bg-accent-warm" />
             <span className="font-mono text-[8px] tracking-widest uppercase">Swipe or use arrows</span>
           </div>
         </div>
@@ -534,7 +534,7 @@ export default function GalleryPreview() {
         {/* Main Header */}
         <div className="mb-20">
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-px w-8 bg-gold/60" />
+            <div className="h-px w-8 bg-accent-warm/60" />
             <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               My Gallery
             </span>

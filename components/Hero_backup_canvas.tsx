@@ -87,11 +87,11 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         {/* Eyebrow */}
         <div className="flex items-center justify-center gap-4 mb-10 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
-          <div className="h-px w-12 bg-gold/50" />
+          <div className="h-px w-12 bg-accent-warm/50" />
           <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/70" style={{ letterSpacing: "0.4em" }}>
             Est. 2020 · Fine Art & Creative Education
           </span>
-          <div className="h-px w-12 bg-gold/50" />
+          <div className="h-px w-12 bg-accent-warm/50" />
         </div>
 
         {/* Main headline */}

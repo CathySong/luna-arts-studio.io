@@ -66,7 +66,7 @@ export default function ContactSection() {
       >
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-px w-8 bg-gold/60" />
+            <div className="h-px w-8 bg-accent-warm/60" />
             <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Get in Touch
             </span>
@@ -168,7 +168,7 @@ export default function ContactSection() {
                       name="interest"
                       value={form.interest}
                       onChange={handleChange}
-                      className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-gray-darkest/70 focus:border-gray-light focus:outline-none transition-colors appearance-none cursor-pointer"
+                      className="w-full bg-transparent border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest/70 focus:border-gray-light focus:outline-none transition-colors appearance-none cursor-pointer"
                       style={{ background: "#0e0d0b" }}
                     >
                       <option value="">Select an area...</option>
@@ -191,7 +191,7 @@ export default function ContactSection() {
                     onChange={handleChange}
                     rows={5}
                     placeholder="Tell us a little about yourself and what you are looking for..."
-                    className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors resize-none"
+                    className="w-full bg-transparent border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors resize-none"
                     required
                   />
                 </div>
@@ -200,7 +200,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="group flex items-center gap-3 px-10 py-4 bg-gold text-ink font-body text-xs tracking-widest uppercase font-medium hover:bg-accent-warm-light transition-all duration-300 disabled:opacity-50"
+                    className="group flex items-center gap-3 px-10 py-4 bg-accent-warm text-white font-body text-xs tracking-widest uppercase font-medium hover:bg-accent-warm/90 transition-all duration-300 disabled:opacity-50"
                   >
                     {status === "sending" ? "Sending..." : "Send Inquiry"}
                     <Send size={12} className="group-hover:translate-x-0.5 transition-transform" />
@@ -237,7 +237,7 @@ function Field({
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors"
+        className="w-full bg-transparent border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors"
       />
     </div>
   );

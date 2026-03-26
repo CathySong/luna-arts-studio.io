@@ -36,7 +36,7 @@ export default function AboutPreview() {
           }`}
         >
           <div className="flex items-center gap-3 mb-8">
-            <div className="h-px w-8 bg-gold/60" />
+            <div className="h-px w-8 bg-accent-warm/60" />
             <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Our Story
             </span>

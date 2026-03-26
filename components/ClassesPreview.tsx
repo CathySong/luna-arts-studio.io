@@ -81,7 +81,7 @@ export default function ClassesPreview() {
           className={`mb-20 transition-all duration-1000 ${titleInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-px w-8 bg-gold/60" />
+            <div className="h-px w-8 bg-accent-warm/60" />
             <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Creative Education
             </span>
@@ -96,7 +96,7 @@ export default function ClassesPreview() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-lightest">
           {classes.map((cls, i) => (
             <ClassCard key={cls.id} cls={cls} delay={i * 80} />
           ))}
@@ -162,9 +162,9 @@ function ClassCard({ cls, delay }: { cls: (typeof classes)[0]; delay: number }) 
         {cls.description}
       </p>
 
-      <div className="flex items-center justify-between pt-5 border-t border-parchment/5">
+      <div className="flex items-center justify-between pt-5 border-t border-gray-lightest">
         <div className="flex items-center gap-2">
-          <div className="w-1 h-1 rounded-full bg-gold/50" />
+          <div className="w-1 h-1 rounded-full bg-accent-warm/50" />
           <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
             {cls.duration}
           </span>

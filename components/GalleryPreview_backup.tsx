@@ -179,7 +179,7 @@ export default function GalleryPreview() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-gold/60" />
+              <div className="h-px w-8 bg-accent-warm/60" />
               <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
                 Selected Works
               </span>
