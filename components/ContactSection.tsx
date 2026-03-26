@@ -97,7 +97,7 @@ export default function ContactSection() {
                     <Icon size={12} className="text-accent-warm/60" />
                   </div>
                   <div>
-                    <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-1">{label}</p>
+                    <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker mb-1">{label}</p>
                     <p className="font-body text-sm text-gray-darkest/60 font-light">{value}</p>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export default function ContactSection() {
               <p className="font-display text-xl italic text-accent-warm/60 font-light leading-relaxed">
                 "Every artist was first an amateur."
               </p>
-              <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mt-3">— Ralph Waldo Emerson</p>
+              <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker mt-3">— Ralph Waldo Emerson</p>
             </div>
           </div>
 
@@ -121,7 +121,7 @@ export default function ContactSection() {
                   <Send size={18} className="text-accent-warm" />
                 </div>
                 <h3 className="font-display text-3xl text-gray-darkest font-light mb-3">Message Received</h3>
-                <p className="font-body text-gray text-sm font-light max-w-sm">
+                <p className="font-body text-gray-dark text-sm font-light max-w-sm">
                   Thank you for reaching out. We will be in touch within 24 hours.
                 </p>
                 <button
@@ -161,7 +161,7 @@ export default function ContactSection() {
                     onChange={handleChange}
                   />
                   <div>
-                    <label className="block font-mono text-[9px] tracking-widest uppercase text-gray mb-2">
+                    <label className="block font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
                       I'm interested in
                     </label>
                     <select
@@ -182,7 +182,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[9px] tracking-widest uppercase text-gray mb-2">
+                  <label className="block font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
                     Message
                   </label>
                   <textarea
@@ -206,7 +206,7 @@ export default function ContactSection() {
                     <Send size={12} className="group-hover:translate-x-0.5 transition-transform" />
                   </button>
                   {status === "error" && (
-                    <p className="font-mono text-[9px] tracking-wide text-clay uppercase">
+                    <p className="font-mono text-[9px] tracking-wide text-accent-warm uppercase">
                       Something went wrong. Try again.
                     </p>
                   )}
@@ -228,7 +228,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block font-mono text-[9px] tracking-widest uppercase text-gray mb-2">
+      <label className="block font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
         {label}
       </label>
       <input

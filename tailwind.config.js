@@ -34,9 +34,9 @@ module.exports = {
         "accent-cool": "#a8b8c8",  // 柔和的灰蓝色
         "accent-neutral": "#c0c0c0", // 中性灰色
         
-        // 保留一些原有颜色用于特定元素
-        "gold-subtle": "#e8d4b0",  // 更柔和的金色
-        "sage-subtle": "#a8b8a8",  // 更柔和的鼠尾草绿
+        // 额外的强调色变体
+        "accent-warm-light": "#e8d4b0",  // 更亮的暖强调色
+        "accent-cool-light": "#c8d8e8",  // 更亮的冷强调色
       },
       letterSpacing: {
         widest: "0.25em",

@@ -1,0 +1,653 @@
+{
+  "timestamp": "2026-03-25",
+  "components_checked": 10,
+  "issues": [
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-clay",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-gradient-to-b",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-gradient-to-br",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-gradient-to-l",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-gradient-to-r",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-sage",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_background",
+      "message": "非预期的背景色: bg-transparent",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-2xl",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-3xl",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-4xl",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-5xl",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-6xl",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-balance",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-base",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-center",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-clay",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-fill-color",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-gray",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-lg",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-muted",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-sm",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-subtle",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-wrap",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-xl",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_text",
+      "message": "非预期的文字颜色: text-xs",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-b",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-box",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-color",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-l",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-radius",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-subtle",
+      "severity": "medium"
+    },
+    {
+      "file": "multiple",
+      "type": "unexpected_border",
+      "message": "非预期的边框颜色: border-t",
+      "severity": "medium"
+    }
+  ],
+  "color_usage": {
+    "backgrounds": {
+      "bg-white": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "bg-accent-warm": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "bg-gray-lightest": [
+        "ClassesPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "bg-transparent": [
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "Navbar.tsx"
+      ],
+      "bg-gradient-to-br": [
+        "GalleryPreview.tsx"
+      ],
+      "bg-gradient-to-r": [
+        "GalleryPreview.tsx"
+      ],
+      "bg-gradient-to-l": [
+        "GalleryPreview.tsx"
+      ],
+      "bg-gradient-to-b": [
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx"
+      ],
+      "bg-clay": [
+        "ScheduleSection.tsx"
+      ],
+      "bg-sage": [
+        "ScheduleSection.tsx"
+      ]
+    },
+    "text": {
+      "text-accent-warm": [
+        "AboutPreview.tsx",
+        "AboutPreview.tsx",
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-5xl": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-6xl": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-gray-darkest": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-gray-dark": [
+        "AboutPreview.tsx",
+        "AboutPreview.tsx",
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-4xl": [
+        "AboutPreview.tsx",
+        "GalleryPreview.tsx"
+      ],
+      "text-gray": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-sm": [
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-gray-darker": [
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-xs": [
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-white": [
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-2xl": [
+        "ClassesPreview.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-xl": [
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx"
+      ],
+      "text-center": [
+        "ContactSection.tsx",
+        "Hero.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-3xl": [
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx"
+      ],
+      "text-clay": [
+        "ContactSection.tsx"
+      ],
+      "text-lg": [
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "text-base": [
+        "Hero.tsx"
+      ],
+      "text-balance": [
+        "globals.css"
+      ],
+      "text-wrap": [
+        "globals.css"
+      ],
+      "text-fill-color": [
+        "globals.css"
+      ],
+      "text-muted": [
+        "globals.css"
+      ],
+      "text-subtle": [
+        "globals.css"
+      ]
+    },
+    "borders": {
+      "border-t": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "border-gray-lightest": [
+        "AboutPreview.tsx",
+        "ClassesPreview.tsx",
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "Footer.tsx",
+        "Footer.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Navbar.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "border-gray-light": [
+        "ClassesPreview.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "ContactSection.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "border-gray-lighter": [
+        "ContactSection.tsx"
+      ],
+      "border-l": [
+        "ContactSection.tsx"
+      ],
+      "border-b": [
+        "ContactSection.tsx",
+        "Navbar.tsx",
+        "ScheduleSection.tsx",
+        "ScheduleSection.tsx"
+      ],
+      "border-accent-warm": [
+        "ContactSection.tsx",
+        "Hero.tsx",
+        "Navbar.tsx"
+      ],
+      "border-white": [
+        "GalleryPreview.tsx",
+        "Hero.tsx"
+      ],
+      "border-box": [
+        "globals.css"
+      ],
+      "border-radius": [
+        "globals.css"
+      ],
+      "border-color": [
+        "globals.css",
+        "globals.css",
+        "globals.css"
+      ],
+      "border-subtle": [
+        "globals.css"
+      ]
+    },
+    "gradients": {
+      "from": [
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx"
+      ],
+      "to": [
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "GalleryPreview.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx",
+        "Hero.tsx"
+      ],
+      "via": [
+        "Hero.tsx",
+        "Hero.tsx"
+      ]
+    }
+  },
+  "success": false
+}

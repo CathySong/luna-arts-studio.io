@@ -68,7 +68,7 @@ export default function AboutPreview() {
             ].map((s) => (
               <div key={s.label}>
                 <p className="font-display text-4xl text-accent-warm font-light">{s.n}</p>
-                <p className="font-mono text-[9px] tracking-widest uppercase text-gray mt-1">{s.label}</p>
+                <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mt-1">{s.label}</p>
               </div>
             ))}
           </div>

@@ -27,7 +27,7 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-            <p className="font-body text-gray font-light text-sm leading-relaxed max-w-xs">
+            <p className="font-body text-gray-dark font-light text-sm leading-relaxed max-w-xs">
               A creative sanctuary where art is practiced, celebrated, and shared — for all ages and all levels.
             </p>
             <div className="flex gap-4 mt-6">
@@ -35,7 +35,7 @@ export default function Footer() {
                 <a
                   key={s}
                   href="#"
-                  className="font-mono text-[9px] tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors"
+                  className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-dark hover:text-accent-warm transition-colors"
                 >
                   {s}
                 </a>
@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <p className="font-mono text-[9px] tracking-widest uppercase text-gray mb-5">Explore</p>
+            <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-5">Explore</p>
             <ul className="space-y-3">
               {["About", "Gallery", "Classes", "Schedule", "Contact"].map((l) => (
                 <li key={l}>
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Contact snippet */}
           <div>
-            <p className="font-mono text-[9px] tracking-widest uppercase text-gray mb-5">Visit</p>
+            <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-5">Visit</p>
             <address className="not-italic space-y-3">
               <p className="font-body text-sm text-gray-dark font-light">258 King George Rd</p>
               <p className="font-body text-sm text-gray-dark font-light">Warren, NJ 07059, USA</p>
@@ -73,14 +73,14 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-lightest">
-          <p className="font-mono text-[9px] tracking-widest uppercase text-gray">
+          <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
             © {new Date().getFullYear()} Luna Art Studio · All rights reserved
           </p>
           <div className="flex gap-6">
-            <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray hover:text-gray-dark transition-colors">
+            <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
               Privacy
             </a>
-            <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray hover:text-gray-dark transition-colors">
+            <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
               Terms
             </a>
           </div>

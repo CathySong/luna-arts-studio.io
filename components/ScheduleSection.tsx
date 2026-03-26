@@ -76,7 +76,7 @@ export default function ScheduleSection() {
               className={`px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-all duration-300 ${
                 activeDay === day
                   ? "bg-accent-warm text-white"
-                  : "border border-gray-lightest text-gray hover:border-gray-light hover:text-accent-warm/60"
+                  : "border border-gray-lightest text-gray-dark hover:border-gray-light hover:text-accent-warm/60"
               }`}
             >
               {day.slice(0, 3)}
@@ -89,7 +89,7 @@ export default function ScheduleSection() {
           {/* Header */}
           <div className="grid grid-cols-5 gap-0 border-b border-gray-lightest bg-white/50 px-6 py-3">
             {["Time", "Class", "Instructor", "Level", "Availability"].map((h) => (
-              <p key={h} className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">{h}</p>
+              <p key={h} className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker">{h}</p>
             ))}
           </div>
 
@@ -127,7 +127,7 @@ export default function ScheduleSection() {
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ background: item.spots <= 3 ? "#c4785a" : "#7a8c7e" }}
                   />
-                  <p className="font-mono text-[10px] text-gray">
+                  <p className="font-mono text-[10px] text-gray-dark">
                     {item.spots} {item.spots === 1 ? "spot" : "spots"} left
                   </p>
                 </div>
@@ -157,11 +157,11 @@ export default function ScheduleSection() {
           </p>
           <div className="flex items-center gap-4 shrink-0">
             <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-clay" />
+              <div className="w-1.5 h-1.5 rounded-full bg-accent-warm" />
               <span className="font-mono text-[9px] text-gray-darker uppercase tracking-widest">Filling fast</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-sage" />
+              <div className="w-1.5 h-1.5 rounded-full bg-accent-cool" />
               <span className="font-mono text-[9px] text-gray-darker uppercase tracking-widest">Available</span>
             </div>
           </div>

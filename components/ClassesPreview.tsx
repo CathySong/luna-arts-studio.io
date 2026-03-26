@@ -90,7 +90,7 @@ export default function ClassesPreview() {
             <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
               Our <span className="italic text-accent-warm">Classes</span>
             </h2>
-            <p className="font-body text-gray max-w-sm font-light leading-relaxed text-sm">
+            <p className="font-body text-gray-dark max-w-sm font-light leading-relaxed text-sm">
               Small class sizes. Expert instruction. A supportive community of fellow artists.
             </p>
           </div>
@@ -152,20 +152,20 @@ function ClassCard({ cls, delay }: { cls: (typeof classes)[0]; delay: number }) 
         </span>
       </div>
 
-      <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
+      <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker mb-2">
         {cls.subtitle}
       </p>
       <h3 className="font-display text-2xl text-gray-darkest font-light mb-4 group-hover:text-accent-warm transition-colors duration-300">
         {cls.title}
       </h3>
-      <p className="font-body text-gray text-sm leading-relaxed font-light mb-6">
+      <p className="font-body text-gray-dark text-sm leading-relaxed font-light mb-6">
         {cls.description}
       </p>
 
       <div className="flex items-center justify-between pt-5 border-t border-gray-lightest">
         <div className="flex items-center gap-2">
           <div className="w-1 h-1 rounded-full bg-accent-warm/50" />
-          <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
+          <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker">
             {cls.duration}
           </span>
         </div>

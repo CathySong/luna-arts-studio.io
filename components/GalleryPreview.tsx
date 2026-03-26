@@ -326,7 +326,7 @@ function ArtCard({ art, delay }: { art: Artwork; delay: number }) {
         >
           <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm/70 mb-1">{art.medium}</p>
           <p className="font-display text-xl text-gray-darkest font-light mb-1">{art.title}</p>
-          <p className="font-mono text-[9px] text-gray">{art.size} · {art.year}</p>
+          <p className="font-mono text-[9px] text-gray-dark">{art.size} · {art.year}</p>
           {art.available && (
             <div className="mt-3 flex items-center justify-between">
               <span className="font-body text-sm text-accent-warm font-light">{art.price}</span>
@@ -336,7 +336,7 @@ function ArtCard({ art, delay }: { art: Artwork; delay: number }) {
             </div>
           )}
           {!art.available && (
-            <p className="mt-3 font-mono text-[9px] tracking-widest uppercase text-gray-darker">Sold</p>
+            <p className="mt-3 font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker">Sold</p>
           )}
         </div>
       </div>
@@ -438,7 +438,7 @@ function GallerySection({
                 <ChevronRight size={16} />
               </button>
             </div>
-            <span className="font-mono text-[9px] tracking-widest uppercase text-gray">
+            <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
               {currentIndex + 1} of {totalSlides} • {artworks.length} items
             </span>
           </div>
@@ -492,7 +492,7 @@ function GallerySection({
       </div>
 
       {/* Section Footer */}
-      <div className="mt-6 flex items-center justify-between text-gray">
+      <div className="mt-6 flex items-center justify-between text-gray-dark">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-2 h-0.5 bg-accent-warm" />
@@ -577,7 +577,7 @@ export default function GalleryPreview() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <h3 className="font-display text-xl text-gray-darkest font-light mb-3">Gallery Information</h3>
-              <p className="font-body text-gray text-sm font-light max-w-2xl">
+              <p className="font-body text-gray-dark text-sm font-light max-w-2xl">
                 All artworks are original creations. Prices include framing where applicable. 
                 Commission inquiries welcome for custom pieces in any of the featured styles.
               </p>
@@ -590,7 +590,7 @@ export default function GalleryPreview() {
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ background: item.color }} />
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">{item.label}</span>
+                  <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker">{item.label}</span>
                 </div>
               ))}
             </div>
