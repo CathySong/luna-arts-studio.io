@@ -54,7 +54,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-32 relative overflow-hidden" style={{ background: "#0b0a09" }}>
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-parchment/[0.02] leading-none select-none pointer-events-none pl-4">
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-gray-darkest/[0.02] leading-none select-none pointer-events-none pl-4">
         05
       </div>
 
@@ -67,20 +67,20 @@ export default function ContactSection() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-gold/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
+            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Get in Touch
             </span>
           </div>
-          <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
+          <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
             Start Your{" "}
-            <span className="italic text-gold">Journey</span>
+            <span className="italic text-accent-warm">Journey</span>
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-16">
           {/* Info panel */}
           <div className="lg:col-span-2 flex flex-col gap-10">
-            <p className="font-body text-parchment/50 leading-relaxed font-light">
+            <p className="font-body text-gray-dark leading-relaxed font-light">
               Whether you want to register for a class, inquire about a piece of artwork,
               arrange a studio visit, or simply say hello — we would love to hear from you.
             </p>
@@ -93,40 +93,40 @@ export default function ContactSection() {
                 { icon: Phone, label: "Phone", value: "(908) 555-0192" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex gap-4 items-start">
-                  <div className="w-8 h-8 border border-gold/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={12} className="text-gold/60" />
+                  <div className="w-8 h-8 border border-gray-lighter flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon size={12} className="text-accent-warm/60" />
                   </div>
                   <div>
-                    <p className="font-mono text-[9px] tracking-widest uppercase text-parchment/30 mb-1">{label}</p>
-                    <p className="font-body text-sm text-parchment/60 font-light">{value}</p>
+                    <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-1">{label}</p>
+                    <p className="font-body text-sm text-gray-darkest/60 font-light">{value}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Decorative quote */}
-            <div className="border-l border-gold/30 pl-6 mt-4">
-              <p className="font-display text-xl italic text-gold/60 font-light leading-relaxed">
+            <div className="border-l border-gray-light pl-6 mt-4">
+              <p className="font-display text-xl italic text-accent-warm/60 font-light leading-relaxed">
                 "Every artist was first an amateur."
               </p>
-              <p className="font-mono text-[9px] tracking-widest uppercase text-parchment/25 mt-3">— Ralph Waldo Emerson</p>
+              <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mt-3">— Ralph Waldo Emerson</p>
             </div>
           </div>
 
           {/* Form */}
           <div className="lg:col-span-3">
             {status === "sent" ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-20 border border-gold/10">
-                <div className="w-14 h-14 border border-gold/30 flex items-center justify-center mb-6">
-                  <Send size={18} className="text-gold" />
+              <div className="h-full flex flex-col items-center justify-center text-center py-20 border border-gray-lightest">
+                <div className="w-14 h-14 border border-gray-light flex items-center justify-center mb-6">
+                  <Send size={18} className="text-accent-warm" />
                 </div>
-                <h3 className="font-display text-3xl text-parchment font-light mb-3">Message Received</h3>
-                <p className="font-body text-parchment/40 text-sm font-light max-w-sm">
+                <h3 className="font-display text-3xl text-gray-darkest font-light mb-3">Message Received</h3>
+                <p className="font-body text-gray text-sm font-light max-w-sm">
                   Thank you for reaching out. We will be in touch within 24 hours.
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-8 font-mono text-[10px] tracking-widest uppercase text-gold border-b border-gold/30 pb-0.5 hover:border-gold transition-colors"
+                  className="mt-8 font-mono text-[10px] tracking-widest uppercase text-accent-warm border-b border-gray-light pb-0.5 hover:border-accent-warm transition-colors"
                 >
                   Send Another →
                 </button>
@@ -161,14 +161,14 @@ export default function ContactSection() {
                     onChange={handleChange}
                   />
                   <div>
-                    <label className="block font-mono text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+                    <label className="block font-mono text-[9px] tracking-widest uppercase text-gray mb-2">
                       I'm interested in
                     </label>
                     <select
                       name="interest"
                       value={form.interest}
                       onChange={handleChange}
-                      className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-parchment/70 focus:border-gold/40 focus:outline-none transition-colors appearance-none cursor-pointer"
+                      className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-gray-darkest/70 focus:border-gray-light focus:outline-none transition-colors appearance-none cursor-pointer"
                       style={{ background: "#0e0d0b" }}
                     >
                       <option value="">Select an area...</option>
@@ -182,7 +182,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+                  <label className="block font-mono text-[9px] tracking-widest uppercase text-gray mb-2">
                     Message
                   </label>
                   <textarea
@@ -191,7 +191,7 @@ export default function ContactSection() {
                     onChange={handleChange}
                     rows={5}
                     placeholder="Tell us a little about yourself and what you are looking for..."
-                    className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-parchment/70 placeholder:text-parchment/20 focus:border-gold/40 focus:outline-none transition-colors resize-none"
+                    className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors resize-none"
                     required
                   />
                 </div>
@@ -200,7 +200,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="group flex items-center gap-3 px-10 py-4 bg-gold text-ink font-body text-xs tracking-widest uppercase font-medium hover:bg-gold-light transition-all duration-300 disabled:opacity-50"
+                    className="group flex items-center gap-3 px-10 py-4 bg-gold text-ink font-body text-xs tracking-widest uppercase font-medium hover:bg-accent-warm-light transition-all duration-300 disabled:opacity-50"
                   >
                     {status === "sending" ? "Sending..." : "Send Inquiry"}
                     <Send size={12} className="group-hover:translate-x-0.5 transition-transform" />
@@ -228,7 +228,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block font-mono text-[9px] tracking-widest uppercase text-parchment/40 mb-2">
+      <label className="block font-mono text-[9px] tracking-widest uppercase text-gray mb-2">
         {label}
       </label>
       <input
@@ -237,7 +237,7 @@ function Field({
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-parchment/70 placeholder:text-parchment/20 focus:border-gold/40 focus:outline-none transition-colors"
+        className="w-full bg-transparent border border-parchment/10 px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors"
       />
     </div>
   );

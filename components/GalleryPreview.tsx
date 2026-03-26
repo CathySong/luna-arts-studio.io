@@ -27,8 +27,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Canvas",
     "size": "30 × 40 in",
     "year": "2024",
-    "color": "from-orange-900/40 to-purple-900/20",
-    "accent": "#d96a5a",
+    "color": "from-orange-100 to-purple-100",
+    "accent": "#d4b483",
     "available": true,
     "price": "$2,500",
     "imagePath": "/images/artworks/oil-paintings/oil1.jpg",
@@ -40,8 +40,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Linen",
     "size": "24 × 36 in",
     "year": "2024",
-    "color": "from-green-900/40 to-emerald-900/20",
-    "accent": "#5a8c7e",
+    "color": "from-green-100 to-emerald-100",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$1,800",
     "imagePath": "/images/artworks/oil-paintings/oil2.jpg",
@@ -53,8 +53,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Canvas",
     "size": "36 × 48 in",
     "year": "2024",
-    "color": "from-blue-900/40 to-teal-900/20",
-    "accent": "#5a9ab0",
+    "color": "from-blue-100 to-teal-100",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$3,200",
     "imagePath": "/images/artworks/oil-paintings/oil3.jpg",
@@ -66,8 +66,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Board",
     "size": "20 × 24 in",
     "year": "2023",
-    "color": "from-red-800/30 to-orange-900/20",
-    "accent": "#c96a5a",
+    "color": "from-red-50 to-orange-50",
+    "accent": "#d4b483",
     "available": false,
     "price": "$1,200",
     "imagePath": "/images/artworks/oil-paintings/oil4.jpg",
@@ -79,8 +79,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Canvas",
     "size": "28 × 36 in",
     "year": "2024",
-    "color": "from-blue-800/40 to-gray-900/20",
-    "accent": "#7a8a9e",
+    "color": "from-blue-100 to-gray-100",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$2,800",
     "imagePath": "/images/artworks/oil-paintings/oil5.jpg",
@@ -92,8 +92,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Canvas",
     "size": "18 × 24 in",
     "year": "2024",
-    "color": "from-pink-900/30 to-purple-900/20",
-    "accent": "#b86ab0",
+    "color": "from-pink-100 to-purple-100",
+    "accent": "#d4b483",
     "available": true,
     "price": "$1,500",
     "imagePath": "/images/artworks/oil-paintings/oil6.jpg",
@@ -105,8 +105,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Wood",
     "size": "22 × 28 in",
     "year": "2024",
-    "color": "from-amber-900/40 to-gold/20",
-    "accent": "#c9a96e",
+    "color": "from-amber-100 to-yellow-100",
+    "accent": "#d4b483",
     "available": true,
     "price": "$1,900",
     "imagePath": "/images/artworks/oil-paintings/oil7.jpg",
@@ -118,8 +118,8 @@ const oilPaintings: Artwork[] = [
     "medium": "Oil on Canvas",
     "size": "30 × 40 in",
     "year": "2024",
-    "color": "from-gray-800/40 to-blue-900/20",
-    "accent": "#6a7a8e",
+    "color": "from-gray-100 to-blue-100",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$2,600",
     "imagePath": "/images/artworks/oil-paintings/oil8.jpg",
@@ -135,8 +135,8 @@ const sketches: Artwork[] = [
     "medium": "Charcoal & Graphite",
     "size": "18 × 24 in",
     "year": "2024",
-    "color": "from-sage/30 to-emerald-900/20",
-    "accent": "#7a8c7e",
+    "color": "from-gray-100 to-gray-200",
+    "accent": "#a8b8a8",
     "available": false,
     "price": "$680",
     "imagePath": "/images/artworks/artwork2.jpg",
@@ -148,8 +148,8 @@ const sketches: Artwork[] = [
     "medium": "Ink & Graphite",
     "size": "16 × 20 in",
     "year": "2024",
-    "color": "from-slate-700/40 to-mist/20",
-    "accent": "#9ba8b0",
+    "color": "from-gray-100 to-gray-200",
+    "accent": "#c0c0c0",
     "available": true,
     "price": "$540",
     "imagePath": "/images/artworks/artwork4.jpg",
@@ -161,8 +161,8 @@ const sketches: Artwork[] = [
     "medium": "Charcoal & Pastel",
     "size": "12 × 16 in",
     "year": "2023",
-    "color": "from-red-900/30 to-amber-700/20",
-    "accent": "#d4845a",
+    "color": "from-gray-100 to-gray-200",
+    "accent": "#d4b483",
     "available": false,
     "price": "$420",
     "imagePath": "/images/artworks/artwork5.jpg",
@@ -174,8 +174,8 @@ const sketches: Artwork[] = [
     "medium": "Graphite & Ink",
     "size": "24 × 36 in",
     "year": "2024",
-    "color": "from-gray-800/40 to-slate-600/20",
-    "accent": "#6a7a8e",
+    "color": "from-gray-100 to-gray-200",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$750",
     "imagePath": "/images/artworks/artwork9.jpg",
@@ -187,8 +187,8 @@ const sketches: Artwork[] = [
     "medium": "Pen & Ink",
     "size": "14 × 18 in",
     "year": "2024",
-    "color": "from-gray-700/40 to-slate-500/20",
-    "accent": "#8a9ab0",
+    "color": "from-gray-100 to-gray-200",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$380",
     "imagePath": "/images/artworks/artwork3.jpg",
@@ -200,8 +200,8 @@ const sketches: Artwork[] = [
     "medium": "Graphite on Paper",
     "size": "11 × 14 in",
     "year": "2023",
-    "color": "from-green-800/30 to-emerald-900/20",
-    "accent": "#6a8c7e",
+    "color": "from-gray-100 to-gray-200",
+    "accent": "#a8b8a8",
     "available": true,
     "price": "$320",
     "imagePath": "/images/artworks/artwork4.jpg",
@@ -217,8 +217,8 @@ const handicrafts: Artwork[] = [
     "medium": "Ceramic & Glaze",
     "size": "8 × 8 × 6 in",
     "year": "2024",
-    "color": "from-blue-900/30 to-cyan-900/20",
-    "accent": "#6a9ab0",
+    "color": "from-blue-50 to-cyan-50",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$760",
     "imagePath": "/images/artworks/artwork6.jpg",
@@ -230,8 +230,8 @@ const handicrafts: Artwork[] = [
     "medium": "Textile & Embroidery",
     "size": "22 × 30 in",
     "year": "2024",
-    "color": "from-purple-900/30 to-violet-900/20",
-    "accent": "#8a6bb0",
+    "color": "from-purple-50 to-violet-50",
+    "accent": "#d4b483",
     "available": true,
     "price": "$890",
     "imagePath": "/images/artworks/artwork7.jpg",
@@ -243,8 +243,8 @@ const handicrafts: Artwork[] = [
     "medium": "Mixed Media Collage",
     "size": "14 × 18 in",
     "year": "2023",
-    "color": "from-teal-900/30 to-blue-900/20",
-    "accent": "#5a9a8e",
+    "color": "from-teal-50 to-blue-50",
+    "accent": "#a8b8c8",
     "available": false,
     "price": "$580",
     "imagePath": "/images/artworks/artwork10.jpg",
@@ -256,8 +256,8 @@ const handicrafts: Artwork[] = [
     "medium": "Wood & Resin",
     "size": "16 × 20 × 2 in",
     "year": "2023",
-    "color": "from-red-800/30 to-orange-900/20",
-    "accent": "#c96a5a",
+    "color": "from-red-50 to-orange-50",
+    "accent": "#d4b483",
     "available": true,
     "price": "$720",
     "imagePath": "/images/artworks/artwork12.jpg",
@@ -269,8 +269,8 @@ const handicrafts: Artwork[] = [
     "medium": "Clay & Natural Fibers",
     "size": "10 × 12 × 4 in",
     "year": "2024",
-    "color": "from-brown-800/30 to-amber-800/20",
-    "accent": "#9a7a6e",
+    "color": "from-brown-50 to-amber-50",
+    "accent": "#d4b483",
     "available": true,
     "price": "$650",
     "imagePath": "/images/artworks/artwork5.jpg",
@@ -282,8 +282,8 @@ const handicrafts: Artwork[] = [
     "medium": "Glass & Metal",
     "size": "14 × 18 × 3 in",
     "year": "2024",
-    "color": "from-blue-700/40 to-teal-800/20",
-    "accent": "#5a8a9e",
+    "color": "from-blue-50 to-teal-50",
+    "accent": "#a8b8c8",
     "available": true,
     "price": "$920",
     "imagePath": "/images/artworks/artwork6.jpg",
@@ -322,21 +322,21 @@ function ArtCard({ art, delay }: { art: Artwork; delay: number }) {
         
         {/* Hover overlay */}
         <div
-          className={`absolute inset-0 bg-ink/90 flex flex-col justify-end p-5 transition-all duration-400 ${hovered ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 bg-white/90 flex flex-col justify-end p-5 transition-all duration-400 ${hovered ? "opacity-100" : "opacity-0"}`}
         >
-          <p className="font-mono text-[9px] tracking-widest uppercase text-gold/70 mb-1">{art.medium}</p>
-          <p className="font-display text-xl text-parchment font-light mb-1">{art.title}</p>
-          <p className="font-mono text-[9px] text-parchment/40">{art.size} · {art.year}</p>
+          <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm/70 mb-1">{art.medium}</p>
+          <p className="font-display text-xl text-gray-darkest font-light mb-1">{art.title}</p>
+          <p className="font-mono text-[9px] text-gray">{art.size} · {art.year}</p>
           {art.available && (
             <div className="mt-3 flex items-center justify-between">
-              <span className="font-body text-sm text-gold font-light">{art.price}</span>
-              <button className="px-4 py-1.5 border border-gold/40 text-gold font-mono text-[9px] tracking-widest uppercase hover:bg-gold hover:text-ink transition-all duration-300">
+              <span className="font-body text-sm text-accent-warm font-light">{art.price}</span>
+              <button className="px-4 py-1.5 border border-gray-light text-accent-warm font-mono text-[9px] tracking-widest uppercase hover:bg-accent-warm hover:text-white transition-all duration-300">
                 Inquire
               </button>
             </div>
           )}
           {!art.available && (
-            <p className="mt-3 font-mono text-[9px] tracking-widest uppercase text-parchment/30">Sold</p>
+            <p className="mt-3 font-mono text-[9px] tracking-widest uppercase text-gray-darker">Sold</p>
           )}
         </div>
       </div>
@@ -406,16 +406,16 @@ function GallerySection({
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-4">
           <div className="h-px w-6 bg-gold/60" />
-          <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
+          <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
             {sectionId}
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h3 className="font-display text-3xl md:text-4xl font-light text-parchment leading-tight">
+            <h3 className="font-display text-3xl md:text-4xl font-light text-gray-darkest leading-tight">
               {title}
             </h3>
-            <p className="font-body text-parchment/50 text-sm mt-3 max-w-2xl font-light leading-relaxed">
+            <p className="font-body text-gray-dark text-sm mt-3 max-w-2xl font-light leading-relaxed">
               {description}
             </p>
           </div>
@@ -423,7 +423,7 @@ function GallerySection({
             <div className="flex items-center gap-2">
               <button
                 onClick={scrollLeft}
-                className="p-2 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-2 border border-gray-light text-accent-warm hover:bg-gray-lightest transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Scroll left"
                 disabled={currentIndex === 0}
               >
@@ -431,14 +431,14 @@ function GallerySection({
               </button>
               <button
                 onClick={scrollRight}
-                className="p-2 border border-gold/40 text-gold hover:bg-gold/10 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-2 border border-gray-light text-accent-warm hover:bg-gray-lightest transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Scroll right"
                 disabled={currentIndex === totalSlides - 1}
               >
                 <ChevronRight size={16} />
               </button>
             </div>
-            <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/40">
+            <span className="font-mono text-[9px] tracking-widest uppercase text-gray">
               {currentIndex + 1} of {totalSlides} • {artworks.length} items
             </span>
           </div>
@@ -492,7 +492,7 @@ function GallerySection({
       </div>
 
       {/* Section Footer */}
-      <div className="mt-6 flex items-center justify-between text-parchment/40">
+      <div className="mt-6 flex items-center justify-between text-gray">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-2 h-0.5 bg-gold" />
@@ -505,7 +505,7 @@ function GallerySection({
         </div>
         <a
           href="#contact"
-          className="font-mono text-[9px] tracking-widest uppercase text-gold hover:text-gold/80 transition-colors duration-300"
+          className="font-mono text-[9px] tracking-widest uppercase text-accent-warm hover:text-accent-warm/80 transition-colors duration-300"
         >
           View All {title} →
         </a>
@@ -520,8 +520,8 @@ export default function GalleryPreview() {
   const inView = useInView(ref, { threshold: 0.1 });
 
   return (
-    <section id="gallery" className="py-32 bg-ink relative overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-parchment/[0.02] leading-none select-none pointer-events-none pr-4">
+    <section id="gallery" className="py-32 bg-white relative overflow-hidden">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-gray-darkest/[0.02] leading-none select-none pointer-events-none pr-4">
         02
       </div>
 
@@ -535,14 +535,14 @@ export default function GalleryPreview() {
         <div className="mb-20">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-gold/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
+            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               My Gallery
             </span>
           </div>
-          <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-            My <span className="italic text-gold">Gallery</span>
+          <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
+            My <span className="italic text-accent-warm">Gallery</span>
           </h2>
-          <p className="font-body text-parchment/50 text-lg mt-6 max-w-2xl leading-relaxed font-light">
+          <p className="font-body text-gray-dark text-lg mt-6 max-w-2xl leading-relaxed font-light">
             Explore my artistic journey through three distinct collections. 
             Each section represents a different medium and creative approach.
           </p>
@@ -573,36 +573,36 @@ export default function GalleryPreview() {
         </div>
 
         {/* Gallery Footer */}
-        <div className="mt-20 pt-10 border-t border-gold/10">
+        <div className="mt-20 pt-10 border-t border-gray-lightest">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <h3 className="font-display text-xl text-parchment font-light mb-3">Gallery Information</h3>
-              <p className="font-body text-parchment/40 text-sm font-light max-w-2xl">
+              <h3 className="font-display text-xl text-gray-darkest font-light mb-3">Gallery Information</h3>
+              <p className="font-body text-gray text-sm font-light max-w-2xl">
                 All artworks are original creations. Prices include framing where applicable. 
                 Commission inquiries welcome for custom pieces in any of the featured styles.
               </p>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">
               {[
-                { color: "#c9a96e", label: "Oil Paintings" },
-                { color: "#7a8c7e", label: "Sketches" },
-                { color: "#6a9ab0", label: "Handicrafts" },
+                { color: "#d4b483", label: "Oil Paintings" },
+                { color: "#a8b8a8", label: "Sketches" },
+                { color: "#a8b8c8", label: "Handicrafts" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ background: item.color }} />
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">{item.label}</span>
+                  <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">{item.label}</span>
                 </div>
               ))}
             </div>
           </div>
           
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gold/5">
-            <p className="font-mono text-[9px] tracking-wide uppercase text-parchment/25">
+          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gray-lightest">
+            <p className="font-mono text-[9px] tracking-wide uppercase text-gray-darker">
               * All prices in USD. Shipping and handling additional. Contact for international rates.
             </p>
             <a
               href="#contact"
-              className="font-mono text-[9px] tracking-widest uppercase text-gold border border-gold/30 px-4 py-2 hover:bg-gold hover:text-ink transition-all duration-300"
+              className="font-mono text-[9px] tracking-widest uppercase text-accent-warm border border-gray-light px-4 py-2 hover:bg-accent-warm hover:text-white transition-all duration-300"
             >
               Schedule Studio Visit
             </a>

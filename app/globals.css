@@ -13,38 +13,41 @@ html {
 }
 
 body {
-  background-color: #0e0d0b;
-  color: #f5f0e8;
+  background-color: #ffffff;
+  color: #383838;
   font-family: var(--font-jost);
   overflow-x: hidden;
 }
 
-/* Grain overlay */
+/* 更微妙的纹理叠加 */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.02;
   pointer-events: none;
   z-index: 9999;
 }
 
 ::selection {
-  background: #c9a96e;
-  color: #0e0d0b;
+  background: #d4b483;
+  color: #383838;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0e0d0b;
+  background: #f0f0f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9a96e;
-  border-radius: 2px;
+  background: #d8d8d8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
 }
 
 @layer utilities {
@@ -56,37 +59,61 @@ body::before {
     clip-path: inset(0 0 0 0);
   }
 
-  .gold-shimmer {
-    background: linear-gradient(90deg, #c9a96e, #e8c99a, #c9a96e);
+  .accent-shimmer {
+    background: linear-gradient(90deg, #d4b483, #e8d4b0, #d4b483);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: shimmer 3s linear infinite;
+    animation: shimmer 4s linear infinite;
   }
 
   @keyframes shimmer {
     to { background-position: 200% center; }
   }
 
-  .line-gold {
+  .line-accent {
     position: relative;
   }
 
-  .line-gold::after {
+  .line-accent::after {
     content: '';
     position: absolute;
     bottom: -4px;
     left: 0;
     height: 1px;
     width: 100%;
-    background: linear-gradient(90deg, #c9a96e, transparent);
+    background: linear-gradient(90deg, #d4b483, transparent);
   }
 
-  .hover-gold {
-    transition: color 0.3s ease;
+  .hover-accent {
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
-  .hover-gold:hover {
-    color: #c9a96e;
+  .hover-accent:hover {
+    color: #d4b483;
+    border-color: #d4b483;
+  }
+
+  .card-shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-shadow-hover {
+    transition: box-shadow 0.3s ease;
+  }
+  .card-shadow-hover:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .border-subtle {
+    border-color: #e8e8e8;
+  }
+
+  .text-muted {
+    color: #888888;
+  }
+
+  .text-subtle {
+    color: #606060;
   }
 }

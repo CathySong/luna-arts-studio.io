@@ -44,8 +44,8 @@ export default function ScheduleSection() {
   const inView = useInView(ref, { threshold: 0.1 });
 
   return (
-    <section id="schedule" className="py-32 bg-ink relative overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-parchment/[0.02] leading-none select-none pointer-events-none pr-4">
+    <section id="schedule" className="py-32 bg-white relative overflow-hidden">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-gray-darkest/[0.02] leading-none select-none pointer-events-none pr-4">
         04
       </div>
 
@@ -58,12 +58,12 @@ export default function ScheduleSection() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-gold/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
+            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Weekly Timetable
             </span>
           </div>
-          <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-            Class <span className="italic text-gold">Schedule</span>
+          <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
+            Class <span className="italic text-accent-warm">Schedule</span>
           </h2>
         </div>
 
@@ -76,7 +76,7 @@ export default function ScheduleSection() {
               className={`px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-all duration-300 ${
                 activeDay === day
                   ? "bg-gold text-ink"
-                  : "border border-parchment/10 text-parchment/40 hover:border-gold/30 hover:text-gold/60"
+                  : "border border-parchment/10 text-gray hover:border-gray-light hover:text-accent-warm/60"
               }`}
             >
               {day.slice(0, 3)}
@@ -85,11 +85,11 @@ export default function ScheduleSection() {
         </div>
 
         {/* Schedule grid */}
-        <div className="border border-gold/10">
+        <div className="border border-gray-lightest">
           {/* Header */}
-          <div className="grid grid-cols-5 gap-0 border-b border-gold/10 bg-ink/50 px-6 py-3">
+          <div className="grid grid-cols-5 gap-0 border-b border-gray-lightest bg-white/50 px-6 py-3">
             {["Time", "Class", "Instructor", "Level", "Availability"].map((h) => (
-              <p key={h} className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">{h}</p>
+              <p key={h} className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">{h}</p>
             ))}
           </div>
 
@@ -100,7 +100,7 @@ export default function ScheduleSection() {
               className="grid grid-cols-5 gap-0 px-6 py-5 border-b border-parchment/5 hover:bg-parchment/[0.02] transition-colors duration-200 group"
             >
               <div>
-                <p className="font-mono text-xs text-parchment/70">{item.time}</p>
+                <p className="font-mono text-xs text-gray-darkest/70">{item.time}</p>
               </div>
               <div>
                 <p
@@ -111,7 +111,7 @@ export default function ScheduleSection() {
                 </p>
               </div>
               <div className="flex items-center">
-                <p className="font-body text-sm text-parchment/50 font-light">{item.instructor}</p>
+                <p className="font-body text-sm text-gray-dark font-light">{item.instructor}</p>
               </div>
               <div className="flex items-center">
                 <span
@@ -127,13 +127,13 @@ export default function ScheduleSection() {
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ background: item.spots <= 3 ? "#c4785a" : "#7a8c7e" }}
                   />
-                  <p className="font-mono text-[10px] text-parchment/40">
+                  <p className="font-mono text-[10px] text-gray">
                     {item.spots} {item.spots === 1 ? "spot" : "spots"} left
                   </p>
                 </div>
                 <a
                   href="#contact"
-                  className="opacity-0 group-hover:opacity-100 font-mono text-[8px] tracking-widest uppercase text-gold border border-gold/30 px-3 py-1.5 hover:bg-gold hover:text-ink transition-all duration-200"
+                  className="opacity-0 group-hover:opacity-100 font-mono text-[8px] tracking-widest uppercase text-accent-warm border border-gray-light px-3 py-1.5 hover:bg-accent-warm hover:text-white transition-all duration-200"
                 >
                   Register
                 </a>
@@ -143,7 +143,7 @@ export default function ScheduleSection() {
 
           {(!schedule[activeDay] || schedule[activeDay].length === 0) && (
             <div className="px-6 py-12 text-center">
-              <p className="font-display text-2xl text-parchment/20 font-light italic">
+              <p className="font-display text-2xl text-gray-darkest/20 font-light italic">
                 No classes scheduled
               </p>
             </div>
@@ -151,18 +151,18 @@ export default function ScheduleSection() {
         </div>
 
         {/* Note */}
-        <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gold/10">
-          <p className="font-mono text-[9px] tracking-wide uppercase text-parchment/25">
+        <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gray-lightest">
+          <p className="font-mono text-[9px] tracking-wide uppercase text-gray-darker">
             * Schedule subject to change. Spots shown are approximate. Contact us to confirm availability.
           </p>
           <div className="flex items-center gap-4 shrink-0">
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-clay" />
-              <span className="font-mono text-[9px] text-parchment/30 uppercase tracking-widest">Filling fast</span>
+              <span className="font-mono text-[9px] text-gray-darker uppercase tracking-widest">Filling fast</span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-sage" />
-              <span className="font-mono text-[9px] text-parchment/30 uppercase tracking-widest">Available</span>
+              <span className="font-mono text-[9px] text-gray-darker uppercase tracking-widest">Available</span>
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function ClassesPreview() {
 
   return (
     <section id="classes" className="py-32 relative overflow-hidden" style={{ background: "#0b0a09" }}>
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-parchment/[0.02] leading-none select-none pointer-events-none pl-4">
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-gray-darkest/[0.02] leading-none select-none pointer-events-none pl-4">
         03
       </div>
 
@@ -82,15 +82,15 @@ export default function ClassesPreview() {
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-gold/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
+            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Creative Education
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end gap-6 justify-between">
-            <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight">
-              Our <span className="italic text-gold">Classes</span>
+            <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
+              Our <span className="italic text-accent-warm">Classes</span>
             </h2>
-            <p className="font-body text-parchment/40 max-w-sm font-light leading-relaxed text-sm">
+            <p className="font-body text-gray max-w-sm font-light leading-relaxed text-sm">
               Small class sizes. Expert instruction. A supportive community of fellow artists.
             </p>
           </div>
@@ -102,18 +102,18 @@ export default function ClassesPreview() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-14 border-t border-gold/10">
+        <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-14 border-t border-gray-lightest">
           <div>
-            <p className="font-body text-parchment/60 font-light mb-1">
+            <p className="font-body text-gray-darkest/60 font-light mb-1">
               Not sure which class is right for you?
             </p>
-            <p className="font-body text-parchment/30 text-sm font-light">
+            <p className="font-body text-gray-darker text-sm font-light">
               We offer free 15-minute consultations with our instructors.
             </p>
           </div>
           <a
             href="#contact"
-            className="shrink-0 px-8 py-3 border border-gold/30 text-gold font-body text-xs tracking-widest uppercase hover:bg-gold hover:text-ink transition-all duration-300"
+            className="shrink-0 px-8 py-3 border border-gray-light text-accent-warm font-body text-xs tracking-widest uppercase hover:bg-accent-warm hover:text-white transition-all duration-300"
           >
             Book a Consult
           </a>
@@ -130,7 +130,7 @@ function ClassCard({ cls, delay }: { cls: (typeof classes)[0]; delay: number }) 
   return (
     <div
       ref={ref}
-      className="group bg-ink p-8 hover:bg-[#111009] transition-all duration-500 cursor-pointer"
+      className="group bg-white p-8 hover:bg-[#111009] transition-all duration-500 cursor-pointer"
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(30px)",
@@ -152,20 +152,20 @@ function ClassCard({ cls, delay }: { cls: (typeof classes)[0]; delay: number }) 
         </span>
       </div>
 
-      <p className="font-mono text-[9px] tracking-widest uppercase text-parchment/30 mb-2">
+      <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
         {cls.subtitle}
       </p>
-      <h3 className="font-display text-2xl text-parchment font-light mb-4 group-hover:text-gold transition-colors duration-300">
+      <h3 className="font-display text-2xl text-gray-darkest font-light mb-4 group-hover:text-accent-warm transition-colors duration-300">
         {cls.title}
       </h3>
-      <p className="font-body text-parchment/40 text-sm leading-relaxed font-light mb-6">
+      <p className="font-body text-gray text-sm leading-relaxed font-light mb-6">
         {cls.description}
       </p>
 
       <div className="flex items-center justify-between pt-5 border-t border-parchment/5">
         <div className="flex items-center gap-2">
           <div className="w-1 h-1 rounded-full bg-gold/50" />
-          <span className="font-mono text-[9px] tracking-widest uppercase text-parchment/30">
+          <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
             {cls.duration}
           </span>
         </div>

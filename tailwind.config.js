@@ -13,15 +13,30 @@ module.exports = {
         mono: ["var(--font-dm-mono)", "monospace"],
       },
       colors: {
-        ink: "#0e0d0b",
-        parchment: "#f5f0e8",
-        dust: "#e8e0d0",
-        gold: "#c9a96e",
-        "gold-light": "#e8c99a",
-        "gold-dark": "#8a6d3b",
-        sage: "#7a8c7e",
-        clay: "#c4785a",
-        mist: "#9ba8b0",
+        // 白色/灰白色调 - 高雅艺术主题
+        white: "#ffffff",
+        "white-pure": "#ffffff",
+        "white-warm": "#faf9f7",
+        "white-cool": "#f8f9fa",
+        "white-soft": "#f5f5f5",
+        
+        // 灰色调 - 用于层次和对比
+        "gray-lightest": "#f0f0f0",
+        "gray-lighter": "#e8e8e8",
+        "gray-light": "#d8d8d8",
+        "gray": "#b0b0b0",
+        "gray-dark": "#888888",
+        "gray-darker": "#606060",
+        "gray-darkest": "#383838",
+        
+        // 强调色 - 保持温暖但更柔和
+        "accent-warm": "#d4b483",  // 柔和的米金色
+        "accent-cool": "#a8b8c8",  // 柔和的灰蓝色
+        "accent-neutral": "#c0c0c0", // 中性灰色
+        
+        // 保留一些原有颜色用于特定元素
+        "gold-subtle": "#e8d4b0",  // 更柔和的金色
+        "sage-subtle": "#a8b8a8",  // 更柔和的鼠尾草绿
       },
       letterSpacing: {
         widest: "0.25em",

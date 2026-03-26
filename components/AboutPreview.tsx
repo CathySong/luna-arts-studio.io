@@ -8,7 +8,7 @@ export default function AboutPreview() {
   const inView = useInView(ref, { threshold: 0.2 });
 
   return (
-    <section id="about" className="py-32 bg-ink relative">
+    <section id="about" className="py-32 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-center">
         <div
           ref={ref}
@@ -37,38 +37,38 @@ export default function AboutPreview() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="h-px w-8 bg-gold/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-gold/60" style={{ letterSpacing: "0.35em" }}>
+            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
               Our Story
             </span>
           </div>
 
-          <h2 className="font-display text-5xl md:text-6xl font-light text-parchment leading-tight mb-8">
+          <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight mb-8">
             A Space to{" "}
-            <span className="italic text-gold">Create,</span>
+            <span className="italic text-accent-warm">Create,</span>
             <br />
             Explore & Grow
           </h2>
 
-          <p className="font-body text-parchment/50 leading-relaxed mb-6 font-light">
+          <p className="font-body text-gray-dark leading-relaxed mb-6 font-light">
             Luna Art Studio was born from a simple belief: that creativity is not a gift reserved for a few,
             but a language anyone can learn. Nestled in the heart of New Jersey, our studio offers a warm,
             inspiring environment where students of all levels find their voice through paint, charcoal, and imagination.
           </p>
-          <p className="font-body text-parchment/50 leading-relaxed font-light">
+          <p className="font-body text-gray-dark leading-relaxed font-light">
             Led by working artists with decades of combined experience, our classes blend technical rigor
             with expressive freedom — so whether you are picking up a brush for the first time or refining
             a lifelong practice, you will find a home here.
           </p>
 
-          <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-gold/10">
+          <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-gray-lightest">
             {[
               { n: "500+", label: "Students" },
               { n: "12", label: "Class Types" },
               { n: "5 yrs", label: "Experience" },
             ].map((s) => (
               <div key={s.label}>
-                <p className="font-display text-4xl text-gold font-light">{s.n}</p>
-                <p className="font-mono text-[9px] tracking-widest uppercase text-parchment/40 mt-1">{s.label}</p>
+                <p className="font-display text-4xl text-accent-warm font-light">{s.n}</p>
+                <p className="font-mono text-[9px] tracking-widest uppercase text-gray mt-1">{s.label}</p>
               </div>
             ))}
           </div>
