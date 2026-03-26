@@ -169,12 +169,22 @@ function ClassCard({ cls, delay }: { cls: (typeof classes)[0]; delay: number }) 
             {cls.duration}
           </span>
         </div>
-        <span
-          className="font-mono text-[9px] tracking-widest uppercase transition-colors duration-300 group-hover:opacity-100 opacity-0"
-          style={{ color: cls.color }}
-        >
-          Learn more →
-        </span>
+        {cls.title === "Kids Art Camp" ? (
+          <a
+            href="#camps"
+            className="font-mono text-[9px] tracking-widest uppercase transition-colors duration-300 group-hover:opacity-100 opacity-0 hover:text-accent-warm"
+            style={{ color: cls.color }}
+          >
+            Learn more →
+          </a>
+        ) : (
+          <span
+            className="font-mono text-[9px] tracking-widest uppercase transition-colors duration-300 group-hover:opacity-100 opacity-0"
+            style={{ color: cls.color }}
+          >
+            Learn more →
+          </span>
+        )}
       </div>
     </div>
   );
