@@ -86,9 +86,6 @@ export default function CampSection() {
 
   return (
     <section id="camps" className="py-32 bg-white relative overflow-hidden">
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-gray-lightest leading-none select-none pointer-events-none pl-4">
-        04
-      </div>
 
       <div
         ref={ref}

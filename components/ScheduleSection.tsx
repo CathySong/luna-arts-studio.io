@@ -45,9 +45,6 @@ export default function ScheduleSection() {
 
   return (
     <section id="schedule" className="py-32 bg-white relative overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 font-display text-[20rem] font-light text-gray-darkest/[0.02] leading-none select-none pointer-events-none pr-4">
-        04
-      </div>
 
       <div
         ref={ref}
