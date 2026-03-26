@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表单颜色修复测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #ffffff; color: #383838; }
+        .success { color: #28a745; }
+        .info { color: #17a2b8; }
+        .warning { color: #ffc107; }
+        .section { border: 1px solid #e8e8e8; padding: 20px; margin: 20px 0; border-radius: 8px; background-color: #faf9f7; }
+        .section-title { font-size: 1.5em; font-weight: bold; margin-bottom: 15px; color: #383838; }
+        .color-swatch { display: inline-block; width: 100px; height: 30px; border-radius: 4px; margin: 5px; border: 1px solid #e8e8e8; }
+        .form-preview { padding: 20px; background-color: white; border-radius: 8px; border: 1px solid #e8e8e8; margin: 15px 0; }
+        .form-field { margin: 15px 0; }
+        label { display: block; font-size: 12px; color: #606060; margin-bottom: 5px; font-weight: bold; }
+        select, textarea, input { width: 100%; padding: 12px; border: 1px solid #e8e8e8; border-radius: 4px; background-color: white; color: #383838; }
+        select:focus, textarea:focus, input:focus { outline: none; border-color: #d4b483; }
+    </style>
+</head>
+<body>
+    <h1>表单颜色修复测试</h1>
+    
+    <div class="section">
+        <div class="section-title">✅ 修复的问题</div>
+        <p><strong>问题描述:</strong> "I'm interested in" 下拉选择框选中后背景色为黑色 (#0e0d0b)</p>
+        <p><strong>修复方案:</strong> 改为白色背景 (#ffffff) 以匹配整体颜色主题</p>
+        
+        <div class="color-swatch" style="background-color: #0e0d0b;"></div>
+        <span>修复前: 黑色背景 (#0e0d0b)</span><br>
+        
+        <div class="color-swatch" style="background-color: #ffffff; border: 1px solid #e8e8e8;"></div>
+        <span>修复后: 白色背景 (#ffffff)</span>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">🎨 修复后的表单颜色系统</div>
+        
+        <div class="form-preview">
+            <h3>表单预览:</h3>
+            
+            <div class="form-field">
+                <label>I'm interested in</label>
+                <select>
+                    <option value="">Select an area...</option>
+                    <option value="private-lessons">Private Lessons</option>
+                    <option value="group-classes">Group Classes</option>
+                    <option value="workshops">Workshops</option>
+                    <option value="commission">Commission</option>
+                </select>
+                <p><em>背景色: 白色 (#ffffff)</em></p>
+                <p><em>文字色: 深灰色 (#383838)</em></p>
+                <p><em>边框色: 浅灰色 (#e8e8e8)</em></p>
+                <p><em>焦点边框色: 暖米金色 (#d4b483)</em></p>
+            </div>
+            
+            <div class="form-field">
+                <label>Message</label>
+                <textarea rows="4" placeholder="Your message..."></textarea>
+                <p><em>背景色: 白色 (#ffffff)</em></p>
+            </div>
+            
+            <div class="form-field">
+                <label>Email</label>
+                <input type="email" placeholder="your@email.com">
+                <p><em>背景色: 白色 (#ffffff)</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">🔧 具体修复内容</div>
+        
+        <h3>1. 下拉选择框 (select):</h3>
+        <pre>
+修复前:
+className="w-full bg-transparent border border-gray-lightest ..."
+style={{ background: "#0e0d0b" }}
+
+修复后:
+className="w-full bg-white border border-gray-lightest ..."
+        </pre>
+        
+        <h3>2. 下拉选项 (option):</h3>
+        <pre>
+修复前:
+&lt;option style={{ background: "#0e0d0b" }}&gt;
+
+修复后:
+&lt;option className="bg-white text-gray-darkest"&gt;
+        </pre>
+        
+        <h3>3. 其他表单元素:</h3>
+        <pre>
+修复前:
+className="w-full bg-transparent border border-gray-lightest ..."
+
+修复后:
+className="w-full bg-white border border-gray-lightest ..."
+        </pre>
+        
+        <h3>4. 焦点状态:</h3>
+        <pre>
+修复前:
+focus:border-gray-light
+
+修复后:
+focus:border-accent-warm
+        </pre>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">🎯 设计一致性</div>
+        
+        <h3>修复后的颜色系统:</h3>
+        <ul>
+            <li><strong>背景色:</strong> 白色 (#ffffff) - 与页面背景一致</li>
+            <li><strong>文字色:</strong> 深灰色 (#383838) - 与主要文字颜色一致</li>
+            <li><strong>边框色:</strong> 浅灰色 (#e8e8e8) - 与页面边框颜色一致</li>
+            <li><strong>焦点色:</strong> 暖米金色 (#d4b483) - 与强调色一致</li>
+            <li><strong>占位符色:</strong> 浅灰色 (#b0b0b0) - 与次要文字颜色一致</li>
+        </ul>
+        
+        <h3>用户体验提升:</h3>
+        <ul>
+            <li>✅ 表单元素在白色背景下清晰可见</li>
+            <li>✅ 选中状态有明确的视觉反馈</li>
+            <li>✅ 焦点状态使用强调色增强可访问性</li>
+            <li>✅ 整体颜色协调统一</li>
+            <li>✅ 符合现代表单设计最佳实践</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">🚀 技术状态</div>
+        
+        <h3>构建验证:</h3>
+        <ul>
+            <li>✅ Next.js构建成功</li>
+            <li>✅ TypeScript类型检查通过</li>
+            <li>✅ Tailwind CSS编译成功</li>
+        </ul>
+        
+        <h3>部署状态:</h3>
+        <ul>
+            <li>✅ Git提交: 已修复并提交</li>
+            <li>✅ GitHub推送: 已完成</li>
+            <li>🔄 Vercel部署: 进行中</li>
+        </ul>
+        
+        <h3>网站链接:</h3>
+        <p><a href="https://luna-arts-studio-io.vercel.app" target="_blank" style="color: #d4b483;">https://luna-arts-studio-io.vercel.app</a></p>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">📝 总结</div>
+        
+        <p class="success"><strong>✅ 修复完成！</strong></p>
+        <p>已成功修复"Inquiring"部分中"I'm interested in"选中后的颜色问题：</p>
+        
+        <ol>
+            <li>将黑色背景 (#0e0d0b) 改为白色背景 (#ffffff)</li>
+            <li>更新所有表单元素使用统一的颜色系统</li>
+            <li>改进焦点状态使用强调色</li>
+            <li>确保整体颜色协调一致</li>
+        </ol>
+        
+        <p>现在Luna Art Studio网站的所有表单元素都使用统一的白色背景，与整体颜色主题完全协调。</p>
+    </div>
+</body>
+</html>

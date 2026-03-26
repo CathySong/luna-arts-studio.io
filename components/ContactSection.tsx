@@ -168,12 +168,11 @@ export default function ContactSection() {
                       name="interest"
                       value={form.interest}
                       onChange={handleChange}
-                      className="w-full bg-transparent border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest/70 focus:border-gray-light focus:outline-none transition-colors appearance-none cursor-pointer"
-                      style={{ background: "#0e0d0b" }}
+                      className="w-full bg-white border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest focus:border-accent-warm focus:outline-none transition-colors appearance-none cursor-pointer"
                     >
                       <option value="">Select an area...</option>
                       {interests.map((i) => (
-                        <option key={i} value={i} style={{ background: "#0e0d0b" }}>
+                        <option key={i} value={i} className="bg-white text-gray-darkest">
                           {i}
                         </option>
                       ))}
@@ -191,7 +190,7 @@ export default function ContactSection() {
                     onChange={handleChange}
                     rows={5}
                     placeholder="Tell us a little about yourself and what you are looking for..."
-                    className="w-full bg-transparent border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors resize-none"
+                    className="w-full bg-white border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest placeholder:text-gray-darkest/20 focus:border-accent-warm focus:outline-none transition-colors resize-none"
                     required
                   />
                 </div>
@@ -237,7 +236,7 @@ function Field({
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full bg-transparent border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest/70 placeholder:text-gray-darkest/20 focus:border-gray-light focus:outline-none transition-colors"
+        className="w-full bg-white border border-gray-lightest px-4 py-3 font-body text-sm text-gray-darkest placeholder:text-gray-darkest/20 focus:border-accent-warm focus:outline-none transition-colors"
       />
     </div>
   );
