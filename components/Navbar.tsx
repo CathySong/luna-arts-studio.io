@@ -26,7 +26,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-ink/90 backdrop-blur-md border-b border-gold/10"
+          ? "bg-white/90 backdrop-blur-md border-b border-gray-lightest"
           : "bg-transparent"
       }`}
     >
@@ -44,13 +44,13 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col leading-none">
             <span
-              className="font-display text-2xl font-light tracking-widest text-parchment"
+              className="font-display text-2xl font-light tracking-widest text-gray-darkest"
               style={{ letterSpacing: "0.2em" }}
             >
               LUNA
             </span>
             <span
-              className="font-mono text-[9px] tracking-ultra text-gold uppercase"
+              className="font-mono text-[9px] tracking-ultra text-accent-warm uppercase"
               style={{ letterSpacing: "0.35em" }}
             >
               Art Studio
@@ -64,7 +64,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-body text-xs tracking-widest uppercase text-parchment/60 hover:text-gold transition-colors duration-300"
+                className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors duration-300"
               >
                 {l.label}
               </a>
@@ -73,7 +73,7 @@ export default function Navbar() {
           <li>
             <a
               href="#contact"
-              className="ml-4 px-6 py-2.5 border border-gold/40 text-gold font-body text-xs tracking-widest uppercase hover:bg-gold hover:text-ink transition-all duration-300"
+              className="ml-4 px-6 py-2.5 border border-accent-warm/40 text-accent-warm font-body text-xs tracking-widest uppercase hover:bg-accent-warm hover:text-white transition-all duration-300"
             >
               Inquire
             </a>
@@ -82,7 +82,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-parchment/70 hover:text-gold transition-colors"
+          className="md:hidden text-gray-dark hover:text-accent-warm transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -94,7 +94,7 @@ export default function Navbar() {
       <div
         className={`md:hidden transition-all duration-500 overflow-hidden ${
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } bg-ink/95 backdrop-blur-md border-t border-gold/10`}
+        } bg-white/95 backdrop-blur-md border-t border-gray-lightest`}
       >
         <ul className="px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
@@ -102,7 +102,7 @@ export default function Navbar() {
               <a
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-body text-xs tracking-widest uppercase text-parchment/60 hover:text-gold transition-colors"
+                className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors"
               >
                 {l.label}
               </a>
