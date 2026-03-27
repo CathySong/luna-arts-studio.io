@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div className="relative w-12 h-12">
                 <Image
-                  src="/luna.png"
+                  src="/luna.jpg"
                   alt="Luna Art Studio Logo"
                   fill
                   className="object-contain"
