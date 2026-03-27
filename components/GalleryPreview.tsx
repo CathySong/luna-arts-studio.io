@@ -221,7 +221,7 @@ const handicrafts: Artwork[] = [
     "accent": "#a8b8c8",
     "available": true,
     "price": "$760",
-    "imagePath": "/images/artworks/artwork6.jpg",
+    "imagePath": "/images/artworks/artwork1.jpg",
     "category": "handicraft"
   },
   {
@@ -234,7 +234,7 @@ const handicrafts: Artwork[] = [
     "accent": "#d4b483",
     "available": true,
     "price": "$890",
-    "imagePath": "/images/artworks/artwork7.jpg",
+    "imagePath": "/images/artworks/artwork2.jpg",
     "category": "handicraft"
   },
   {
@@ -247,7 +247,7 @@ const handicrafts: Artwork[] = [
     "accent": "#a8b8c8",
     "available": false,
     "price": "$580",
-    "imagePath": "/images/artworks/artwork10.jpg",
+    "imagePath": "/images/artworks/artwork3.jpg",
     "category": "handicraft"
   },
   {
@@ -260,7 +260,7 @@ const handicrafts: Artwork[] = [
     "accent": "#d4b483",
     "available": true,
     "price": "$720",
-    "imagePath": "/images/artworks/artwork12.jpg",
+    "imagePath": "/images/artworks/artwork4.jpg",
     "category": "handicraft"
   },
   {
