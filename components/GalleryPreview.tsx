@@ -204,7 +204,7 @@ const sketches: Artwork[] = [
     "accent": "#a8b8a8",
     "available": true,
     "price": "$320",
-    "imagePath": "/images/artworks/artwork4.jpg",
+    "imagePath": "/images/artworks/artwork6.jpg",
     "category": "sketch"
   }
 ];
