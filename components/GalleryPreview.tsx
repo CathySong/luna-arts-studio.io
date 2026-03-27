@@ -221,7 +221,7 @@ const handicrafts: Artwork[] = [
     "accent": "#a8b8c8",
     "available": true,
     "price": "$760",
-    "imagePath": "/images/artworks/artwork1.jpg",
+    "imagePath": "/images/artworks/handicrafts/handicraft1.jpg",
     "category": "handicraft"
   },
   {
@@ -234,7 +234,7 @@ const handicrafts: Artwork[] = [
     "accent": "#d4b483",
     "available": true,
     "price": "$890",
-    "imagePath": "/images/artworks/artwork2.jpg",
+    "imagePath": "/images/artworks/handicrafts/handicraft2.jpg",
     "category": "handicraft"
   },
   {
@@ -247,7 +247,7 @@ const handicrafts: Artwork[] = [
     "accent": "#a8b8c8",
     "available": false,
     "price": "$580",
-    "imagePath": "/images/artworks/artwork3.jpg",
+    "imagePath": "/images/artworks/handicrafts/handicraft3.jpg",
     "category": "handicraft"
   },
   {
@@ -260,7 +260,7 @@ const handicrafts: Artwork[] = [
     "accent": "#d4b483",
     "available": true,
     "price": "$720",
-    "imagePath": "/images/artworks/artwork4.jpg",
+    "imagePath": "/images/artworks/handicrafts/handicraft4.jpg",
     "category": "handicraft"
   },
   {
@@ -273,7 +273,7 @@ const handicrafts: Artwork[] = [
     "accent": "#d4b483",
     "available": true,
     "price": "$650",
-    "imagePath": "/images/artworks/artwork5.jpg",
+    "imagePath": "/images/artworks/handicrafts/handicraft5.jpg",
     "category": "handicraft"
   },
   {
@@ -286,7 +286,7 @@ const handicrafts: Artwork[] = [
     "accent": "#a8b8c8",
     "available": true,
     "price": "$920",
-    "imagePath": "/images/artworks/artwork6.jpg",
+    "imagePath": "/images/artworks/handicrafts/handicraft6.jpg",
     "category": "handicraft"
   }
 ];
