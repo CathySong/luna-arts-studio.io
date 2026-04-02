@@ -41,7 +41,7 @@ export const summerCampConfig = {
   contact: {
     email: "Ninglu1088@gmail.com",
     phone: "(973) 123-4567",
-    address: "123 Art Street, Fairfield, NJ 07004"
+    address: "258 King George Rd, Warren, NJ 07059"
   }
 };
 
