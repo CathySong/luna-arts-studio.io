@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { useInView } from "@/lib/useInView";
+import { summerCampConfig } from "@/config/summer-camp";
 
 export default function CampSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -93,7 +94,7 @@ export default function CampSection() {
       >
 
 
-        {/* Header */}
+        {/* Header with Registration Button */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-accent-warm/60" />
@@ -101,13 +102,53 @@ export default function CampSection() {
               Youth Programs
             </span>
           </div>
-          <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
-            Art <span className="italic text-accent-warm">Camps</span>
-          </h2>
-          <p className="font-body text-gray-dark text-lg mt-6 max-w-2xl leading-relaxed font-light">
-            Creative summer adventures designed to inspire young artists at every age and skill level. 
-            Our camps blend skill-building with creative exploration in a supportive, nurturing environment.
-          </p>
+          
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mb-8">
+            <div>
+              <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
+                Art <span className="italic text-accent-warm">Camps</span>
+              </h2>
+              <p className="font-body text-gray-dark text-lg mt-6 max-w-2xl leading-relaxed font-light">
+                Creative summer adventures designed to inspire young artists at every age and skill level. 
+                Our camps blend skill-building with creative exploration in a supportive, nurturing environment.
+              </p>
+            </div>
+            
+            {/* Registration Button */}
+            <a
+              href={summerCampConfig.registrationFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-red-600 hover:bg-red-700 text-white font-display text-lg font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg whitespace-nowrap flex items-center gap-3"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Register Now for Summer Camp
+            </a>
+          </div>
+          
+          {/* Quick Info Banner */}
+          <div className="bg-gray-lightest border border-gray-light rounded-lg p-6 mb-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex-1">
+                <h3 className="font-display text-xl text-gray-darkest font-light mb-2">📝 Easy Online Registration</h3>
+                <p className="font-body text-gray-dark text-sm font-light">
+                  Click the "Register Now" button to fill out our Google Form. You'll receive a confirmation email within 24 hours.
+                </p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="text-center">
+                  <div className="text-red-600 font-display text-2xl font-bold">5 min</div>
+                  <p className="font-mono text-xs text-gray-500">to complete</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-red-600 font-display text-2xl font-bold">24h</div>
+                  <p className="font-mono text-xs text-gray-500">confirmation</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Camp Cards */}
@@ -143,14 +184,29 @@ export default function CampSection() {
               </div>
 
               <div className="pt-6 border-t border-gray-lightest">
-                <div className="flex items-center justify-between">
-                  <span className="font-body text-sm text-gray-darkest font-light">{camp.price}</span>
-                  <a
-                    href="#contact"
-                    className={`font-mono text-[9px] tracking-widest uppercase ${camp.color === 'warm' ? 'text-accent-warm border-accent-warm/30 hover:bg-accent-warm' : 'text-accent-cool border-accent-cool/30 hover:bg-accent-cool'} border px-4 py-2 hover:text-white transition-all duration-300`}
-                  >
-                    Inquire
-                  </a>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-body text-sm text-gray-darkest font-light">{camp.price}</span>
+                    <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
+                      per day
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="#contact"
+                      className={`flex-1 font-mono text-[9px] tracking-widest uppercase text-center ${camp.color === 'warm' ? 'text-accent-warm border-accent-warm/30 hover:bg-accent-warm' : 'text-accent-cool border-accent-cool/30 hover:bg-accent-cool'} border px-4 py-2 hover:text-white transition-all duration-300`}
+                    >
+                      Learn More
+                    </a>
+                    <a
+                      href={summerCampConfig.registrationFormUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-red-600 hover:bg-red-700 text-white font-mono text-[9px] tracking-widest uppercase text-center px-4 py-2 transition-all duration-300"
+                    >
+                      Register
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,13 +382,26 @@ export default function CampSection() {
                 <p className="font-body text-gray-dark text-sm font-light">
                   📅 Camp Dates: June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
                 </p>
+                <p className="font-body text-gray-dark text-xs font-light mt-2">
+                  ⚡ Limited spots available! Early registration recommended to secure your preferred dates.
+                </p>
               </div>
-              <a
-                href="#contact"
-                className="font-mono text-[9px] tracking-widest uppercase text-accent-warm border border-accent-warm/30 px-6 py-3 hover:bg-accent-warm hover:text-white transition-all duration-300 whitespace-nowrap"
-              >
-                Register Now for Summer Camp 2026
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="#contact"
+                  className="font-mono text-[9px] tracking-widest uppercase text-accent-warm border border-accent-warm/30 px-6 py-3 hover:bg-accent-warm hover:text-white transition-all duration-300 whitespace-nowrap text-center"
+                >
+                  Contact for Questions
+                </a>
+                <a
+                  href={summerCampConfig.registrationFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-red-600 hover:bg-red-700 text-white font-mono text-[9px] tracking-widest uppercase px-6 py-3 transition-all duration-300 whitespace-nowrap text-center"
+                >
+                  Register Now → Google Form
+                </a>
+              </div>
             </div>
           </div>
         </div>

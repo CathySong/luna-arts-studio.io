@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { summerCampConfig } from "@/config/summer-camp";
 
 export default function SummerCampHero() {
   const [showBanner, setShowBanner] = useState(true);
@@ -83,6 +84,17 @@ export default function SummerCampHero() {
                     className="bg-white text-gray-900 font-display text-lg font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
                   >
                     Explore Camp Programs
+                  </a>
+                  <a
+                    href={summerCampConfig.registrationFormUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-red-600 hover:bg-red-700 text-white font-display text-lg font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Register Now
                   </a>
                   <a
                     href="#contact"
