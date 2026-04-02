@@ -1,4 +1,5 @@
 "use client";
+import SummerCampHero from "@/components/SummerCampHero";
 import AboutPreview from "@/components/AboutPreview";
 import GalleryPreview from "@/components/GalleryPreview";
 import ClassesPreview from "@/components/ClassesPreview";
@@ -9,7 +10,10 @@ import ContactSection from "@/components/ContactSection";
 export default function Home() {
   return (
     <>
-      {/* 移除Hero组件，直接从AboutPreview开始 */}
+      {/* Summer Camp Hero with Red Banner */}
+      <SummerCampHero />
+      
+      {/* 原有内容 */}
       <AboutPreview />
       <GalleryPreview />
       <ClassesPreview />

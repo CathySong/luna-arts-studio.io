@@ -1,6 +1,5 @@
 "use client";
 import { useRef } from "react";
-import Image from "next/image";
 import { useInView } from "@/lib/useInView";
 
 export default function CampSection() {
@@ -94,29 +93,7 @@ export default function CampSection() {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        {/* Summer Camp Introduction Image */}
-        <div className="mb-16 overflow-hidden rounded-lg">
-          <div className="relative aspect-[16/9] md:aspect-[21/9]">
-            <Image
-              src="/images/camp-summer-intro.jpg"
-              alt="Summer Camp at Luna Art Studio - Young artists creating and learning together"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end">
-              <div className="p-8 text-white">
-                <h3 className="font-display text-3xl md:text-4xl font-light mb-3">
-                  Summer <span className="italic text-accent-warm">Art Adventures</span>
-                </h3>
-                <p className="font-body text-lg font-light max-w-2xl">
-                  Where creativity meets summer fun! Join us for unforgettable art experiences.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* Header */}
         <div className="mb-16">
