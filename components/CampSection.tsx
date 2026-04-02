@@ -13,7 +13,7 @@ export default function CampSection() {
       title: "Half Day Camp (Morning)",
       subtitle: "Art Exploration",
       duration: "3 Hours",
-      ageRange: "Ages 6-12",
+      ageRange: "Ages 6-13",
       description: "Perfect for young artists to explore creativity in a focused morning session. No lunch included.",
       highlights: [
         "Creative drawing & basic sketching",
@@ -30,7 +30,7 @@ export default function CampSection() {
       title: "Half Day Camp (Afternoon)",
       subtitle: "Crafts & Activities",
       duration: "3.5 Hours",
-      ageRange: "Ages 6-12",
+      ageRange: "Ages 6-13",
       description: "Afternoon session focusing on crafts, outdoor activities, and creative play.",
       highlights: [
         "Sewing & beading projects",
@@ -47,7 +47,7 @@ export default function CampSection() {
       title: "Full Day Camp",
       subtitle: "Complete Summer Experience",
       duration: "8 Hours",
-      ageRange: "Ages 6-12",
+      ageRange: "Ages 6-13",
       description: "Full day camp including all activities plus healthy lunch. The complete summer camp experience.",
       highlights: [
         "Morning art classes (drawing, painting)",
@@ -59,27 +59,46 @@ export default function CampSection() {
       color: "warm",
       time: "9:00am - 5:00pm",
       includesLunch: true
+    },
+    {
+      id: 4,
+      title: "Teen Art Studio",
+      subtitle: "Advanced Art Program",
+      duration: "8 Hours",
+      ageRange: "Ages 14+",
+      description: "Specialized program for teens focusing on advanced techniques, portfolio development, and artistic growth.",
+      highlights: [
+        "Advanced painting & drawing techniques",
+        "Portfolio development & critique sessions",
+        "Mixed media exploration",
+        "Exhibition preparation & presentation skills"
+      ],
+      price: "$150",
+      color: "cool",
+      time: "9:00am - 5:00pm",
+      includesLunch: true,
+      isTeenProgram: true
     }
   ];
 
   const ageGroups = [
     {
-      range: "Ages 6-8",
+      range: "Ages 6-9",
       title: "Young Creators",
-      description: "Focus on creativity, basic art skills, and fun exploration. Emphasis on process over product.",
-      activities: "Creative drawing, basic painting, simple crafts, team games"
+      description: "Focus on creativity, basic art skills, and fun exploration. Emphasis on process over product and building foundational skills.",
+      activities: "Creative drawing, basic painting, simple crafts, team games, nature exploration"
     },
     {
-      range: "Ages 9-10", 
+      range: "Ages 10-13", 
       title: "Skill Builders",
-      description: "Developing technical skills while maintaining creative freedom. Introduction to various mediums.",
-      activities: "Acrylic painting, watercolor, sewing basics, nature crafts"
+      description: "Developing technical skills while maintaining creative freedom. Introduction to various mediums and more complex projects.",
+      activities: "Acrylic painting, watercolor, sewing, beading, handmade soap, creative sports"
     },
     {
-      range: "Ages 11-12",
-      title: "Art Explorers",
-      description: "More complex projects, skill refinement, and creative expression. Building artistic confidence.",
-      activities: "Advanced painting, handmade soap, beading projects, creative sports"
+      range: "Ages 14+",
+      title: "Advanced Artists",
+      description: "Portfolio development, advanced techniques, and personal artistic voice exploration. Focus on skill refinement and creative expression.",
+      activities: "Advanced painting techniques, portfolio projects, mixed media, exhibition preparation"
     }
   ];
 
@@ -152,7 +171,7 @@ export default function CampSection() {
         </div>
 
         {/* Camp Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {camps.map((camp) => (
             <div key={camp.id} className="bg-white border border-gray-lightest p-8 hover:border-accent-warm/30 transition-all duration-300 group">
               <div className="mb-6">
