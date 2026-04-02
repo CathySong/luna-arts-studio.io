@@ -90,7 +90,7 @@ export default function FlyerPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-          {/* Flyer Image */}
+          {/* Flyer Image - Clean View */}
           <div className="relative aspect-[3/4] md:aspect-[4/3]">
             <Image
               src="/images/camp-summer-intro.jpg"
@@ -102,70 +102,40 @@ export default function FlyerPage() {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
             />
             
-            {/* Flyer Overlay Content */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30">
-              <div className="absolute inset-0 flex items-center justify-center p-8">
-                <div className="text-center text-white max-w-4xl">
-                  <div className="mb-8">
-                    <span className="inline-block bg-white/20 backdrop-blur-sm text-white font-mono text-sm tracking-widest uppercase px-6 py-3 rounded-full mb-8">
-                      🏕️ Summer Art Adventures 2026
-                    </span>
-                    <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-                      Where <span className="text-red-300">Creativity</span><br />
-                      Meets <span className="text-yellow-300">Summer Fun</span>
-                    </h1>
-                    <p className="font-body text-2xl md:text-3xl text-white/90 font-light mb-10 max-w-3xl mx-auto leading-relaxed">
-                      June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
-                    </p>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                      <div className="text-red-300 font-display text-4xl font-bold mb-2">10%</div>
-                      <p className="font-body text-lg font-light">Early Bird Discount</p>
-                      <p className="font-mono text-sm text-white/70 mt-1">Register by May 1</p>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                      <div className="text-red-300 font-display text-4xl font-bold mb-2">6/22</div>
-                      <p className="font-body text-lg font-light">Camp Start Date</p>
-                      <p className="font-mono text-sm text-white/70 mt-1">June 22 - August 28</p>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-                      <div className="text-red-300 font-display text-4xl font-bold mb-2">$130</div>
-                      <p className="font-body text-lg font-light">Full Day with Lunch</p>
-                      <p className="font-mono text-sm text-white/70 mt-1">9am - 5pm</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a
-                      href={summerCampConfig.registrationFormUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white text-gray-900 font-display text-xl font-bold px-10 py-5 rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
-                    >
-                      Register Now
-                    </a>
-                    <a
-                      href="/#contact"
-                      className="bg-transparent border-2 border-white text-white font-display text-xl font-bold px-10 py-5 rounded-full hover:bg-white/10 transition-all duration-300"
-                    >
-                      Contact Us
-                    </a>
-                  </div>
-                </div>
+            {/* Clean overlay with only subtle gradient for better visibility */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/5"></div>
+            
+            {/* Scroll hint - subtle and non-intrusive */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+              <div className="flex flex-col items-center">
+                <span className="font-mono text-xs tracking-widest uppercase text-white/50 mb-2">
+                  Scroll for details
+                </span>
+                <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
               </div>
             </div>
           </div>
 
           {/* Flyer Details */}
           <div className="p-8 md:p-12">
+            {/* Section Title */}
+            <div className="text-center mb-12">
+              <h2 className="font-display text-4xl font-light text-gray-900 mb-4">
+                Summer Camp 2026 Details
+              </h2>
+              <p className="font-body text-gray-600 max-w-2xl mx-auto">
+                Complete information about our summer art programs, pricing, discounts, and registration
+              </p>
+            </div>
+            
             <div className="grid md:grid-cols-2 gap-12">
               {/* Left Column - Camp Information */}
               <div>
-                <h2 className="font-display text-3xl font-light text-gray-900 mb-8">
-                  🏕️ Summer Camp 2026 Details
-                </h2>
+                <h3 className="font-display text-2xl font-light text-gray-800 mb-6">
+                  📅 Camp Schedule & Activities
+                </h3>
                 
                 <div className="space-y-6">
                   <div>
@@ -218,9 +188,9 @@ export default function FlyerPage() {
               
               {/* Right Column - Registration & Contact */}
               <div>
-                <h2 className="font-display text-3xl font-light text-gray-900 mb-8">
-                  📝 Registration Information
-                </h2>
+                <h3 className="font-display text-2xl font-light text-gray-800 mb-6">
+                  📝 Registration & Contact
+                </h3>
                 
                 <div className="space-y-6">
                   <div>
