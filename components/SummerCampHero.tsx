@@ -97,10 +97,10 @@ export default function SummerCampHero() {
                     Register Now
                   </a>
                   <a
-                    href="#contact"
+                    href="/flyer"
                     className="bg-transparent border-2 border-white text-white font-display text-lg font-bold px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-300"
                   >
-                    Contact for Details
+                    View Flyer & Details
                   </a>
                 </div>
               </div>

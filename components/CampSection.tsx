@@ -212,10 +212,10 @@ export default function CampSection() {
                   </div>
                   <div className="flex items-center gap-3">
                     <a
-                      href="#contact"
+                      href="/flyer"
                       className={`flex-1 font-mono text-[9px] tracking-widest uppercase text-center ${camp.color === 'warm' ? 'text-accent-warm border-accent-warm/30 hover:bg-accent-warm' : 'text-accent-cool border-accent-cool/30 hover:bg-accent-cool'} border px-4 py-2 hover:text-white transition-all duration-300`}
                     >
-                      Learn More
+                      View Details
                     </a>
                     <a
                       href={summerCampConfig.registrationFormUrl}
@@ -407,10 +407,10 @@ export default function CampSection() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="#contact"
+                  href="/flyer"
                   className="font-mono text-[9px] tracking-widest uppercase text-accent-warm border border-accent-warm/30 px-6 py-3 hover:bg-accent-warm hover:text-white transition-all duration-300 whitespace-nowrap text-center"
                 >
-                  Contact for Questions
+                  View Flyer & Details
                 </a>
                 <a
                   href={summerCampConfig.registrationFormUrl}
