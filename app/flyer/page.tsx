@@ -90,30 +90,38 @@ export default function FlyerPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-          {/* Flyer Image - Clean View */}
-          <div className="relative aspect-[3/4] md:aspect-[4/3]">
-            <Image
-              src="/images/camp-summer-intro.jpg"
-              alt="Luna Art Studio Summer Camp 2026 Flyer - Young artists creating, painting, and learning together"
-              fill
-              className="object-cover"
-              priority
-              quality={100}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-            />
-            
-            {/* Clean overlay with only subtle gradient for better visibility */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/5"></div>
-            
-            {/* Scroll hint - subtle and non-intrusive */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-              <div className="flex flex-col items-center">
-                <span className="font-mono text-xs tracking-widest uppercase text-white/50 mb-2">
-                  Scroll for details
-                </span>
-                <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+          {/* Flyer Image - Responsive Full Display */}
+          <div className="relative w-full">
+            {/* Container that adapts to image aspect ratio */}
+            <div className="relative" style={{ paddingBottom: 'min(100%, 133.33%)' }}> {/* 3:4 aspect ratio fallback */}
+              <Image
+                src="/images/camp-summer-intro.jpg"
+                alt="Luna Art Studio Summer Camp 2026 Flyer - Young artists creating, painting, and learning together"
+                fill
+                className="object-contain" {/* Changed from object-cover to object-contain */}
+                priority
+                quality={100}
+                sizes="100vw"
+                style={{ 
+                  objectPosition: 'center',
+                  maxWidth: '100%',
+                  maxHeight: '100%'
+                }}
+              />
+              
+              {/* Subtle gradient overlay for better visibility */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/5"></div>
+              
+              {/* Scroll hint - subtle and non-intrusive */}
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div className="flex flex-col items-center">
+                  <span className="font-mono text-xs tracking-widest uppercase text-white/50 mb-2 bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
+                    Scroll for details
+                  </span>
+                  <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
@@ -281,8 +289,28 @@ export default function FlyerPage() {
           </div>
         </div>
         
-        {/* Print Styles */}
+        {/* Responsive Image Styles */}
         <style jsx global>{`
+          /* Ensure image container maintains aspect ratio */
+          @media (max-width: 768px) {
+            .relative[style*="padding-bottom"] {
+              padding-bottom: min(100%, 150%) !important; /* More vertical space on mobile */
+            }
+          }
+          
+          @media (min-width: 769px) and (max-width: 1024px) {
+            .relative[style*="padding-bottom"] {
+              padding-bottom: min(100%, 125%) !important; /* Tablet optimization */
+            }
+          }
+          
+          @media (min-width: 1025px) {
+            .relative[style*="padding-bottom"] {
+              padding-bottom: min(100%, 133.33%) !important; /* Desktop 3:4 ratio */
+            }
+          }
+          
+          /* Print Styles */
           @media print {
             header, button, .no-print {
               display: none !important;
@@ -293,6 +321,16 @@ export default function FlyerPage() {
             .shadow-xl, .border {
               box-shadow: none !important;
               border: 1px solid #ddd !important;
+            }
+            /* Ensure image prints properly */
+            .relative[style*="padding-bottom"] {
+              padding-bottom: 0 !important;
+              height: auto !important;
+            }
+            img {
+              position: static !important;
+              height: auto !important;
+              max-height: 80vh !important;
             }
           }
         `}</style>

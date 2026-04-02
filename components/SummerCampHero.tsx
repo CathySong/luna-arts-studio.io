@@ -48,101 +48,72 @@ export default function SummerCampHero() {
         </div>
       )}
 
-      {/* 完整展示的Summer Camp图片 */}
-      <div className="relative w-full">
-        <div className="relative h-[70vh] min-h-[600px]">
-          <Image
-            src="/images/camp-summer-intro.jpg"
-            alt="Summer Camp at Luna Art Studio - Young artists creating, painting, and learning together in our vibrant studio"
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-            priority
-            quality={90}
-          />
-          
-          {/* 图片上的文字叠加 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center px-6 max-w-4xl">
-                <div className="mb-8">
-                  <span className="inline-block bg-white/20 backdrop-blur-sm text-white font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-6">
-                    Summer Art Adventures 2026
-                  </span>
-                  <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-                    🏕️ Summer <span className="text-red-300">Camp</span><br />
-                    2026 <span className="text-yellow-300">Registration Open</span>
-                  </h1>
-                  <p className="font-body text-xl md:text-2xl text-white/90 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
-                    June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
-                  </p>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
-                    href="#camps"
-                    className="bg-white text-gray-900 font-display text-lg font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl"
-                  >
-                    Explore Camp Programs
-                  </a>
-                  <a
-                    href={summerCampConfig.registrationFormUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-red-600 hover:bg-red-700 text-white font-display text-lg font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl flex items-center justify-center gap-2"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Register Now
-                  </a>
-                  <a
-                    href="/flyer"
-                    className="bg-transparent border-2 border-white text-white font-display text-lg font-bold px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-300"
-                  >
-                    View Flyer & Details
-                  </a>
-                </div>
+      {/* Summer Camp Hero Content without Background Image */}
+      <div className="relative w-full bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="mb-12">
+              <span className="inline-block bg-red-100 text-red-700 font-mono text-xs tracking-widest uppercase px-6 py-3 rounded-full mb-8">
+                🏕️ Summer Art Adventures 2026
+              </span>
+              <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-tight">
+                Summer <span className="text-red-600">Camp</span><br />
+                <span className="text-yellow-600">Registration Open</span>
+              </h1>
+              <p className="font-body text-2xl md:text-3xl text-gray-700 font-light mb-12 max-w-3xl mx-auto leading-relaxed">
+                June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <a
+                href="#camps"
+                className="bg-white border-2 border-gray-300 text-gray-900 font-display text-xl font-bold px-10 py-5 rounded-full hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                Explore Camp Programs
+              </a>
+              <a
+                href={summerCampConfig.registrationFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-red-600 hover:bg-red-700 text-white font-display text-xl font-bold px-10 py-5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Register Now
+              </a>
+              <a
+                href="/flyer"
+                className="bg-transparent border-2 border-red-600 text-red-600 font-display text-xl font-bold px-10 py-5 rounded-full hover:bg-red-50 transition-all duration-300"
+              >
+                View Flyer & Details
+              </a>
+            </div>
+            
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+              <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <div className="text-red-600 font-display text-4xl font-bold mb-3">10%</div>
+                <p className="font-body text-gray-700 font-medium">Early Bird Discount</p>
+                <p className="font-mono text-sm text-gray-500 mt-2">Register by May 1</p>
+              </div>
+              <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <div className="text-red-600 font-display text-4xl font-bold mb-3">6/22</div>
+                <p className="font-body text-gray-700 font-medium">Camp Start Date</p>
+                <p className="font-mono text-sm text-gray-500 mt-2">June 22 - August 28</p>
+              </div>
+              <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <div className="text-red-600 font-display text-4xl font-bold mb-3">$130</div>
+                <p className="font-body text-gray-700 font-medium">Full Day with Lunch</p>
+                <p className="font-mono text-sm text-gray-500 mt-2">9am - 5pm</p>
               </div>
             </div>
           </div>
         </div>
-
-        {/* 滚动提示 */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="flex flex-col items-center">
-            <span className="font-mono text-xs tracking-widest uppercase text-white/70 mb-2">
-              Scroll to explore
-            </span>
-            <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </div>
       </div>
 
-      {/* 快速信息栏 */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-red-600 font-display text-3xl font-bold mb-2">10%</div>
-              <p className="font-body text-gray-700 font-light">Early Bird Discount</p>
-              <p className="font-mono text-xs text-gray-500 mt-1">Register by May 1</p>
-            </div>
-            <div className="text-center">
-              <div className="text-red-600 font-display text-3xl font-bold mb-2">6/22</div>
-              <p className="font-body text-gray-700 font-light">Camp Start Date</p>
-              <p className="font-mono text-xs text-gray-500 mt-1">June 22 - August 28</p>
-            </div>
-            <div className="text-center">
-              <div className="text-red-600 font-display text-3xl font-bold mb-2">$130</div>
-              <p className="font-body text-gray-700 font-light">Full Day with Lunch</p>
-              <p className="font-mono text-xs text-gray-500 mt-1">9am - 5pm</p>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </section>
   );
 }
