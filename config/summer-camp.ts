@@ -40,7 +40,8 @@ export const summerCampConfig = {
   // Contact Information
   contact: {
     email: "Ninglu1088@gmail.com",
-    phone: "(973) 123-4567",
+    wechat: "happyevan999",
+    phone: "(973) 123-4567", // Keeping as backup
     address: "258 King George Rd, Warren, NJ 07059"
   }
 };

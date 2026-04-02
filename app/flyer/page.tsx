@@ -237,6 +237,9 @@ export default function FlyerPage() {
                         <span className="font-medium">Email:</span> {summerCampConfig.contact.email}
                       </p>
                       <p className="font-body text-gray-700">
+                        <span className="font-medium">WeChat:</span> {summerCampConfig.contact.wechat}
+                      </p>
+                      <p className="font-body text-gray-700">
                         <span className="font-medium">Phone:</span> {summerCampConfig.contact.phone}
                       </p>
                       <p className="font-body text-gray-700">

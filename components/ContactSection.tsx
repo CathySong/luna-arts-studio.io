@@ -87,7 +87,7 @@ export default function ContactSection() {
                 { icon: MapPin, label: "Studio", value: "258 King George Rd, Warren, NJ 07059, USA" },
                 { icon: Clock, label: "Hours", value: "Mon–Fri 9AM–8PM · Sat–Sun 10AM–6PM" },
                 { icon: Mail, label: "Email", value: "Ninglu1088@gmail.com" },
-                { icon: Phone, label: "Phone", value: "(908) 555-0192" },
+                { icon: Phone, label: "WeChat", value: "happyevan999" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex gap-4 items-start">
                   <div className="w-8 h-8 border border-gray-lighter flex items-center justify-center shrink-0 mt-0.5">
