@@ -9,78 +9,76 @@ export default function CampSection() {
   const camps = [
     {
       id: 1,
-      title: "One-Day Camp",
-      subtitle: "Explore & Create",
-      duration: "6 Hours",
+      title: "Half Day Camp (Morning)",
+      subtitle: "Art Exploration",
+      duration: "3 Hours",
       ageRange: "Ages 6-12",
-      description: "Perfect for first-time campers or those looking for a creative day out. Drop-in style with no experience needed.",
+      description: "Perfect for young artists to explore creativity in a focused morning session. No lunch included.",
       highlights: [
-        "Creative icebreakers & warm-up activities",
-        "Guided art projects in multiple mediums",
-        "Gallery walk to appreciate peers' work",
-        "Take-home art bag with supplies"
+        "Creative drawing & basic sketching",
+        "Acrylic painting techniques",
+        "Watercolor exploration",
+        "Take-home art projects"
       ],
-      price: "$120",
-      color: "warm"
+      price: "$70",
+      color: "warm",
+      time: "9:00am - 12:00pm"
     },
     {
       id: 2,
-      title: "One-Week Camp",
-      subtitle: "Around the World in Art",
-      duration: "5 Days, 6 Hours/Day",
-      ageRange: "Ages 8-14",
-      description: "An immersive cultural journey exploring artistic traditions from around the globe. Each day focuses on a different region.",
+      title: "Half Day Camp (Afternoon)",
+      subtitle: "Crafts & Activities",
+      duration: "3.5 Hours",
+      ageRange: "Ages 6-12",
+      description: "Afternoon session focusing on crafts, outdoor activities, and creative play.",
       highlights: [
-        "Daily cultural themes (Japanese, African, Mexican, etc.)",
-        "Traditional art techniques from each culture",
-        "Cultural storytelling and inspiration sessions",
-        "Friday gallery show for families"
+        "Sewing & beading projects",
+        "Handmade soap making",
+        "Yarn crafts & team games",
+        "Nature exploration activities"
       ],
-      price: "$550",
-      color: "cool"
+      price: "$90",
+      color: "cool",
+      time: "1:30pm - 5:00pm"
     },
     {
       id: 3,
-      title: "Summer Camp",
-      subtitle: "The Artist's Journey",
-      duration: "4 Weeks",
-      ageRange: "Ages 10-16",
-      description: "A comprehensive summer program that builds skills week by week, culminating in a professional gallery exhibition.",
+      title: "Full Day Camp",
+      subtitle: "Complete Summer Experience",
+      duration: "8 Hours",
+      ageRange: "Ages 6-12",
+      description: "Full day camp including all activities plus healthy lunch. The complete summer camp experience.",
       highlights: [
-        "Week 1: Foundations (drawing, color theory)",
-        "Week 2: Painting Studio (acrylic, watercolor)",
-        "Week 3: Mixed Media & Sculpture",
-        "Week 4: Portfolio & Exhibition preparation"
+        "Morning art classes (drawing, painting)",
+        "Afternoon crafts & outdoor activities",
+        "Healthy lunch provided (pizza/sandwiches/fruit)",
+        "Team building & creative sports"
       ],
-      price: "$2,200",
-      color: "warm"
+      price: "$130",
+      color: "warm",
+      time: "9:00am - 5:00pm",
+      includesLunch: true
     }
   ];
 
   const ageGroups = [
     {
-      range: "Ages 4-6",
-      title: "Little Artists",
-      description: "Sensory exploration, basic shapes, color mixing, and creative play. Focus on process over product.",
-      activities: "Finger painting, play-doh sculpting, collage with safe materials"
+      range: "Ages 6-8",
+      title: "Young Creators",
+      description: "Focus on creativity, basic art skills, and fun exploration. Emphasis on process over product.",
+      activities: "Creative drawing, basic painting, simple crafts, team games"
     },
     {
-      range: "Ages 7-9", 
-      title: "Creative Explorers",
-      description: "Introduction to basic techniques, storytelling through art, and developing fine motor skills.",
-      activities: "Watercolor basics, simple drawing, mixed media projects"
+      range: "Ages 9-10", 
+      title: "Skill Builders",
+      description: "Developing technical skills while maintaining creative freedom. Introduction to various mediums.",
+      activities: "Acrylic painting, watercolor, sewing basics, nature crafts"
     },
     {
-      range: "Ages 10-12",
-      title: "Developing Artists",
-      description: "Skill-building in specific mediums, perspective drawing, and more complex projects.",
-      activities: "Acrylic painting, charcoal drawing, printmaking basics"
-    },
-    {
-      range: "Ages 13+",
-      title: "Young Masters",
-      description: "Portfolio development, advanced techniques, and personal artistic voice exploration.",
-      activities: "Oil painting, figure drawing, digital art, exhibition preparation"
+      range: "Ages 11-12",
+      title: "Art Explorers",
+      description: "More complex projects, skill refinement, and creative expression. Building artistic confidence.",
+      activities: "Advanced painting, handmade soap, beading projects, creative sports"
     }
   ];
 
@@ -123,8 +121,14 @@ export default function CampSection() {
                 </div>
                 <h3 className="font-display text-2xl text-gray-darkest font-light mb-2">{camp.subtitle}</h3>
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="font-mono text-[10px] tracking-widest uppercase text-gray-dark">{camp.duration}</span>
+                  <span className="font-mono text-[10px] tracking-widest uppercase text-gray-dark">{camp.time}</span>
                   <span className="font-mono text-[10px] tracking-widest uppercase text-accent-warm">{camp.ageRange}</span>
+                </div>
+                <div className="mb-3">
+                  <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker bg-gray-lightest px-2 py-1 rounded">
+                    {camp.duration}
+                    {camp.includesLunch && " • Lunch Included"}
+                  </span>
                 </div>
                 <p className="font-body text-gray-dark text-sm font-light mb-4">{camp.description}</p>
                 
@@ -181,63 +185,135 @@ export default function CampSection() {
           </div>
         </div>
 
-        {/* Camp Philosophy */}
+        {/* Camp Highlights & Activities */}
+        <div className="border border-gray-lightest p-8 mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px w-6 bg-accent-warm/60" />
+            <h3 className="font-display text-2xl text-gray-darkest font-light">🌟 Camp Highlights & Activities</h3>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">🎨 Art Activities</h4>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Creative drawing</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Basic sketching</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Acrylic painting</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Watercolor</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">🧵 Crafts Activities</h4>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Sewing</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Beading</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Handmade soap</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Yarn crafts</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">🌳 Outdoor Activities</h4>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Team games</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Creative sports</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
+                  <span className="font-body text-gray-dark text-sm font-light">Nature exploration</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Discounts & Lunch Information */}
         <div className="border border-gray-lightest p-8">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-6 bg-accent-cool/60" />
-            <h3 className="font-display text-2xl text-gray-darkest font-light">Our Camp Philosophy</h3>
+            <h3 className="font-display text-2xl text-gray-darkest font-light">💰 Discounts & 🍱 Lunch Information</h3>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">What We Believe</h4>
+              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">🎁 Discounts (Weekly Registration Only)</h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Every Child is an Artist</p>
-                    <p className="font-body text-gray-dark text-xs font-light">We focus on nurturing individual creativity rather than cookie-cutter projects.</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Early Bird Discount</p>
+                    <p className="font-body text-gray-dark text-xs font-light">Register before May 1st → <span className="font-bold">10% OFF</span></p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Process Over Product</p>
-                    <p className="font-body text-gray-dark text-xs font-light">The creative journey matters more than the final artwork.</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Referral Discount</p>
+                    <p className="font-body text-gray-dark text-xs font-light">Refer a friend → <span className="font-bold">5% OFF</span> for both</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Safe & Supportive Environment</p>
-                    <p className="font-body text-gray-dark text-xs font-light">We maintain small instructor-to-camper ratios for personalized attention.</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Multi-Week Discount</p>
+                    <p className="font-body text-gray-dark text-xs font-light">Register for 2+ weeks → Additional <span className="font-bold">5% OFF</span></p>
                   </div>
                 </div>
               </div>
             </div>
             
             <div>
-              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">What to Expect</h4>
+              <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">🍱 Lunch Options</h4>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Skill Development</p>
-                    <p className="font-body text-gray-dark text-xs font-light">Age-appropriate techniques taught by professional artists.</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Healthy Lunch Provided</p>
+                    <p className="font-body text-gray-dark text-xs font-light">Pizza / Sandwiches / Fresh fruit included with full day camp</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Creative Confidence</p>
-                    <p className="font-body text-gray-dark text-xs font-light">Building self-expression and artistic voice.</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Bring Your Own Lunch</p>
+                    <p className="font-body text-gray-dark text-xs font-light">Allergies or dietary preferences? Feel free to bring your own healthy meal</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Community & Friendship</p>
-                    <p className="font-body text-gray-dark text-xs font-light">Collaborative projects and peer appreciation activities.</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Camp Focus Areas</p>
+                    <p className="font-body text-gray-dark text-xs font-light">We emphasize: Creativity • Hands-on skills • Teamwork</p>
                   </div>
                 </div>
               </div>
@@ -248,14 +324,14 @@ export default function CampSection() {
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div>
                 <p className="font-body text-gray-dark text-sm font-light">
-                  Have questions about which camp is right for your child?
+                  📅 Camp Dates: June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
                 </p>
               </div>
               <a
                 href="#contact"
                 className="font-mono text-[9px] tracking-widest uppercase text-accent-warm border border-accent-warm/30 px-6 py-3 hover:bg-accent-warm hover:text-white transition-all duration-300 whitespace-nowrap"
               >
-                Contact Us for Personalized Guidance
+                Register Now for Summer Camp 2026
               </a>
             </div>
           </div>

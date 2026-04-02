@@ -7,22 +7,22 @@ export default function SummerCampHero() {
 
   return (
     <section className="relative">
-      {/* 红色通知Banner */}
+      {/* 红色通知Banner - 放在Navbar下面 */}
       {showBanner && (
-        <div className="bg-red-600 text-white py-4 px-6 relative">
+        <div className="bg-red-600 text-white py-4 px-6 relative mt-20">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex-1 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
                 <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
                 <span className="font-mono text-xs tracking-widest uppercase font-bold">
-                  Summer Camp 2026
+                  🏕️ Summer Camp 2026
                 </span>
               </div>
               <h3 className="font-display text-xl md:text-2xl font-bold mb-2">
-                🎨 <span className="underline">Early Bird Registration Now Open!</span>
+                <span className="underline">Early Bird Registration Now Open!</span>
               </h3>
               <p className="font-body text-sm md:text-base font-light opacity-90">
-                Limited spots available! Register before April 15th and save 15% on all summer camp programs.
+                Limited spots available! Register before May 1st and save 10% on all summer camp programs.
               </p>
             </div>
             
@@ -69,12 +69,11 @@ export default function SummerCampHero() {
                     Summer Art Adventures 2026
                   </span>
                   <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-                    Where <span className="text-red-300">Creativity</span><br />
-                    Meets <span className="text-yellow-300">Summer Fun</span>
+                    🏕️ Summer <span className="text-red-300">Camp</span><br />
+                    2026 <span className="text-yellow-300">Registration Open</span>
                   </h1>
                   <p className="font-body text-xl md:text-2xl text-white/90 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Join our immersive art camps designed to inspire young artists through painting, 
-                    sculpture, drawing, and creative exploration.
+                    June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
                   </p>
                 </div>
                 
@@ -115,19 +114,19 @@ export default function SummerCampHero() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-red-600 font-display text-3xl font-bold mb-2">15%</div>
+              <div className="text-red-600 font-display text-3xl font-bold mb-2">10%</div>
               <p className="font-body text-gray-700 font-light">Early Bird Discount</p>
-              <p className="font-mono text-xs text-gray-500 mt-1">Register by April 15</p>
+              <p className="font-mono text-xs text-gray-500 mt-1">Register by May 1</p>
             </div>
             <div className="text-center">
-              <div className="text-red-600 font-display text-3xl font-bold mb-2">4:1</div>
-              <p className="font-body text-gray-700 font-light">Student-Teacher Ratio</p>
-              <p className="font-mono text-xs text-gray-500 mt-1">Personalized Attention</p>
+              <div className="text-red-600 font-display text-3xl font-bold mb-2">6/22</div>
+              <p className="font-body text-gray-700 font-light">Camp Start Date</p>
+              <p className="font-mono text-xs text-gray-500 mt-1">June 22 - August 28</p>
             </div>
             <div className="text-center">
-              <div className="text-red-600 font-display text-3xl font-bold mb-2">3</div>
-              <p className="font-body text-gray-700 font-light">Camp Programs</p>
-              <p className="font-mono text-xs text-gray-500 mt-1">Ages 4-16</p>
+              <div className="text-red-600 font-display text-3xl font-bold mb-2">$130</div>
+              <p className="font-body text-gray-700 font-light">Full Day with Lunch</p>
+              <p className="font-mono text-xs text-gray-500 mt-1">9am - 5pm</p>
             </div>
           </div>
         </div>
