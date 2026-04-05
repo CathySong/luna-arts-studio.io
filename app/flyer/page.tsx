@@ -189,7 +189,7 @@ export default function FlyerPage() {
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Half Day (Afternoon): 1:30pm - 5:00pm • $90</span>
+                        <span className="font-body text-gray-700">Half Day (Afternoon): 1:00pm - 5:00pm • $90</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>

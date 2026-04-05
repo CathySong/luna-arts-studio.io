@@ -40,7 +40,7 @@ export default function CampSection() {
       ],
       price: "$90",
       color: "cool",
-      time: "1:30pm - 5:00pm",
+      time: "1:00pm - 5:00pm",
       note: "Lunch not provided"
     },
     {
@@ -256,7 +256,7 @@ export default function CampSection() {
                     <p className="font-body text-gray-darkest text-sm font-light mb-1">Daily Schedule Options</p>
                     <p className="font-body text-gray-dark text-xs font-light">
                       • Morning Half-Day: 9:00 AM – 12:00 PM<br/>
-                      • Afternoon Half-Day: 1:30 PM – 5:00 PM<br/>
+                      • Afternoon Half-Day: 1:00 PM – 5:00 PM<br/>
                       • Full Day: 9:00 AM – 5:00 PM
                     </p>
                   </div>
@@ -278,7 +278,7 @@ export default function CampSection() {
                   <div className="w-3 h-3 rounded-full bg-accent-cool mt-1" />
                   <div>
                     <p className="font-body text-gray-darkest text-sm font-light mb-1">Afternoon Half-Day: $90</p>
-                    <p className="font-body text-gray-dark text-xs font-light">1:30 PM – 5:00 PM</p>
+                    <p className="font-body text-gray-dark text-xs font-light">1:00 PM – 5:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
