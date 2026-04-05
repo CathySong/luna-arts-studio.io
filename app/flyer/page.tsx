@@ -154,17 +154,7 @@ export default function FlyerPage() {
                 </div>
               </div>
               
-              {/* Time update notice */}
-              <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
-                <div className="bg-red-600/90 text-white px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm">
-                  <p className="font-body text-sm font-bold text-center">
-                    ⚠️ 时间更新：下午营 1:00PM - 5:00PM
-                  </p>
-                  <p className="font-body text-xs text-center mt-1">
-                    Updated: Afternoon camp starts at 1:00PM
-                  </p>
-                </div>
-              </div>
+
             </div>
           </div>
 
