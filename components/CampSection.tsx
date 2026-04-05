@@ -29,7 +29,7 @@ export default function CampSection() {
       id: 2,
       title: "Half Day Camp (Afternoon)",
       subtitle: "Crafts & Activities",
-      duration: "3.5 Hours",
+      duration: "4 Hours",
       ageRange: "Ages 6-13",
       description: "Afternoon session focusing on crafts, outdoor activities, and creative play.",
       highlights: [
