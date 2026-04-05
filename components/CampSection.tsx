@@ -408,6 +408,10 @@ export default function CampSection() {
                   <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">Phone</p>
                   <p className="font-body text-gray-darkest text-sm font-light">📞 732-718-0639</p>
                 </div>
+                <div className="pt-4">
+                  <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">WeChat</p>
+                  <p className="font-body text-gray-darkest text-sm font-light">💬 happyevan999</p>
+                </div>
               </div>
             </div>
             
