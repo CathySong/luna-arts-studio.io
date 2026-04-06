@@ -3,8 +3,7 @@
 
 export const summerCampConfig = {
   // Google Form Registration URL
-  // Replace with your actual Google Form URL
-  registrationFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfEXAMPLE-FORM-ID/viewform",
+  registrationFormUrl: "https://forms.gle/A75dwNqMLtdU4vTq5",
   
   // Camp Dates
   campDates: {

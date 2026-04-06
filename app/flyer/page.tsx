@@ -98,7 +98,7 @@ export default function FlyerPage() {
                 src="/images/camp-summer-intro.jpg"
                 alt="Luna Art Studio Summer Camp 2026 Flyer - Young artists creating, painting, and learning together"
                 fill
-                className="object-contain" {/* Changed from object-cover to object-contain */}
+                className="object-contain"
                 priority
                 quality={100}
                 sizes="100vw"
