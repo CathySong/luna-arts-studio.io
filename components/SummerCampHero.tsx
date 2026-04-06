@@ -105,7 +105,7 @@ export default function SummerCampHero() {
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div className="text-red-600 font-display text-4xl font-bold mb-3">$130</div>
-                <p className="font-body text-gray-700 font-medium">Full Day with Lunch</p>
+                <p className="font-body text-gray-700 font-medium">Full Day (bring lunch)</p>
                 <p className="font-mono text-sm text-gray-500 mt-2">9am - 5pm</p>
               </div>
             </div>

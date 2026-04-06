@@ -165,7 +165,7 @@ export default function FlyerPage() {
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Full Day: 9:00am - 5:00pm • {summerCampConfig.pricing.fullDay} (lunch included)</span>
+                        <span className="font-body text-gray-700">Full Day: 9:00am - 5:00pm • {summerCampConfig.pricing.fullDay} (please bring lunch)</span>
                       </li>
                     </ul>
                   </div>
@@ -231,12 +231,12 @@ export default function FlyerPage() {
                   </div>
                   
                   <div>
-                    <h3 className="font-display text-xl font-light text-gray-800 mb-3">🍱 Lunch Options</h3>
+                    <h3 className="font-display text-xl font-light text-gray-800 mb-3">🍱 Lunch Notice</h3>
                     <p className="font-body text-gray-700 mb-2">
-                      Full day camp includes healthy lunch: Pizza / Sandwiches / Fresh fruit
+                      <strong>Lunch is not provided.</strong> Please pack a nut-free lunch and snacks for your child daily.
                     </p>
                     <p className="font-body text-sm text-gray-600">
-                      Allergies or dietary preferences? Feel free to bring your own healthy meal.
+                      Allergies or special dietary needs? Please inform us in advance.
                     </p>
                   </div>
                   

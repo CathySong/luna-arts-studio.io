@@ -49,12 +49,12 @@ export default function CampSection() {
       subtitle: "Complete Summer Experience",
       duration: "8 Hours",
       ageRange: "Ages 6-13",
-      description: "Full day camp including all activities. Please bring your own lunch.",
+      description: "Full day camp including all morning and afternoon activities.",
       highlights: [
         "Morning art classes (drawing, painting)",
         "Afternoon crafts & outdoor activities",
-        "Please bring your own lunch",
-        "Team building & creative sports"
+        "Team building & creative sports",
+        "Full day creative immersion"
       ],
       price: "$130",
       color: "warm",
