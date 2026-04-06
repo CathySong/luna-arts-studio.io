@@ -2,37 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Download, Printer, Share2, ArrowLeft } from "lucide-react";
-
-// Local configuration for flyer page
-const summerCampConfig = {
-  registrationFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfEXAMPLE-FORM-ID/viewform",
-  contact: {
-    email: "Ninglu1088@gmail.com",
-    wechat: "happyevan999",
-    phone: "(732) 718-0639",
-    address: "258 King George Rd, Warren, NJ 07059, 2nd Floor: Luna Art Studio"
-  },
-  pricing: {
-    halfDayMorning: "$70",
-    halfDayAfternoon: "$90", 
-    fullDay: "$130"
-  },
-  discounts: {
-    earlyBird: {
-      percentage: "10%",
-      deadline: "May 1, 2026",
-      description: "Register before May 1st"
-    },
-    referral: {
-      percentage: "5%",
-      description: "Refer a friend"
-    },
-    multiWeek: {
-      percentage: "5%",
-      description: "Register for 2+ weeks"
-    }
-  }
-};
+import { summerCampConfig } from "@/config/summer-camp";
 
 export default function FlyerPage() {
   const handleDownload = () => {
@@ -183,19 +153,19 @@ export default function FlyerPage() {
                     <ul className="space-y-2">
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">June 22 - August 28, 2026</span>
+                        <span className="font-body text-gray-700">{summerCampConfig.campDates.display}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Half Day (Morning): 9:00am - 12:00pm • $70</span>
+                        <span className="font-body text-gray-700">Half Day (Morning): 9:00am - 12:00pm • {summerCampConfig.pricing.halfDayMorning}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Half Day (Afternoon): 1:00pm - 5:00pm • $90</span>
+                        <span className="font-body text-gray-700">Half Day (Afternoon): 1:30pm - 5:00pm • {summerCampConfig.pricing.halfDayAfternoon}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Full Day: 9:00am - 5:00pm • $130 (please bring lunch)</span>
+                        <span className="font-body text-gray-700">Full Day: 9:00am - 5:00pm • {summerCampConfig.pricing.fullDay} (lunch included)</span>
                       </li>
                     </ul>
                   </div>
@@ -240,33 +210,33 @@ export default function FlyerPage() {
                         <div className="w-3 h-3 bg-red-500 rounded-full mt-1.5"></div>
                         <div>
                           <p className="font-body text-gray-700 font-medium">Early Bird Discount</p>
-                          <p className="font-body text-sm text-gray-600">Register before May 1st → <span className="font-bold">10% OFF</span></p>
+                          <p className="font-body text-sm text-gray-600">{summerCampConfig.discounts.earlyBird.description} → <span className="font-bold">{summerCampConfig.discounts.earlyBird.percentage} OFF</span></p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="w-3 h-3 bg-red-500 rounded-full mt-1.5"></div>
                         <div>
                           <p className="font-body text-gray-700 font-medium">Referral Discount</p>
-                          <p className="font-body text-sm text-gray-600">Refer a friend → <span className="font-bold">5% OFF</span> for both</p>
+                          <p className="font-body text-sm text-gray-600">{summerCampConfig.discounts.referral.description} → <span className="font-bold">{summerCampConfig.discounts.referral.percentage} OFF</span> for both</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="w-3 h-3 bg-red-500 rounded-full mt-1.5"></div>
                         <div>
                           <p className="font-body text-gray-700 font-medium">Multi-Week Discount</p>
-                          <p className="font-body text-sm text-gray-600">Register for 2+ weeks → Additional <span className="font-bold">5% OFF</span></p>
+                          <p className="font-body text-sm text-gray-600">{summerCampConfig.discounts.multiWeek.description} → Additional <span className="font-bold">{summerCampConfig.discounts.multiWeek.percentage} OFF</span></p>
                         </div>
                       </li>
                     </ul>
                   </div>
                   
                   <div>
-                    <h3 className="font-display text-xl font-light text-gray-800 mb-3">🍱 Lunch Notice</h3>
+                    <h3 className="font-display text-xl font-light text-gray-800 mb-3">🍱 Lunch Options</h3>
                     <p className="font-body text-gray-700 mb-2">
-                      <strong>Lunch is not provided.</strong> Please pack a nut-free lunch and snacks for your child daily.
+                      Full day camp includes healthy lunch: Pizza / Sandwiches / Fresh fruit
                     </p>
                     <p className="font-body text-sm text-gray-600">
-                      Allergies or special dietary needs? Please inform us in advance.
+                      Allergies or dietary preferences? Feel free to bring your own healthy meal.
                     </p>
                   </div>
                   
