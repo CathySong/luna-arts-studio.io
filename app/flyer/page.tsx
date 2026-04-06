@@ -2,7 +2,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Download, Printer, Share2, ArrowLeft } from "lucide-react";
-import { summerCampConfig } from "@/config/summer-camp";
+
+// Local configuration for flyer page
+const summerCampConfig = {
+  registrationFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfEXAMPLE-FORM-ID/viewform",
+  contact: {
+    email: "Ninglu1088@gmail.com",
+    wechat: "happyevan999",
+    phone: "(732) 718-0639",
+    address: "258 King George Rd, Warren, NJ 07059, 2nd Floor: Luna Art Studio"
+  },
+  pricing: {
+    halfDayMorning: "$70",
+    halfDayAfternoon: "$90", 
+    fullDay: "$130"
+  },
+  discounts: {
+    earlyBird: {
+      percentage: "10%",
+      deadline: "May 1, 2026",
+      description: "Register before May 1st"
+    },
+    referral: {
+      percentage: "5%",
+      description: "Refer a friend"
+    },
+    multiWeek: {
+      percentage: "5%",
+      description: "Register for 2+ weeks"
+    }
+  }
+};
 
 export default function FlyerPage() {
   const handleDownload = () => {
@@ -123,10 +153,12 @@ export default function FlyerPage() {
                   </svg>
                 </div>
               </div>
+              
+
             </div>
           </div>
 
-          {/* Flyer Details */}
+          {/* Flyer Details - UPDATED CONTENT */}
           <div className="p-8 md:p-12">
             {/* Section Title */}
             <div className="text-center mb-12">
@@ -159,11 +191,11 @@ export default function FlyerPage() {
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Half Day (Afternoon): 1:30pm - 5:00pm • $90</span>
+                        <span className="font-body text-gray-700">Half Day (Afternoon): 1:00pm - 5:00pm • $90</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span className="font-body text-gray-700">Full Day: 9:00am - 5:00pm • $130 (lunch included)</span>
+                        <span className="font-body text-gray-700">Full Day: 9:00am - 5:00pm • $130 (please bring lunch)</span>
                       </li>
                     </ul>
                   </div>
@@ -229,12 +261,12 @@ export default function FlyerPage() {
                   </div>
                   
                   <div>
-                    <h3 className="font-display text-xl font-light text-gray-800 mb-3">🍱 Lunch Options</h3>
+                    <h3 className="font-display text-xl font-light text-gray-800 mb-3">🍱 Lunch Notice</h3>
                     <p className="font-body text-gray-700 mb-2">
-                      Full day camp includes healthy lunch: Pizza / Sandwiches / Fresh fruit
+                      <strong>Lunch is not provided.</strong> Please pack a nut-free lunch and snacks for your child daily.
                     </p>
                     <p className="font-body text-sm text-gray-600">
-                      Allergies or dietary preferences? Feel free to bring your own healthy meal.
+                      Allergies or special dietary needs? Please inform us in advance.
                     </p>
                   </div>
                   
@@ -288,52 +320,6 @@ export default function FlyerPage() {
             </div>
           </div>
         </div>
-        
-        {/* Responsive Image Styles */}
-        <style jsx global>{`
-          /* Ensure image container maintains aspect ratio */
-          @media (max-width: 768px) {
-            .relative[style*="padding-bottom"] {
-              padding-bottom: min(100%, 150%) !important; /* More vertical space on mobile */
-            }
-          }
-          
-          @media (min-width: 769px) and (max-width: 1024px) {
-            .relative[style*="padding-bottom"] {
-              padding-bottom: min(100%, 125%) !important; /* Tablet optimization */
-            }
-          }
-          
-          @media (min-width: 1025px) {
-            .relative[style*="padding-bottom"] {
-              padding-bottom: min(100%, 133.33%) !important; /* Desktop 3:4 ratio */
-            }
-          }
-          
-          /* Print Styles */
-          @media print {
-            header, button, .no-print {
-              display: none !important;
-            }
-            body {
-              background: white !important;
-            }
-            .shadow-xl, .border {
-              box-shadow: none !important;
-              border: 1px solid #ddd !important;
-            }
-            /* Ensure image prints properly */
-            .relative[style*="padding-bottom"] {
-              padding-bottom: 0 !important;
-              height: auto !important;
-            }
-            img {
-              position: static !important;
-              height: auto !important;
-              max-height: 80vh !important;
-            }
-          }
-        `}</style>
       </main>
     </div>
   );
