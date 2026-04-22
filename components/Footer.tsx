@@ -66,7 +66,7 @@ export default function Footer() {
             <address className="not-italic space-y-3">
               <p className="font-body text-sm text-gray-dark font-light">258 King George Rd</p>
               <p className="font-body text-sm text-gray-dark font-light">Warren, NJ 07059, USA</p>
-              <p className="font-body text-sm text-gray-dark font-light mt-4">(908) 555-0192</p>
+              <p className="font-body text-sm text-gray-dark font-light mt-4">+1 732-718-0639</p>
               <p className="font-body text-sm text-accent-warm font-light">Ninglu1088@gmail.com</p>
             </address>
           </div>

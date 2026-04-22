@@ -87,7 +87,7 @@ export default function ContactSection() {
                 { icon: MapPin, label: "Studio", value: "258 King George Rd, Warren, NJ 07059, 2nd Floor: Luna Art Studio" },
                 { icon: Clock, label: "Hours", value: "Mon–Fri 9AM–8PM · Sat–Sun 10AM–6PM" },
                 { icon: Mail, label: "Email", value: "Ninglu1088@gmail.com" },
-                { icon: Phone, label: "Phone", value: "(732) 718-0639" },
+                { icon: Phone, label: "Phone", value: "+1 732-718-0639" },
                 { icon: MessageSquare, label: "WeChat", value: "happyevan999" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex gap-4 items-start">
