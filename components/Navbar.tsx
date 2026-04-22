@@ -5,8 +5,9 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "/", label: "Home" },
+  { href: "/events", label: "Birthday Parties" },
+  { href: "/sewing", label: "Tailor & Sewing" },
   { href: "#classes", label: "Classes" },
   { href: "#camps", label: "Art Camp" },
   { href: "#schedule", label: "Schedule" },
@@ -63,12 +64,21 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.href}>
-              <a
-                href={l.href}
-                className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors duration-300"
-              >
-                {l.label}
-              </a>
+              {l.href.startsWith('/') ? (
+                <Link
+                  href={l.href}
+                  className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors duration-300"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.href}
+                  className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors duration-300"
+                >
+                  {l.label}
+                </a>
+              )}
             </li>
           ))}
           <li>
@@ -100,13 +110,23 @@ export default function Navbar() {
         <ul className="px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
             <li key={l.href}>
-              <a
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors"
-              >
-                {l.label}
-              </a>
+              {l.href.startsWith('/') ? (
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors"
+                >
+                  {l.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
