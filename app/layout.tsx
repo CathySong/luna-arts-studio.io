@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Cormorant_Garamond, Jost, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -50,15 +51,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const crmAdmin = headers().get("x-crm-admin") === "1";
+
   return (
     <html
       lang="en"
       className={`${cormorant.variable} ${jost.variable} ${dmMono.variable}`}
     >
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        {crmAdmin ? (
+          children
+        ) : (
+          <>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );
