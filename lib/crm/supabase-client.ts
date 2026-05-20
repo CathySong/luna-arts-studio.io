@@ -4,10 +4,16 @@ export const CRM_STORAGE_BUCKET = "crm-artworks";
 
 let adminClient: SupabaseClient | null = null;
 
+function cleanEnv(value: string | undefined): string {
+  if (!value) return "";
+  // Strip inline comments (e.g. KEY=eyJ... # note) so dotenv mistakes do not break JWTs
+  return value.split("#")[0]?.trim() ?? "";
+}
+
 export function isSupabaseConfigured(): boolean {
   return !!(
-    process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() &&
-    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+    cleanEnv(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
+    cleanEnv(process.env.SUPABASE_SERVICE_ROLE_KEY)
   );
 }
 
@@ -15,8 +21,8 @@ export function isSupabaseConfigured(): boolean {
 export function getSupabaseAdmin(): SupabaseClient {
   if (adminClient) return adminClient;
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const url = cleanEnv(process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = cleanEnv(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   if (!url || !key) {
     throw new Error(

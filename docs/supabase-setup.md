@@ -45,22 +45,23 @@
 | 字段 | 环境变量 |
 |------|----------|
 | Project URL | `NEXT_PUBLIC_SUPABASE_URL` |
+| Publishable key | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` |
 | `service_role` key（secret） | `SUPABASE_SERVICE_ROLE_KEY` |
 
-⚠️ **切勿**把 `service_role` 暴露到浏览器或提交 Git。
+SSR 工具：`utils/supabase/client.ts`、`server.ts`、`middleware.ts`（`@supabase/ssr`）。
+
+⚠️ **切勿**把 `service_role` 暴露到浏览器或提交 Git。CRM 后台写入必须用 service_role。
 
 ---
 
 ## 5. 本地 `.env.local`
 
 ```env
-# 使用 Supabase（production 同款）
 CRM_STORAGE=supabase
-
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxx.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+SUPABASE_SERVICE_ROLE_KEY=eyJ...   # 必填：API → service_role
 
-# 已有 CRM 配置
 ADMIN_PASSWORD=your-strong-password
 CLAUDE_API_KEY=sk-ant-...
 ```
@@ -83,6 +84,7 @@ CRM_STORAGE=json
 |------|--------|
 | `CRM_STORAGE` | `supabase` |
 | `NEXT_PUBLIC_SUPABASE_URL` | 从 Supabase 复制 |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publishable key |
 | `SUPABASE_SERVICE_ROLE_KEY` | service_role 密钥 |
 | `ADMIN_PASSWORD` | 强密码 |
 | `CLAUDE_API_KEY` | Anthropic 密钥 |

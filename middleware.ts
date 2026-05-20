@@ -7,6 +7,7 @@ import {
   CRM_ADMIN_HEADER,
   validateSessionCookie,
 } from "@/lib/crm/session-cookie";
+import { updateSession } from "@/utils/supabase/middleware";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -21,11 +22,15 @@ export async function middleware(req: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon.ico")
   ) {
-    return NextResponse.next();
+    const res = await updateSession(req);
+    res.headers.set("x-crm-skip-site-shell", "1");
+    return res;
   }
 
-  if (pathname !== "/admin" && !pathname.startsWith("/admin/")) {
-    return NextResponse.next();
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
+
+  if (!isAdmin) {
+    return updateSession(req);
   }
 
   const secret = adminPassword();
@@ -45,11 +50,13 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  const res = NextResponse.next();
+  const res = await updateSession(req);
   res.headers.set(CRM_ADMIN_HEADER, "1");
   return res;
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*", "/studio"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };

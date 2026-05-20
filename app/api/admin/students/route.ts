@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/crm/api-auth";
-import { createStudent, listStudents } from "@/lib/crm/db";
+import { createStudent, getCrmStorageBackend, listStudents } from "@/lib/crm/db";
 import type { StudentInput } from "@/lib/crm/types";
 
 export async function GET(req: NextRequest) {
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
       return hay.includes(q);
     });
   }
-  return NextResponse.json({ students });
+  return NextResponse.json({ students, storage: getCrmStorageBackend() });
 }
 
 export async function POST(req: NextRequest) {

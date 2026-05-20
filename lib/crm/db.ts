@@ -14,21 +14,30 @@ export type {
 import * as json from "./db-json";
 import * as supabase from "./db-supabase";
 
-function resolveCrmStorage(): boolean {
+export type CrmStorageBackend = "json" | "supabase";
+
+/** Which CRM backend is active (throws if misconfigured on Vercel). */
+export function getCrmStorageBackend(): CrmStorageBackend {
   const mode = process.env.CRM_STORAGE?.trim().toLowerCase();
-  if (mode === "json") return false;
-  if (mode === "supabase") {
-    if (!isSupabaseConfigured()) {
-      throw new Error(
-        "CRM_STORAGE=supabase but Supabase env vars are missing. See docs/supabase-setup.md"
-      );
-    }
-    return true;
+
+  if (mode === "json") return "json";
+
+  if (isSupabaseConfigured()) {
+    return "supabase";
   }
-  return false;
+
+  if (mode === "supabase" || process.env.VERCEL) {
+    throw new Error(
+      "Supabase CRM is not configured. On Vercel set CRM_STORAGE=supabase, NEXT_PUBLIC_SUPABASE_URL, and SUPABASE_SERVICE_ROLE_KEY (no inline # comments). See docs/supabase-setup.md"
+    );
+  }
+
+  return "json";
 }
 
-const impl = () => (resolveCrmStorage() ? supabase : json);
+function impl() {
+  return getCrmStorageBackend() === "supabase" ? supabase : json;
+}
 
 export const getUploadDir = () => impl().getUploadDir();
 export const initDbPaths = () => impl().initDbPaths();
