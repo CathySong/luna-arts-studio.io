@@ -209,13 +209,6 @@ export default function FlyerPage() {
                       <li className="flex items-start gap-3">
                         <div className="w-3 h-3 bg-red-500 rounded-full mt-1.5"></div>
                         <div>
-                          <p className="font-body text-gray-700 font-medium">Early Bird Discount</p>
-                          <p className="font-body text-sm text-gray-600">{summerCampConfig.discounts.earlyBird.description} → <span className="font-bold">{summerCampConfig.discounts.earlyBird.percentage} OFF</span></p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-3 h-3 bg-red-500 rounded-full mt-1.5"></div>
-                        <div>
                           <p className="font-body text-gray-700 font-medium">Referral Discount</p>
                           <p className="font-body text-sm text-gray-600">{summerCampConfig.discounts.referral.description} → <span className="font-bold">{summerCampConfig.discounts.referral.percentage} OFF</span> for both</p>
                         </div>

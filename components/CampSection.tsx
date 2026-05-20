@@ -302,11 +302,7 @@ export default function CampSection() {
           {/* Discounts */}
           <div className="mt-8 pt-8 border-t border-gray-lightest">
             <h4 className="font-mono text-[10px] tracking-widest uppercase text-gray-darker mb-4">🎁 Discounts</h4>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="border border-gray-lightest p-4">
-                <p className="font-body text-gray-darkest text-sm font-light mb-1">Early Bird (Register before May 1st)</p>
-                <p className="font-body text-accent-warm text-xs font-light">10% OFF</p>
-              </div>
+            <div className="grid md:grid-cols-2 gap-4">
               <div className="border border-gray-lightest p-4">
                 <p className="font-body text-gray-darkest text-sm font-light mb-1">Referral Discount</p>
                 <p className="font-body text-accent-warm text-xs font-light">5% OFF</p>

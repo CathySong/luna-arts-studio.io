@@ -21,11 +21,6 @@ export const summerCampConfig = {
   
   // Discounts
   discounts: {
-    earlyBird: {
-      percentage: "10%",
-      deadline: "May 1, 2026",
-      description: "Register before May 1st"
-    },
     referral: {
       percentage: "5%",
       description: "Refer a friend"

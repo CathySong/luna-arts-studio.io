@@ -20,10 +20,10 @@ export default function SummerCampHero() {
                 </span>
               </div>
               <h3 className="font-display text-xl md:text-2xl font-bold mb-2">
-                <span className="underline">Early Bird Registration Now Open!</span>
+                Summer Camp Registration Open!
               </h3>
               <p className="font-body text-sm md:text-base font-light opacity-90">
-                Limited spots available! Register before May 1st and save 10% on all summer camp programs.
+                Limited spots available! June 22 – August 28 • Small class sizes • Art, crafts & outdoor fun.
               </p>
             </div>
             
@@ -94,9 +94,9 @@ export default function SummerCampHero() {
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <div className="text-red-600 font-display text-4xl font-bold mb-3">10%</div>
-                <p className="font-body text-gray-700 font-medium">Early Bird Discount</p>
-                <p className="font-mono text-sm text-gray-500 mt-2">Register by May 1</p>
+                <div className="text-red-600 font-display text-4xl font-bold mb-3">5%</div>
+                <p className="font-body text-gray-700 font-medium">Multi-Week Discount</p>
+                <p className="font-mono text-sm text-gray-500 mt-2">2+ consecutive weeks</p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div className="text-red-600 font-display text-4xl font-bold mb-3">6/22</div>
