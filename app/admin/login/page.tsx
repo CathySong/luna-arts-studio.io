@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminLoginPage() {
@@ -55,10 +57,28 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white-warm flex items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-white-warm flex flex-col items-center justify-center px-6 py-16">
+      <Link
+        href="/"
+        className="mb-10 font-mono text-[10px] tracking-widest uppercase text-gray-darker hover:text-accent-warm transition-colors"
+      >
+        ← Luna Art Studio
+      </Link>
       <div className="w-full max-w-md rounded-2xl border border-gray-lighter bg-white p-8 card-shadow">
-        <div className="font-display text-2xl text-gray-darkest tracking-wide">Luna CRM</div>
-        <p className="mt-2 text-sm text-gray-darker">Sign in with the studio admin password.</p>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="relative w-10 h-10 shrink-0">
+            <Image src="/luna.jpg" alt="" fill className="object-contain" sizes="40px" />
+          </div>
+          <div>
+            <div className="font-display text-2xl text-gray-darkest tracking-wide">工作室后台</div>
+            <p className="font-mono text-[10px] tracking-widest uppercase text-accent-warm mt-0.5">
+              Luna Studio Admin
+            </p>
+          </div>
+        </div>
+        <p className="text-sm text-gray-darker">
+          学生档案、上课记录、课堂点评与付款管理。请输入管理员密码登录。
+        </p>
 
         {banner ? (
           <div className="mt-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-950">
@@ -88,9 +108,19 @@ export default function AdminLoginPage() {
             disabled={busy}
             className="w-full rounded-md bg-accent-warm px-4 py-2.5 text-sm font-medium text-gray-darkest hover:bg-accent-warm-light disabled:opacity-60 transition-colors"
           >
-            {busy ? "Signing in…" : "Sign in"}
+            {busy ? "登录中…" : "登录"}
           </button>
         </form>
+        <p className="mt-6 text-center text-xs text-gray">
+          入口地址：{" "}
+          <Link href="/admin/login" className="text-accent-warm hover:underline">
+            /admin/login
+          </Link>
+          {" · "}
+          <Link href="/studio" className="text-accent-warm hover:underline">
+            /studio
+          </Link>
+        </p>
       </div>
     </div>
   );

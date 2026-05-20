@@ -13,11 +13,17 @@ function resolvePromptFilePath(): string {
   return join(process.cwd(), DEFAULT_PROMPT_REL);
 }
 
+const PROMPT_FALLBACK =
+  "你是 Luna Art Studio 的老师，为学生撰写温暖、专业的课堂点评，夸赞创造力并给出 1–2 条可操作建议。";
+
 /** Load structured prompt from markdown (cached per process). */
 export function loadAttendanceReviewPromptFromFile(): string {
   if (cachedFilePrompt) return cachedFilePrompt;
-  const path = resolvePromptFilePath();
-  cachedFilePrompt = readFileSync(path, "utf8").trim();
+  try {
+    cachedFilePrompt = readFileSync(resolvePromptFilePath(), "utf8").trim();
+  } catch {
+    cachedFilePrompt = PROMPT_FALLBACK;
+  }
   return cachedFilePrompt;
 }
 

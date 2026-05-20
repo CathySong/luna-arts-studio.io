@@ -11,6 +11,10 @@ import {
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  if (pathname === "/studio") {
+    return NextResponse.redirect(new URL("/admin/login", req.url));
+  }
+
   if (
     pathname === "/admin/login" ||
     pathname.startsWith("/admin/login/") ||
@@ -20,7 +24,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!(pathname === "/admin" || pathname.startsWith("/admin/"))) {
+  if (pathname !== "/admin" && !pathname.startsWith("/admin/")) {
     return NextResponse.next();
   }
 
@@ -47,5 +51,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin", "/admin/:path*", "/studio"],
 };

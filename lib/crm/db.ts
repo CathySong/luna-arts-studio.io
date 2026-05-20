@@ -19,6 +19,15 @@ import type {
 const DB_PATH = join(process.cwd(), "data/crm/db.json");
 const CRM_UPLOAD_ROOT = join(process.cwd(), "public/uploads/crm");
 
+const EMPTY_DB: CrmDatabase = {
+  students: [],
+  sessions: [],
+  artworks: [],
+  reviews: [],
+  payments: [],
+  attendances: [],
+};
+
 let lockChain: Promise<unknown> = Promise.resolve();
 
 function runQueued<T>(fn: () => Promise<T>): Promise<T> {
@@ -53,15 +62,14 @@ async function readDbUnchecked(): Promise<CrmDatabase> {
       attendances: (parsed.attendances ?? []).map(ensureAttendanceShape),
     };
   } catch {
-    await mkdir(dirname(DB_PATH), { recursive: true });
-    return {
-      students: [],
-      sessions: [],
-      artworks: [],
-      reviews: [],
-      payments: [],
-      attendances: [],
-    };
+    if (!process.env.VERCEL) {
+      try {
+        await mkdir(dirname(DB_PATH), { recursive: true });
+      } catch {
+        /* read-only or sandbox — return empty DB */
+      }
+    }
+    return { ...EMPTY_DB };
   }
 }
 
@@ -83,8 +91,14 @@ function ensureAttendanceShape(a: ClassAttendance): ClassAttendance {
 }
 
 async function writeDbUnchecked(db: CrmDatabase): Promise<void> {
-  await mkdir(dirname(DB_PATH), { recursive: true });
-  await writeFile(DB_PATH, JSON.stringify(db, null, 2), "utf8");
+  try {
+    await mkdir(dirname(DB_PATH), { recursive: true });
+    await writeFile(DB_PATH, JSON.stringify(db, null, 2), "utf8");
+  } catch {
+    throw new Error(
+      "CRM data cannot be saved in this environment (e.g. Vercel serverless). Run locally or add persistent storage."
+    );
+  }
 }
 
 async function withDb<T>(fn: (db: CrmDatabase) => Promise<{ next: CrmDatabase; result: T }>): Promise<T> {

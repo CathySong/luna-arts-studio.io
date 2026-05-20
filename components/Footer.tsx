@@ -76,7 +76,13 @@ export default function Footer() {
           <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
             © {new Date().getFullYear()} Luna Art Studio · All rights reserved
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-6">
+            <Link
+              href="/studio"
+              className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-accent-warm transition-colors"
+            >
+              工作室后台
+            </Link>
             <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
               Privacy
             </a>
