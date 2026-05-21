@@ -2,6 +2,7 @@
  * CRM storage facade — `CRM_STORAGE=json` (local) or `CRM_STORAGE=supabase` (production).
  */
 import { isSupabaseConfigured } from "./supabase-client";
+import { formatSupabaseConfigError } from "./supabase-env";
 
 export type {
   StudentReviewWithContext,
@@ -27,9 +28,7 @@ export function getCrmStorageBackend(): CrmStorageBackend {
   }
 
   if (mode === "supabase" || process.env.VERCEL) {
-    throw new Error(
-      "Supabase CRM is not configured. On Vercel set CRM_STORAGE=supabase, NEXT_PUBLIC_SUPABASE_URL, and SUPABASE_SERVICE_ROLE_KEY (no inline # comments). See docs/supabase-setup.md"
-    );
+    throw new Error(formatSupabaseConfigError());
   }
 
   return "json";

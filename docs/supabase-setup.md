@@ -84,10 +84,32 @@ CRM_STORAGE=json
 |------|--------|
 | `CRM_STORAGE` | `supabase` |
 | `NEXT_PUBLIC_SUPABASE_URL` | 从 Supabase 复制 |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publishable key |
-| `SUPABASE_SERVICE_ROLE_KEY` | service_role 密钥 |
+| `SUPABASE_SERVICE_ROLE_KEY` | **service_role** 密钥（见下方） |
 | `ADMIN_PASSWORD` | 强密码 |
 | `CLAUDE_API_KEY` | Anthropic 密钥 |
+
+可选（SSR 用，CRM 写入不依赖此项）：
+
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publishable key |
+
+### ⚠️ 常见错误：只配了 Publishable Key
+
+Vercel 连接 Supabase 时**通常只会自动添加** URL 和 Publishable/Anon key。  
+**`SUPABASE_SERVICE_ROLE_KEY` 必须手动添加**：
+
+1. 打开 [Supabase Dashboard](https://supabase.com/dashboard) → 你的项目  
+2. **Project Settings** → **API**  
+3. 找到 **`service_role`**（标注 secret）→ **Reveal** → 复制  
+4. 粘贴到 Vercel 变量名 **`SUPABASE_SERVICE_ROLE_KEY`**（整行只有 JWT，不要 `#` 注释）  
+5. 勾选 **Production** → Save → **Redeploy**
+
+### 部署后自检
+
+登录后台后访问（需已登录 cookie）：
+
+`GET /api/admin/storage-status`
+
+应看到 `"backend":"supabase"` 且 `"serviceRole":true`。
 
 3. **Deployments** → 最新部署 → **Redeploy**
 
