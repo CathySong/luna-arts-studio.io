@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { useInView } from "@/lib/useInView";
+import { summerCampConfig } from "@/config/summer-camp";
 
 export default function CampSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -191,7 +192,7 @@ export default function CampSection() {
                 <div className="flex items-center justify-between">
                   <span className="font-body text-sm text-gray-darkest font-light">{camp.price}</span>
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfEXAMPLE-FORM-ID/viewform"
+                    href={summerCampConfig.registrationFormUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`font-mono text-[9px] tracking-widest uppercase ${camp.color === 'warm' ? 'text-accent-warm border-accent-warm/30 hover:bg-accent-warm' : 'text-accent-cool border-accent-cool/30 hover:bg-accent-cool'} border px-4 py-2 hover:text-white transition-all duration-300`}
