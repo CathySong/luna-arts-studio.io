@@ -38,6 +38,19 @@ export default async function AdminStudentDetailPage({ params }: Props) {
             上课 {summary.usedLessons} 次 · 点评 {record.reviews.length} 篇
           </span>
         </p>
+        <div className="mt-3 flex flex-wrap gap-3 text-xs">
+          {student.defaultPrice ? (
+            <span className="rounded-md bg-accent-warm/15 border border-accent-warm/40 px-2 py-1 text-gray-darkest">
+              💰 ${student.defaultPrice}/课
+            </span>
+          ) : null}
+          {student.source ? (
+            <span className="rounded-md bg-gray-lightest border border-gray-lighter px-2 py-1 text-gray-darker">
+              📣 来源: {student.source}
+              {student.sourceCustom ? ` (${student.sourceCustom})` : ""}
+            </span>
+          ) : null}
+        </div>
       </div>
 
       <section className="rounded-xl border border-gray-lighter bg-white p-6 md:p-8 card-shadow">

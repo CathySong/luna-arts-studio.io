@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import type { Student } from "@/lib/crm/types";
+import { LEAD_SOURCES, type Student } from "@/lib/crm/types";
 
 function splitTags(raw: string): string[] {
   return raw
@@ -30,6 +30,9 @@ export default function StudentForm({ student }: Props) {
     const name = String(fd.get("name") ?? "").trim();
     const ageRaw = String(fd.get("age") ?? "").trim();
     const classesTakenRaw = String(fd.get("classesTaken") ?? "").trim();
+    const defaultPriceRaw = String(fd.get("defaultPrice") ?? "").trim();
+    const source = String(fd.get("source") ?? "").trim() || undefined;
+    const sourceCustom = String(fd.get("sourceCustom") ?? "").trim() || undefined;
 
     const payload = {
       name,
@@ -42,6 +45,10 @@ export default function StudentForm({ student }: Props) {
       notes: String(fd.get("notes") ?? "").trim() || undefined,
       classesTaken:
         classesTakenRaw === "" ? (isEdit ? undefined : 0) : Number(classesTakenRaw) || 0,
+      defaultPrice:
+        defaultPriceRaw === "" ? undefined : Number(defaultPriceRaw) || undefined,
+      source,
+      sourceCustom,
     };
 
     if (!payload.name) {
@@ -63,6 +70,9 @@ export default function StudentForm({ student }: Props) {
         if (payload.parentPhone !== undefined) body.parentPhone = payload.parentPhone;
         if (payload.notes !== undefined) body.notes = payload.notes;
         if (payload.classesTaken !== undefined) body.classesTaken = payload.classesTaken;
+        if (payload.defaultPrice !== undefined) body.defaultPrice = payload.defaultPrice;
+        body.source = payload.source ?? null;
+        body.sourceCustom = payload.sourceCustom ?? null;
 
         const res = await fetch(`/api/admin/students/${student.id}`, {
           method: "PATCH",
@@ -202,6 +212,48 @@ export default function StudentForm({ student }: Props) {
           className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
         />
       </label>
+
+      <div className="border-t border-gray-lighter pt-6">
+        <div className="font-display text-base text-gray-darkest mb-3">💰 Pricing & source</div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <label className="flex flex-col gap-1 text-sm">
+            <span className="text-gray-darker">Default price per lesson (USD)</span>
+            <input
+              name="defaultPrice"
+              type="number"
+              min={0}
+              step="0.01"
+              defaultValue={student?.defaultPrice ?? ""}
+              placeholder="e.g. 60"
+              className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
+            />
+          </label>
+          <label className="flex flex-col gap-1 text-sm">
+            <span className="text-gray-darker">Lead source</span>
+            <select
+              name="source"
+              defaultValue={student?.source ?? ""}
+              className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
+            >
+              <option value="">— select —</option>
+              {LEAD_SOURCES.map((s) => (
+                <option key={s.value} value={s.value}>
+                  {s.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex flex-col gap-1 text-sm">
+            <span className="text-gray-darker">Source (custom, if other)</span>
+            <input
+              name="sourceCustom"
+              defaultValue={student?.sourceCustom ?? ""}
+              placeholder="e.g. flyer at coffee shop"
+              className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
+            />
+          </label>
+        </div>
+      </div>
 
       <div className="flex gap-3">
         <button

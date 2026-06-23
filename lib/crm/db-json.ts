@@ -618,3 +618,22 @@ export async function getStudentRecord(studentId: string): Promise<StudentRecord
   const reviews = await listStudentReviewsWithContext(studentId);
   return { ...enrollment, reviews };
 }
+
+// ── All-time queries (for analytics) ───────────────────────────────────────
+
+export async function listAllAttendances(): Promise<ClassAttendance[]> {
+  const db = await readDbUnchecked();
+  return [...db.attendances].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+}
+
+export async function listAllPayments(): Promise<PaymentRecord[]> {
+  const db = await readDbUnchecked();
+  return [...db.payments].sort((a, b) => (a.paidAt < b.paidAt ? 1 : a.paidAt > b.paidAt ? -1 : 0));
+}
+
+export async function listAttendancesByDate(date: string): Promise<ClassAttendance[]> {
+  const db = await readDbUnchecked();
+  return db.attendances
+    .filter((a) => a.date === date)
+    .sort((a, b) => (a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0));
+}

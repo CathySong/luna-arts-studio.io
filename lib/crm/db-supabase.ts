@@ -65,6 +65,9 @@ function studentFromRow(r: Record<string, unknown>): Student {
       r.notebooklm_source_id != null ? String(r.notebooklm_source_id) : undefined,
     notebooklmSourceName:
       r.notebooklm_source_name != null ? String(r.notebooklm_source_name) : undefined,
+    defaultPrice: r.default_price != null ? Number(r.default_price) : undefined,
+    source: r.source != null ? String(r.source) : undefined,
+    sourceCustom: r.source_custom != null ? String(r.source_custom) : undefined,
     createdAt: new Date(String(r.created_at)).toISOString(),
     updatedAt: new Date(String(r.updated_at)).toISOString(),
   };
@@ -83,6 +86,9 @@ function studentToRow(s: Partial<Student> & { name?: string }) {
     classes_taken: s.classesTaken ?? 0,
     notebooklm_source_id: s.notebooklmSourceId ?? null,
     notebooklm_source_name: s.notebooklmSourceName ?? null,
+    default_price: s.defaultPrice ?? null,
+    source: s.source ?? null,
+    source_custom: s.sourceCustom ?? null,
     updated_at: new Date().toISOString(),
   };
 }
@@ -150,6 +156,9 @@ function attendanceFromRow(r: Record<string, unknown>): ClassAttendance {
       r.techniques_learned != null ? String(r.techniques_learned) : undefined,
     imagePaths: (r.image_paths as string[]) ?? [],
     review: r.review as AttendanceReview | undefined,
+    priceOverride: r.price_override != null ? Number(r.price_override) : undefined,
+    startTime: r.start_time != null ? String(r.start_time) : undefined,
+    durationMinutes: r.duration_minutes != null ? Number(r.duration_minutes) : undefined,
     createdAt: new Date(String(r.created_at)).toISOString(),
   };
 }
@@ -600,7 +609,19 @@ export async function getAttendance(id: string): Promise<ClassAttendance | undef
 export async function updateAttendance(
   id: string,
   patch: Partial<
-    Pick<ClassAttendance, "content" | "lessonTheme" | "techniquesLearned" | "imagePaths" | "review">
+    Pick<
+      ClassAttendance,
+      | "content"
+      | "lessonTheme"
+      | "techniquesLearned"
+      | "imagePaths"
+      | "review"
+      | "priceOverride"
+      | "startTime"
+      | "durationMinutes"
+      | "lessonsUsed"
+      | "date"
+    >
   >
 ): Promise<ClassAttendance | undefined> {
   const row: Record<string, unknown> = {};
@@ -609,6 +630,11 @@ export async function updateAttendance(
   if (patch.techniquesLearned !== undefined) row.techniques_learned = patch.techniquesLearned;
   if (patch.imagePaths !== undefined) row.image_paths = patch.imagePaths;
   if (patch.review !== undefined) row.review = patch.review;
+  if (patch.priceOverride !== undefined) row.price_override = patch.priceOverride;
+  if (patch.startTime !== undefined) row.start_time = patch.startTime;
+  if (patch.durationMinutes !== undefined) row.duration_minutes = patch.durationMinutes;
+  if (patch.lessonsUsed !== undefined) row.lessons_used = patch.lessonsUsed;
+  if (patch.date !== undefined) row.date = patch.date;
   if (Object.keys(row).length === 0) return getAttendance(id);
 
   const { data, error } = await getSupabaseAdmin()
@@ -637,6 +663,9 @@ export async function createAttendance(
       techniques_learned: input.techniquesLearned ?? null,
       image_paths: input.imagePaths ?? [],
       review: input.review ?? null,
+      price_override: input.priceOverride ?? null,
+      start_time: input.startTime ?? null,
+      duration_minutes: input.durationMinutes ?? 60,
     })
     .select()
     .single();
@@ -675,4 +704,34 @@ export async function getStudentRecord(studentId: string): Promise<StudentRecord
   const enrollment = await getStudentEnrollment(studentId);
   const reviews = await listStudentReviewsWithContext(studentId);
   return { ...enrollment, reviews };
+}
+
+// ── All-time queries (for analytics) ───────────────────────────────────────
+
+export async function listAllAttendances(): Promise<ClassAttendance[]> {
+  const { data, error } = await getSupabaseAdmin()
+    .from("attendances")
+    .select("*")
+    .order("date", { ascending: false });
+  if (error) sbError("listAllAttendances", error);
+  return (data ?? []).map((r) => attendanceFromRow(r));
+}
+
+export async function listAllPayments(): Promise<PaymentRecord[]> {
+  const { data, error } = await getSupabaseAdmin()
+    .from("payments")
+    .select("*")
+    .order("paid_at", { ascending: false });
+  if (error) sbError("listAllPayments", error);
+  return (data ?? []).map((r) => paymentFromRow(r));
+}
+
+export async function listAttendancesByDate(date: string): Promise<ClassAttendance[]> {
+  const { data, error } = await getSupabaseAdmin()
+    .from("attendances")
+    .select("*")
+    .eq("date", date)
+    .order("created_at", { ascending: true });
+  if (error) sbError("listAttendancesByDate", error);
+  return (data ?? []).map((r) => attendanceFromRow(r));
 }

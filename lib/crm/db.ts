@@ -96,6 +96,9 @@ export const createPayment = (
 export const deletePayment = (id: string) => impl().deletePayment(id);
 export const listAttendancesByStudent = (studentId: string) =>
   impl().listAttendancesByStudent(studentId);
+export const listAllAttendances = () => impl().listAllAttendances();
+export const listAllPayments = () => impl().listAllPayments();
+export const listAttendancesByDate = (date: string) => impl().listAttendancesByDate(date);
 export const getAttendance = (id: string) => impl().getAttendance(id);
 export const updateAttendance = (
   id: string,

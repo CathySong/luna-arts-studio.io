@@ -52,6 +52,8 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
               <th className="px-4 py-3 font-medium">Parent</th>
+              <th className="px-4 py-3 font-medium">Source</th>
+              <th className="px-4 py-3 font-medium text-right">Price</th>
               <th className="px-4 py-3 font-medium">剩余课时</th>
               <th className="px-4 py-3 font-medium">已上 / 总计</th>
               <th className="px-4 py-3 font-medium w-28"></th>
@@ -66,6 +68,19 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
                   {s.parentEmail ? (
                     <span className="block text-xs text-gray-dark">{s.parentEmail}</span>
                   ) : null}
+                </td>
+                <td className="px-4 py-3 text-gray-darker text-xs">
+                  {s.source ? (
+                    <span>
+                      {s.source}
+                      {s.sourceCustom ? ` (${s.sourceCustom})` : ""}
+                    </span>
+                  ) : (
+                    <span className="text-gray-dark">—</span>
+                  )}
+                </td>
+                <td className="px-4 py-3 text-gray-darkest text-right">
+                  {s.defaultPrice ? `$${s.defaultPrice}` : "—"}
                 </td>
                 <td
                   className={`px-4 py-3 font-medium ${
@@ -89,7 +104,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             ))}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-gray-dark">
+                <td colSpan={7} className="px-4 py-8 text-center text-gray-dark">
                   No students yet.
                 </td>
               </tr>

@@ -11,9 +11,29 @@ export interface Student {
   classesTaken: number;
   notebooklmSourceId?: string;
   notebooklmSourceName?: string;
+  /** Default price per lesson in USD (copied to attendance.price_override when null) */
+  defaultPrice?: number;
+  /** Lead source: referral|instagram|wechat|xiaohongshu|google|walkin|summer_camp|other */
+  source?: string;
+  /** Free-text source when source=other */
+  sourceCustom?: string;
   createdAt: string;
   updatedAt: string;
 }
+
+/** Canonical lead-source values used in the students.source column. */
+export const LEAD_SOURCES = [
+  { value: "referral", label: "Referral / 老学员介绍" },
+  { value: "instagram", label: "Instagram" },
+  { value: "wechat", label: "WeChat 朋友圈" },
+  { value: "xiaohongshu", label: "小红书" },
+  { value: "google", label: "Google 搜索" },
+  { value: "walkin", label: "Walk-in 路过店面" },
+  { value: "summer_camp", label: "Summer Camp / 活动" },
+  { value: "other", label: "其它 (see source_custom)" },
+] as const;
+
+export type LeadSource = (typeof LEAD_SOURCES)[number]["value"];
 
 export interface ClassSession {
   id: string;
@@ -86,6 +106,12 @@ export interface ClassAttendance {
   imagePaths: string[];
   /** AI 生成的个性化点评 */
   review?: AttendanceReview;
+  /** Per-attendance price override (USD); falls back to student.defaultPrice. NULL = use default. */
+  priceOverride?: number;
+  /** Local class start time, e.g. "15:30" */
+  startTime?: string;
+  /** Class duration in minutes; defaults to 60. */
+  durationMinutes?: number;
   createdAt: string;
 }
 
