@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost, DM_Mono } from "next/font/google";
+
+import { siteUrl } from "@/lib/site-url";
+
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -24,16 +27,8 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-// Resolved at build time by Next.js from `VERCEL_PROJECT_PRODUCTION_URL`,
-// falling back to lunaart.studio for local builds. Required for absolute URLs
-// in metadata (Open Graph, sitemap, robots, etc.).
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-  "https://lunaart.studio";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteUrl()),
   title: "Luna Art Studio — Fine Art & Creative Classes",
   description:
     "Luna Art Studio offers fine art exhibitions, painting and drawing classes, and a vibrant creative community. Explore our gallery and join our weekly classes.",

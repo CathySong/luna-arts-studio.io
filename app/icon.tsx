@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
-// Image response size for favicon
-export const size = { width: 32, height: 32 };
+// 48×48 meets Google's recommended minimum for SERP site icons.
+export const size = { width: 48, height: 48 };
 export const contentType = "image/png";
 
 // Favicon: a sage-green rounded square with a crescent moon glyph (Luna brand).
@@ -12,14 +12,14 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 24,
+          fontSize: 36,
           background: "#7a8c7e", // sage green
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          borderRadius: 6,
+          borderRadius: 9,
           color: "#f5f0e8", // parchment
         }}
       >
