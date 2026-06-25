@@ -1,0 +1,23 @@
+{
+  "name": "Luna Art Studio",
+  "short_name": "Luna",
+  "description": "Fine Art & Creative Classes — Warren, NJ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7a8c7e",
+  "theme_color": "#7a8c7e",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
