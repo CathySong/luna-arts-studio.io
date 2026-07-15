@@ -23,7 +23,7 @@ export default function SummerCampHero() {
                 Summer Camp Registration Open!
               </h3>
               <p className="font-body text-sm md:text-base font-light opacity-90">
-                Limited spots available! June 22 – August 28 • Small class sizes • Art, crafts & outdoor fun.
+                Limited spots available! June 22 – August 7 • Small class sizes • Art, crafts & outdoor fun.
               </p>
             </div>
             
