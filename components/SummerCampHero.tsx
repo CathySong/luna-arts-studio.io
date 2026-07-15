@@ -61,7 +61,7 @@ export default function SummerCampHero() {
                 <span className="text-yellow-600">Registration Open</span>
               </h1>
               <p className="font-body text-2xl md:text-3xl text-gray-700 font-light mb-12 max-w-3xl mx-auto leading-relaxed">
-                June 22 - August 28 • Small class sizes • Art + Crafts + Outdoor activities
+                June 22 - August 7 • Small class sizes • Art + Crafts + Outdoor activities
               </p>
             </div>
             
@@ -101,7 +101,7 @@ export default function SummerCampHero() {
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div className="text-red-600 font-display text-4xl font-bold mb-3">6/22</div>
                 <p className="font-body text-gray-700 font-medium">Camp Start Date</p>
-                <p className="font-mono text-sm text-gray-500 mt-2">June 22 - August 28</p>
+                <p className="font-mono text-sm text-gray-500 mt-2">June 22 - August 7</p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div className="text-red-600 font-display text-4xl font-bold mb-3">$130</div>

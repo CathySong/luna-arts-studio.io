@@ -247,7 +247,7 @@ export default function CampSection() {
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 rounded-full bg-accent-warm mt-1" />
                   <div>
-                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Camp Dates: June 22 – August 28, 2026</p>
+                    <p className="font-body text-gray-darkest text-sm font-light mb-1">Camp Dates: June 22 – August 7, 2026</p>
                     <p className="font-body text-gray-dark text-xs font-light">Weekly sessions available throughout the summer</p>
                   </div>
                 </div>

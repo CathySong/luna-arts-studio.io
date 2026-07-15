@@ -8,8 +8,8 @@ export const summerCampConfig = {
   // Camp Dates
   campDates: {
     start: "June 22, 2026",
-    end: "August 28, 2026",
-    display: "June 22 - August 28"
+    end: "August 7, 2026",
+    display: "June 22 - August 7"
   },
   
   // Pricing
