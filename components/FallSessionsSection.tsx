@@ -6,7 +6,7 @@ import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 export default function FallSessionsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { threshold: 0.1 });
-  const { sessions, registrationFormUrl, contact } = fallEnrollmentConfig;
+  const { sessions, registrationFormUrl, contact, classTimes } = fallEnrollmentConfig;
 
   return (
     <section id="fall-enrollment" className="py-32 bg-white relative overflow-hidden">
@@ -32,8 +32,20 @@ export default function FallSessionsSection() {
           </h2>
           <p className="font-body text-gray-dark max-w-2xl font-light leading-relaxed">
             Join our weekly Wednesday art classes this fall. Choose Session 1, Session 2, or both.
+            Two time slots: {classTimes.map((t) => t.label).join(" and ")}.
             Small class sizes and a supportive studio environment for young artists and beginners alike.
           </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            {classTimes.map((time) => (
+              <span
+                key={time.id}
+                className="font-mono text-[10px] tracking-widest uppercase px-4 py-2 border border-accent-warm/30 text-accent-warm bg-accent-warm/5"
+              >
+                {time.label}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Registration callout */}

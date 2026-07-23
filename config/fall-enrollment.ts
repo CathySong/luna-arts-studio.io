@@ -9,9 +9,24 @@ export const fallEnrollmentConfig = {
   seasonLabel: "Fall 2026 Enrollment",
   headline: "Fall Classes Now Open",
   subheadline:
-    "Weekly Wednesday art classes · Small class sizes · Limited spots available",
+    "Weekly Wednesday art classes · 4:30–6:00 PM & 6:15–7:45 PM · Limited spots",
 
   dayOfWeek: "Wednesday",
+
+  classTimes: [
+    {
+      id: "early",
+      label: "4:30 PM – 6:00 PM",
+      start: "4:30 PM",
+      end: "6:00 PM",
+    },
+    {
+      id: "late",
+      label: "6:15 PM – 7:45 PM",
+      start: "6:15 PM",
+      end: "7:45 PM",
+    },
+  ],
 
   sessions: [
     {

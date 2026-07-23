@@ -63,7 +63,7 @@ export default function FlyerPage() {
                 Fall Class Enrollment Details
               </h2>
               <p className="font-body text-gray-600 max-w-2xl mx-auto">
-                Weekly Wednesday art classes at Luna Art Studio. Choose Session 1, Session 2, or both.
+                Weekly Wednesday art classes at Luna Art Studio · 4:30–6:00 PM & 6:15–7:45 PM. Choose Session 1, Session 2, or both.
               </p>
             </div>
 
@@ -120,6 +120,12 @@ export default function FlyerPage() {
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
                       Session 1 starts Sep 9 · 9 Wednesday classes through Nov 4
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
+                    <span className="font-body text-gray-700">
+                      Class times: 4:30–6:00 PM and 6:15–7:45 PM
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
