@@ -1,51 +1,15 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useInView } from "@/lib/useInView";
-
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-const schedule: Record<string, { time: string; class: string; instructor: string; level: string; spots: number; color: string }[]> = {
-  Monday: [
-    { time: "10:00 AM", class: "Foundation Drawing", instructor: "Ms. Chen", level: "Beginner", spots: 4, color: "#c9a96e" },
-    { time: "6:30 PM", class: "Oil Painting", instructor: "Mr. Rivera", level: "Intermediate", spots: 2, color: "#c4785a" },
-  ],
-  Tuesday: [
-    { time: "9:00 AM", class: "Watercolor & Ink", instructor: "Ms. Park", level: "All Levels", spots: 6, color: "#7a8c7e" },
-    { time: "5:00 PM", class: "Figure Drawing", instructor: "Mr. Rivera", level: "Intermediate+", spots: 8, color: "#9ba8b0" },
-    { time: "7:00 PM", class: "Acrylic Abstraction", instructor: "Ms. Chen", level: "All Levels", spots: 3, color: "#d4845a" },
-  ],
-  Wednesday: [
-    { time: "10:00 AM", class: "Kids Art Camp", instructor: "Ms. Thompson", level: "Youth", spots: 5, color: "#b0d4b8" },
-    { time: "6:00 PM", class: "Foundation Drawing", instructor: "Ms. Park", level: "Beginner", spots: 7, color: "#c9a96e" },
-  ],
-  Thursday: [
-    { time: "10:00 AM", class: "Oil Painting", instructor: "Mr. Rivera", level: "Intermediate", spots: 1, color: "#c4785a" },
-    { time: "6:30 PM", class: "Watercolor & Ink", instructor: "Ms. Chen", level: "All Levels", spots: 5, color: "#7a8c7e" },
-  ],
-  Friday: [
-    { time: "9:00 AM", class: "Acrylic Abstraction", instructor: "Ms. Park", level: "All Levels", spots: 4, color: "#d4845a" },
-    { time: "5:30 PM", class: "Figure Drawing", instructor: "Mr. Rivera", level: "Intermediate+", spots: 6, color: "#9ba8b0" },
-  ],
-  Saturday: [
-    { time: "10:00 AM", class: "Kids Art Camp", instructor: "Ms. Thompson", level: "Youth", spots: 8, color: "#b0d4b8" },
-    { time: "1:00 PM", class: "Foundation Drawing", instructor: "Ms. Chen", level: "Beginner", spots: 3, color: "#c9a96e" },
-    { time: "3:30 PM", class: "Oil Painting", instructor: "Mr. Rivera", level: "Intermediate", spots: 2, color: "#c4785a" },
-    { time: "6:00 PM", class: "Open Studio", instructor: "Self-Guided", level: "All Levels", spots: 10, color: "#6a8a80" },
-  ],
-  Sunday: [
-    { time: "11:00 AM", class: "Watercolor & Ink", instructor: "Ms. Park", level: "All Levels", spots: 4, color: "#7a8c7e" },
-    { time: "2:00 PM", class: "Open Studio", instructor: "Self-Guided", level: "All Levels", spots: 10, color: "#6a8a80" },
-  ],
-};
+import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 
 export default function ScheduleSection() {
-  const [activeDay, setActiveDay] = useState("Saturday");
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { threshold: 0.1 });
+  const { sessions, registrationFormUrl } = fallEnrollmentConfig;
 
   return (
     <section id="schedule" className="py-32 bg-white relative overflow-hidden">
-
       <div
         ref={ref}
         className={`max-w-7xl mx-auto px-6 lg:px-12 transition-all duration-1000 ${
@@ -55,113 +19,84 @@ export default function ScheduleSection() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-accent-warm/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
-              Weekly Timetable
+            <span
+              className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60"
+              style={{ letterSpacing: "0.35em" }}
+            >
+              Fall Class Calendar
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
             Class <span className="italic text-accent-warm">Schedule</span>
           </h2>
+          <p className="font-body text-gray-dark mt-4 max-w-xl font-light">
+            Wednesday classes for Fall 2026. Session dates below.
+          </p>
         </div>
 
-        {/* Day selector */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {days.map((day) => (
-            <button
-              key={day}
-              onClick={() => setActiveDay(day)}
-              className={`px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-all duration-300 ${
-                activeDay === day
-                  ? "bg-accent-warm text-white"
-                  : "border border-gray-lightest text-gray-dark hover:border-gray-light hover:text-accent-warm/60"
-              }`}
-            >
-              {day.slice(0, 3)}
-            </button>
-          ))}
-        </div>
-
-        {/* Schedule grid */}
-        <div className="border border-gray-lightest">
-          {/* Header */}
-          <div className="grid grid-cols-5 gap-0 border-b border-gray-lightest bg-white/50 px-6 py-3">
-            {["Time", "Class", "Instructor", "Level", "Availability"].map((h) => (
-              <p key={h} className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker">{h}</p>
-            ))}
-          </div>
-
-          {/* Rows */}
-          {(schedule[activeDay] || []).map((item, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-5 gap-0 px-6 py-5 border-b border-gray-lightest hover:bg-gray-lightest/50 transition-colors duration-200 group"
-            >
-              <div>
-                <p className="font-mono text-xs text-gray-darkest/70">{item.time}</p>
-              </div>
-              <div>
-                <p
-                  className="font-display text-lg font-light"
-                  style={{ color: item.color }}
-                >
-                  {item.class}
-                </p>
-              </div>
-              <div className="flex items-center">
-                <p className="font-body text-sm text-gray-dark font-light">{item.instructor}</p>
-              </div>
-              <div className="flex items-center">
-                <span
-                  className="font-mono text-[8px] tracking-widest uppercase px-2 py-1 border"
-                  style={{ color: item.color, borderColor: `${item.color}30` }}
-                >
-                  {item.level}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ background: item.spots <= 3 ? "#c4785a" : "#7a8c7e" }}
-                  />
-                  <p className="font-mono text-[10px] text-gray-dark">
-                    {item.spots} {item.spots === 1 ? "spot" : "spots"} left
+        {/* Session schedule tables */}
+        <div className="space-y-10">
+          {sessions.map((session, index) => (
+            <div key={session.id} className="border border-gray-lightest">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 border-b border-gray-lightest bg-gray-50/50">
+                <div>
+                  <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm mb-1">
+                    Wednesday Class
                   </p>
+                  <h3 className="font-display text-2xl text-gray-darkest font-light">
+                    {session.name}
+                  </h3>
                 </div>
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="font-mono text-[10px] tracking-widest uppercase text-gray-dark">
+                    {session.startDisplay} – {session.endDisplay}
+                  </span>
+                  <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1 border border-accent-warm/30 text-accent-warm">
+                    {session.classCount} classes
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-0">
+                {session.dates.map((date, i) => (
+                  <div
+                    key={date}
+                    className="px-6 py-5 border-b border-r border-gray-lightest hover:bg-gray-50/80 transition-colors"
+                  >
+                    <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
+                      Class {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <p className="font-display text-lg text-gray-darkest font-light">{date}</p>
+                    <p className="font-body text-xs text-gray-dark mt-1">Wednesday</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
+                <p className="font-body text-sm text-gray-dark font-light">{session.note}</p>
                 <a
-                  href="#contact"
-                  className="opacity-0 group-hover:opacity-100 font-mono text-[8px] tracking-widest uppercase text-accent-warm border border-gray-light px-3 py-1.5 hover:bg-accent-warm hover:text-white transition-all duration-200"
+                  href={registrationFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[9px] tracking-widest uppercase text-accent-warm border border-accent-warm/30 px-4 py-2 hover:bg-accent-warm hover:text-white transition-all duration-200 text-center"
                 >
-                  Register
+                  Enroll in Session {index + 1}
                 </a>
               </div>
             </div>
           ))}
-
-          {(!schedule[activeDay] || schedule[activeDay].length === 0) && (
-            <div className="px-6 py-12 text-center">
-              <p className="font-display text-2xl text-gray-darkest/20 font-light italic">
-                No classes scheduled
-              </p>
-            </div>
-          )}
         </div>
 
-        {/* Note */}
         <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gray-lightest">
           <p className="font-mono text-[9px] tracking-wide uppercase text-gray-darker">
-            * Schedule subject to change. Spots shown are approximate. Contact us to confirm availability.
+            * Session 2 skips the late-December holiday weeks, then resumes in January.
           </p>
-          <div className="flex items-center gap-4 shrink-0">
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent-warm" />
-              <span className="font-mono text-[9px] text-gray-darker uppercase tracking-widest">Filling fast</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent-cool" />
-              <span className="font-mono text-[9px] text-gray-darker uppercase tracking-widest">Available</span>
-            </div>
-          </div>
+          <a
+            href="#fall-enrollment"
+            className="font-mono text-[9px] tracking-widest uppercase text-accent-warm hover:underline"
+          >
+            Back to Fall Enrollment →
+          </a>
         </div>
       </div>
     </section>

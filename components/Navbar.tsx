@@ -9,7 +9,7 @@ const links = [
   { href: "/events", label: "Birthday Parties" },
   { href: "/sewing", label: "Tailor & Sewing" },
   { href: "#classes", label: "Classes" },
-  { href: "#camps", label: "Art Camp" },
+  { href: "#fall-enrollment", label: "Fall Enrollment" },
   { href: "#schedule", label: "Schedule" },
   { href: "#contact", label: "Contact" },
 ];
@@ -64,7 +64,7 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.href}>
-              {l.href.startsWith('/') ? (
+              {l.href.startsWith("/") ? (
                 <Link
                   href={l.href}
                   className="font-body text-xs tracking-widest uppercase text-gray-dark hover:text-accent-warm transition-colors duration-300"
@@ -83,10 +83,10 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="#contact"
+              href="#fall-enrollment"
               className="ml-4 px-6 py-2.5 border border-accent-warm/40 text-accent-warm font-body text-xs tracking-widest uppercase hover:bg-accent-warm hover:text-white transition-all duration-300"
             >
-              Inquire
+              Enroll
             </a>
           </li>
         </ul>
@@ -110,7 +110,7 @@ export default function Navbar() {
         <ul className="px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
             <li key={l.href}>
-              {l.href.startsWith('/') ? (
+              {l.href.startsWith("/") ? (
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
@@ -129,6 +129,15 @@ export default function Navbar() {
               )}
             </li>
           ))}
+          <li>
+            <a
+              href="#fall-enrollment"
+              onClick={() => setOpen(false)}
+              className="inline-block px-6 py-2.5 border border-accent-warm/40 text-accent-warm font-body text-xs tracking-widest uppercase"
+            >
+              Enroll
+            </a>
+          </li>
         </ul>
       </div>
     </header>

@@ -55,11 +55,11 @@ const classes = [
   },
   {
     id: "06",
-    title: "Kids Art Camp",
-    subtitle: "Ages 6–14",
+    title: "Wednesday Class",
+    subtitle: "Fall Enrollment Open",
     description:
-      "A joyful introduction to art-making for young creatives. Drawing, painting, collage, and sculpture projects.",
-    duration: "Seasonal",
+      "Weekly Wednesday art classes for Fall 2026. Session 1 starts Sep 9 (9 classes). Session 2 runs Nov 11 – Feb 3.",
+    duration: "9–10 weeks",
     level: "Youth",
     color: "#b0d4b8",
   },
@@ -165,9 +165,9 @@ function ClassCard({ cls, delay }: { cls: (typeof classes)[0]; delay: number }) 
             {cls.duration}
           </span>
         </div>
-        {cls.title === "Kids Art Camp" ? (
+        {cls.title === "Wednesday Class" ? (
           <a
-            href="#camps"
+            href="#fall-enrollment"
             className="font-mono text-[9px] tracking-widest uppercase transition-colors duration-300 group-hover:opacity-100 opacity-0 hover:text-accent-warm"
             style={{ color: cls.color }}
           >

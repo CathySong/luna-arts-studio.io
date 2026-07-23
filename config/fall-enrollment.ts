@@ -1,0 +1,71 @@
+// Fall Enrollment Configuration
+// Update the Google Form URL here when you have the actual Fall form link
+
+export const fallEnrollmentConfig = {
+  // Google Form Registration URL (reuse current form until a Fall-specific form is provided)
+  registrationFormUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLScAp9BrzgkmcKErTc2tfI_pv4YOXJxZR8DG5_TiALQIAjmAyA/viewform?usp=header",
+
+  seasonLabel: "Fall 2026 Enrollment",
+  headline: "Fall Classes Now Open",
+  subheadline:
+    "Weekly Wednesday art classes · Small class sizes · Limited spots available",
+
+  dayOfWeek: "Wednesday",
+
+  sessions: [
+    {
+      id: "session-1",
+      name: "Session 1",
+      label: "Fall Session 1",
+      startDisplay: "Sep 9",
+      endDisplay: "Nov 4",
+      classCount: 9,
+      dates: [
+        "Sep 9",
+        "Sep 16",
+        "Sep 23",
+        "Sep 30",
+        "Oct 7",
+        "Oct 14",
+        "Oct 21",
+        "Oct 28",
+        "Nov 4",
+      ],
+      note: "9 weekly Wednesday classes",
+    },
+    {
+      id: "session-2",
+      name: "Session 2",
+      label: "Fall / Winter Session 2",
+      startDisplay: "Nov 11",
+      endDisplay: "Feb 3",
+      classCount: 10,
+      dates: [
+        "Nov 11",
+        "Nov 18",
+        "Dec 2",
+        "Dec 9",
+        "Dec 16",
+        "Jan 6",
+        "Jan 13",
+        "Jan 20",
+        "Jan 27",
+        "Feb 3",
+      ],
+      note: "10 weekly Wednesday classes · Holiday break late December",
+    },
+  ],
+
+  contact: {
+    email: "Ninglu1088@gmail.com",
+    wechat: "happyevan999",
+    phone: "+1 732-718-0639",
+    address: "258 King George Rd, Warren, NJ 07059",
+  },
+};
+
+export function getFallRegistrationUrl(source: string = "website") {
+  const baseUrl = fallEnrollmentConfig.registrationFormUrl;
+  return `${baseUrl}?entry.1234567890=${source}`;
+}

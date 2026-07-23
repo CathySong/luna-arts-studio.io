@@ -9,7 +9,7 @@ const interests = [
   "Watercolor & Ink",
   "Figure Drawing",
   "Acrylic Abstraction",
-  "Kids Art Camp",
+  "Fall Wednesday Class",
   "Gallery / Purchase",
   "Open Studio",
   "Private Lesson",
