@@ -2,9 +2,8 @@
 // Update the Google Form URL here when you have the actual Fall form link
 
 export const fallEnrollmentConfig = {
-  // Google Form Registration URL (reuse current form until a Fall-specific form is provided)
-  registrationFormUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLScAp9BrzgkmcKErTc2tfI_pv4YOXJxZR8DG5_TiALQIAjmAyA/viewform?usp=header",
+  // Fall registration Google Form
+  registrationFormUrl: "https://forms.gle/AFNYCseZ74WY3zKf8",
 
   seasonLabel: "Fall 2026 Enrollment",
   headline: "Fall Classes Now Open",
