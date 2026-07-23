@@ -11,7 +11,7 @@ export default function FlyerPage() {
       try {
         await navigator.share({
           title: "Luna Art Studio Fall Enrollment 2026",
-          text: "Fall Wednesday art classes are open for registration!",
+          text: "Fall art classes are open for registration — Creative, Drawing, Oil Painting, and Handcraft Mon–Sat!",
           url: window.location.href,
         });
       } catch {
@@ -63,7 +63,7 @@ export default function FlyerPage() {
                 Fall Class Enrollment Details
               </h2>
               <p className="font-body text-gray-600 max-w-2xl mx-auto">
-                Weekly Wednesday art classes at Luna Art Studio · 4:30–6:00 PM & 6:15–7:45 PM. Choose Session 1, Session 2, or both.
+                Four class types Mon–Sat at Luna Art Studio. Drawing & Oil Painting 90 min · Creative & Handcraft 60 min. Choose Session 1, Session 2, or both.
               </p>
             </div>
 
@@ -81,7 +81,7 @@ export default function FlyerPage() {
                       {session.classCount} classes
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
-                      Wednesdays
+                      Mon–Sat
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
                       {session.startDisplay} – {session.endDisplay}
@@ -119,13 +119,19 @@ export default function FlyerPage() {
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Session 1 starts Sep 9 · 9 Wednesday classes through Nov 4
+                      Four class types: Creative, Drawing, Oil Painting, Handcraft
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Class times: 4:30–6:00 PM and 6:15–7:45 PM
+                      Session 1 starts Sep 9 · 9 weekly classes through Nov 4 (Mon–Sat)
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
+                    <span className="font-body text-gray-700">
+                      Drawing & Oil Painting 90 min · Creative & Handcraft 60 min
                     </span>
                   </li>
                   <li className="flex items-start gap-3">

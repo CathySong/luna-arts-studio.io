@@ -25,7 +25,7 @@ export default function FallEnrollmentHero() {
               </h3>
               <p className="font-body text-sm md:text-base font-light opacity-90">
                 Session 1 starts {session1.startDisplay} · Session 2 starts{" "}
-                {session2.startDisplay} · Wednesday classes · Limited spots
+                {session2.startDisplay} · Mon–Sat · 4 class types · Limited spots
               </p>
             </div>
 
@@ -102,7 +102,7 @@ export default function FallEnrollmentHero() {
                 </div>
                 <p className="font-body text-gray-700 font-medium">Session 1 Starts</p>
                 <p className="font-mono text-sm text-gray-500 mt-2">
-                  {session1.classCount} Wednesday classes
+                  {session1.classCount} weekly classes · Mon–Sat
                 </p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
@@ -111,7 +111,7 @@ export default function FallEnrollmentHero() {
                 </div>
                 <p className="font-body text-gray-700 font-medium">Session 2 Starts</p>
                 <p className="font-mono text-sm text-gray-500 mt-2">
-                  {session2.classCount} Wednesday classes
+                  {session2.classCount} weekly classes · Mon–Sat
                 </p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">

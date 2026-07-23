@@ -4,12 +4,11 @@ import { useInView } from "@/lib/useInView";
 import { Send, MapPin, Clock, Mail, Phone, MessageSquare } from "lucide-react";
 
 const interests = [
-  "Foundation Drawing",
+  "Creative Class",
+  "Drawing Class",
   "Oil Painting",
-  "Watercolor & Ink",
-  "Figure Drawing",
-  "Acrylic Abstraction",
-  "Fall Wednesday Class",
+  "Handcraft Class",
+  "Fall Enrollment",
   "Gallery / Purchase",
   "Open Studio",
   "Private Lesson",
