@@ -5,14 +5,13 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "/", label: "Home" },
   { href: "/events", label: "Birthday Parties" },
   { href: "/sewing", label: "Tailor & Sewing" },
-  { href: "#about-luna", label: "About Luna" },
   { href: "#classes", label: "Classes" },
   { href: "#fall-enrollment", label: "Fall Enrollment" },
   { href: "#schedule", label: "Schedule" },
   { href: "#contact", label: "Contact" },
+  { href: "#about-luna", label: "About Luna" },
 ];
 
 export default function Navbar() {
