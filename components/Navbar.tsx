@@ -8,6 +8,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/events", label: "Birthday Parties" },
   { href: "/sewing", label: "Tailor & Sewing" },
+  { href: "#about-luna", label: "About Luna" },
   { href: "#classes", label: "Classes" },
   { href: "#fall-enrollment", label: "Fall Enrollment" },
   { href: "#schedule", label: "Schedule" },

@@ -1,6 +1,7 @@
 "use client";
 import FallEnrollmentHero from "@/components/FallEnrollmentHero";
 import AboutPreview from "@/components/AboutPreview";
+import FounderBio from "@/components/FounderBio";
 import GalleryPreview from "@/components/GalleryPreview";
 import ClassesPreview from "@/components/ClassesPreview";
 import FallSessionsSection from "@/components/FallSessionsSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <FallEnrollmentHero />
 
       <AboutPreview />
+      <FounderBio />
       <GalleryPreview />
       <ClassesPreview />
 
