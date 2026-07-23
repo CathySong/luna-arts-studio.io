@@ -73,9 +73,23 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-lightest">
-          <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
-            © {new Date().getFullYear()} Luna Art Studio · All rights reserved
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+            <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
+              © {new Date().getFullYear()} Luna Art Studio · All rights reserved
+            </p>
+            <span className="hidden sm:inline text-gray-lightest">·</span>
+            <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
+              Powered by{" "}
+              <a
+                href="https://aboutme.goopenfield.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-warm hover:text-gray-darkest transition-colors"
+              >
+                @CS.AI Growth Studio
+              </a>
+            </p>
+          </div>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-6">
             <Link
               href="/studio"
