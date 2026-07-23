@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
 import { useInView } from "@/lib/useInView";
 import { classTypes } from "@/config/classes";
 
@@ -89,59 +90,72 @@ function ClassCard({
   return (
     <div
       ref={ref}
-      className="group relative border border-gray-lightest bg-white p-8 md:p-10 hover:border-accent-warm/35 hover:shadow-sm transition-all duration-500"
+      className="group relative border border-gray-lightest bg-white overflow-hidden hover:border-accent-warm/35 hover:shadow-sm transition-all duration-500"
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(24px)",
         transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms, border-color 0.3s ease, box-shadow 0.3s ease`,
       }}
     >
-      <div className="absolute left-0 top-0 bottom-0 w-1" style={{ backgroundColor: cls.color }} />
+      <div className="absolute left-0 top-0 bottom-0 w-1 z-10" style={{ backgroundColor: cls.color }} />
 
-      <div className="flex items-start justify-between gap-4 mb-8">
-        <span
-          className="font-display text-5xl md:text-6xl font-light leading-none"
-          style={{ color: cls.color, opacity: 0.22 }}
-        >
-          {cls.number}
-        </span>
-        <div className="flex flex-col items-end gap-2">
+      <div className="relative aspect-[16/10] overflow-hidden bg-white-warm">
+        <Image
+          src={cls.image}
+          alt={cls.imageAlt}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-80" />
+        <div className="absolute top-4 left-5 right-5 flex items-start justify-between gap-3">
           <span
-            className="font-mono text-[8px] tracking-widest uppercase px-2.5 py-1 border"
-            style={{ color: cls.color, borderColor: `${cls.color}40` }}
+            className="font-display text-4xl font-light leading-none"
+            style={{ color: cls.color, opacity: 0.85 }}
           >
-            {cls.level}
+            {cls.number}
           </span>
-          <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
-            {cls.durationLabel}
-          </span>
+          <div className="flex flex-col items-end gap-2">
+            <span
+              className="font-mono text-[8px] tracking-widest uppercase px-2.5 py-1 border bg-white/80 backdrop-blur-sm"
+              style={{ color: cls.color, borderColor: `${cls.color}55` }}
+            >
+              {cls.level}
+            </span>
+            <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker bg-white/75 backdrop-blur-sm px-2 py-1">
+              {cls.durationLabel}
+            </span>
+          </div>
         </div>
       </div>
 
-      <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
-        {cls.subtitle}
-      </p>
-      <h3 className="font-display text-2xl md:text-3xl text-gray-darkest font-light mb-1 group-hover:text-accent-warm transition-colors duration-300">
-        {cls.title}
-      </h3>
-      <p className="font-body text-sm text-gray-darker mb-5 font-light">{cls.titleZh}</p>
-      <p className="font-body text-gray-dark text-sm leading-relaxed font-light mb-8">
-        {cls.description}
-      </p>
+      <div className="p-7 md:p-8 pt-5">
+        <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
+          {cls.subtitle}
+        </p>
+        <h3 className="font-display text-2xl md:text-3xl text-gray-darkest font-light mb-1 group-hover:text-accent-warm transition-colors duration-300">
+          {cls.title}
+        </h3>
+        <p className="font-body text-sm text-gray-darker mb-4 font-light">{cls.titleZh}</p>
+        <p className="font-body text-gray-dark text-sm leading-relaxed font-light mb-6">
+          {cls.description}
+        </p>
 
-      <div className="flex items-center justify-between pt-5 border-t border-gray-lightest">
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: cls.color }} />
-          <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
-            Offered Mon–Sat in Fall
-          </span>
+        <div className="flex items-center justify-between pt-5 border-t border-gray-lightest">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: cls.color }} />
+            <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
+              Offered Mon–Sat in Fall
+            </span>
+          </div>
+          <a
+            href="#fall-enrollment"
+            className="font-mono text-[9px] tracking-widest uppercase text-accent-warm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            See schedule
+          </a>
         </div>
-        <a
-          href="#fall-enrollment"
-          className="font-mono text-[9px] tracking-widest uppercase text-accent-warm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        >
-          See schedule
-        </a>
       </div>
     </div>
   );

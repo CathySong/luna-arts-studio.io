@@ -15,6 +15,8 @@ export const classTypes = [
     durationLabel: "60 min",
     level: "All Ages",
     color: "#c9a96e",
+    image: "/images/classes/creative.jpg",
+    imageAlt: "Creative class abstract collage in warm studio tones",
   },
   {
     id: "drawing" as const,
@@ -28,6 +30,8 @@ export const classTypes = [
     durationLabel: "90 min",
     level: "All Levels",
     color: "#9ba8b0",
+    image: "/images/classes/drawing.jpg",
+    imageAlt: "Drawing class sketch study with graphite line work",
   },
   {
     id: "oil-painting" as const,
@@ -41,6 +45,8 @@ export const classTypes = [
     durationLabel: "90 min",
     level: "All Levels",
     color: "#c4785a",
+    image: "/images/classes/oil-painting.jpg",
+    imageAlt: "Oil painting class canvas with warm layered color fields",
   },
   {
     id: "handcraft" as const,
@@ -54,6 +60,8 @@ export const classTypes = [
     durationLabel: "60 min",
     level: "All Ages",
     color: "#7a8c7e",
+    image: "/images/classes/handcraft.jpg",
+    imageAlt: "Handcraft class yarn, needle, and fabric details",
   },
 ] as const;
 
