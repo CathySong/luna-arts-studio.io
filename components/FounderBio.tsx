@@ -31,30 +31,34 @@ export default function FounderBio() {
         }`}
       >
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Photo — square headshot */}
+          {/* Photo */}
           <div className="lg:col-span-5">
-            <div className="relative max-w-[22rem] mx-auto lg:mx-0">
+            <div className="relative max-w-md mx-auto lg:mx-0">
               <div className="absolute -inset-3 md:-inset-4 border border-accent-warm/30 pointer-events-none" />
-              <div className="relative aspect-square overflow-hidden bg-gray-lightest shadow-sm rounded-sm">
+              <div className="relative aspect-[4/5] overflow-hidden bg-gray-lightest shadow-sm">
                 <Image
                   src="/images/luna-founder.jpg"
                   alt="Luna, founder and instructor of Luna Art Studio"
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-top"
                   quality={92}
-                  sizes="(max-width: 768px) 80vw, 22rem"
+                  sizes="(max-width: 768px) 90vw, 40vw"
                   priority={false}
                 />
               </div>
-              <div className="mt-6 text-center lg:text-left">
-                <p className="font-display text-2xl md:text-3xl text-gray-darkest font-light tracking-wide">
-                  Luna
-                </p>
-                <p className="font-mono text-[10px] tracking-widest uppercase text-accent-warm mt-1.5">
-                  Founder & Instructor
-                </p>
-                <p className="font-body text-xs text-gray-darker mt-2 leading-relaxed">
-                  Luna Art Studio · Warren, New Jersey
+              <div className="mt-5 flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-display text-2xl text-gray-darkest font-light tracking-wide">
+                    Luna
+                  </p>
+                  <p className="font-mono text-[10px] tracking-widest uppercase text-accent-warm mt-1">
+                    Founder and Instructor
+                  </p>
+                </div>
+                <p className="font-body text-xs text-gray-darker text-right leading-relaxed max-w-[10rem]">
+                  Luna Art Studio
+                  <br />
+                  Warren, New Jersey
                 </p>
               </div>
             </div>
