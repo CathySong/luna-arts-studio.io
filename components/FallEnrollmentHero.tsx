@@ -9,42 +9,44 @@ export default function FallEnrollmentHero() {
 
   return (
     <section className="relative">
-      {/* Promo banner under navbar */}
+      {/* Promo banner under navbar — extra top padding so logo/nav stay clear */}
       {showBanner && (
-        <div className="bg-accent-warm text-white py-4 px-6 relative mt-20">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex-1 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
-                <span className="font-mono text-xs tracking-widest uppercase font-bold">
-                  🍂 {fallEnrollmentConfig.seasonLabel}
-                </span>
+        <div className="bg-accent-warm text-white relative mt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-3.5 md:py-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8">
+              <div className="flex-1 min-w-0 text-center md:text-left pr-0 md:pr-4">
+                <div className="flex items-center justify-center md:justify-start gap-2.5 mb-1.5">
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse shrink-0" />
+                  <span className="font-mono text-[10px] md:text-xs tracking-widest uppercase font-bold">
+                    {fallEnrollmentConfig.seasonLabel}
+                  </span>
+                </div>
+                <h3 className="font-display text-lg md:text-xl font-semibold mb-1 leading-snug">
+                  Fall Class Registration Open
+                </h3>
+                <p className="font-body text-xs md:text-sm font-light opacity-90 leading-relaxed">
+                  Session 1 starts {session1.startDisplay} · Session 2 starts{" "}
+                  {session2.startDisplay} · Mon–Sat · 4 class types · Limited spots
+                </p>
               </div>
-              <h3 className="font-display text-xl md:text-2xl font-bold mb-2">
-                Fall Class Registration Open!
-              </h3>
-              <p className="font-body text-sm md:text-base font-light opacity-90">
-                Session 1 starts {session1.startDisplay} · Session 2 starts{" "}
-                {session2.startDisplay} · Mon–Sat · 4 class types · Limited spots
-              </p>
-            </div>
 
-            <div className="flex items-center gap-4">
-              <a
-                href="#fall-enrollment"
-                className="bg-white text-accent-warm font-mono text-xs tracking-widest uppercase font-bold px-6 py-3 rounded-full hover:bg-white/90 transition-all duration-300 whitespace-nowrap"
-              >
-                View Sessions
-              </a>
-              <button
-                onClick={() => setShowBanner(false)}
-                className="text-white hover:text-white/70 transition-colors p-2"
-                aria-label="Close notification"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="flex items-center justify-center md:justify-end gap-3 shrink-0">
+                <a
+                  href="#fall-enrollment"
+                  className="bg-white text-accent-warm font-mono text-[10px] md:text-xs tracking-widest uppercase font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-full hover:bg-white/90 transition-all duration-300 whitespace-nowrap"
+                >
+                  View Sessions
+                </a>
+                <button
+                  onClick={() => setShowBanner(false)}
+                  className="text-white/90 hover:text-white transition-colors p-2 shrink-0"
+                  aria-label="Close notification"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
