@@ -41,6 +41,28 @@ const languages: { id: ReviewLanguage; label: string }[] = [
   { id: "bilingual", label: "EN + 中文" },
 ];
 
+async function copyTextToClipboard(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+}
+
 export default function GoogleReviewGenerator() {
   const [step, setStep] = useState<Step>("compose");
   const [experienceId, setExperienceId] =
@@ -49,17 +71,15 @@ export default function GoogleReviewGenerator() {
   const [roleId, setRoleId] = useState<(typeof roles)[number]["id"]>("parent");
   const [highlight, setHighlight] = useState("");
   const [reviews, setReviews] = useState<ReviewOption[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [picked, setPicked] = useState<ReviewOption | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const selected = reviews.find((r) => r.id === selectedId) ?? null;
-
   const generate = useCallback(async () => {
     setLoading(true);
     setError(null);
-    setSelectedId(null);
+    setPicked(null);
     setCopied(false);
 
     const role = roles.find((r) => r.id === roleId);
@@ -91,28 +111,23 @@ export default function GoogleReviewGenerator() {
     }
   }, [experienceId, language, highlight, roleId]);
 
-  const copyAndGo = useCallback(async (review: ReviewOption) => {
-    setSelectedId(review.id);
-    try {
-      await navigator.clipboard.writeText(review.body);
-      setCopied(true);
-    } catch {
-      // Fallback: still open Maps; user can copy manually
-      setCopied(false);
-    }
+  const copyAndGo = useCallback((review: ReviewOption) => {
+    setPicked(review);
+    setCopied(false);
     setStep("posted");
-    window.open(GOOGLE_MAPS_PLACE_URL, "_blank", "noopener,noreferrer");
+    void copyTextToClipboard(review.body).then(setCopied);
+    // Defer Maps open so React can paint the confirmation step first
+    window.setTimeout(() => {
+      window.open(GOOGLE_MAPS_PLACE_URL, "_blank", "noopener,noreferrer");
+    }, 120);
   }, []);
 
   const copyAgain = useCallback(async () => {
-    if (!selected) return;
-    try {
-      await navigator.clipboard.writeText(selected.body);
-      setCopied(true);
-    } catch {
-      setError("Could not copy — please select the text manually");
-    }
-  }, [selected]);
+    if (!picked) return;
+    const ok = await copyTextToClipboard(picked.body);
+    setCopied(ok);
+    if (!ok) setError("Could not copy — please select the text manually");
+  }, [picked]);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -207,10 +222,11 @@ export default function GoogleReviewGenerator() {
           </div>
         </motion.header>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           {step === "compose" && (
             <motion.section
               key="compose"
+              data-review-step="compose"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
@@ -363,6 +379,7 @@ export default function GoogleReviewGenerator() {
           {step === "choose" && (
             <motion.section
               key="choose"
+              data-review-step="choose"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
@@ -448,9 +465,10 @@ export default function GoogleReviewGenerator() {
             </motion.section>
           )}
 
-          {step === "posted" && selected && (
+          {step === "posted" && picked && (
             <motion.section
               key="posted"
+              data-review-step="posted"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -483,7 +501,7 @@ export default function GoogleReviewGenerator() {
                 }}
               >
                 <p className="font-body text-sm font-light leading-relaxed text-[#3a3935]">
-                  {selected.body}
+                  {picked.body}
                 </p>
               </div>
 
@@ -518,7 +536,7 @@ export default function GoogleReviewGenerator() {
                 onClick={() => {
                   setStep("compose");
                   setReviews([]);
-                  setSelectedId(null);
+                  setPicked(null);
                   setCopied(false);
                 }}
                 className="mt-10 font-mono text-[10px] uppercase tracking-[0.25em] text-[#8a8882] hover:text-[#2f2e2b]"
