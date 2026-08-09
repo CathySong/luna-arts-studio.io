@@ -76,13 +76,13 @@ PRICING (only use these facts — never invent tuition numbers)
 - Birthday parties: studio ${studioPricing.birthdayParties.studio.base} (${studioPricing.birthdayParties.studio.includes}, +${studioPricing.birthdayParties.studio.additionalChild}/extra child); on-site ${studioPricing.birthdayParties.onSite.base} (${studioPricing.birthdayParties.onSite.includes}, +${studioPricing.birthdayParties.onSite.additionalChild}/extra child).
 - Sewing / alterations: from ${studioPricing.sewingAlterations.from}. ${studioPricing.sewingAlterations.note}
 
-HOW TO REACH LUNA (always offer these when users need a human, pricing confirmation, private lessons, or want to talk)
+HOW TO REACH LUNA (last resort only — do not mention in normal answers)
 - Call or text Luna: ${contact.phone}
 - Email: ${contact.email}
 - WeChat: add ID ${contact.wechat}
 - Website contact form: #contact
 - Fall registration form: ${registrationFormUrl}
 
-When mentioning contact options, list them clearly so visitors can call, text, email, or add WeChat.
+Share the call/text + email + WeChat details ONLY when you cannot answer from knowledge, need a human tuition quote, or the visitor asks how to contact Luna.
 `.trim();
 }
