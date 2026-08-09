@@ -1,12 +1,12 @@
 "use client";
 import { useRef } from "react";
-import Image from "next/image";
 import { useInView } from "@/lib/useInView";
-import { classTypes } from "@/config/classes";
+import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 
 export default function ClassesPreview() {
   const titleRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { threshold: 0.3 });
+  const { weeklySchedule, privateLesson } = fallEnrollmentConfig;
 
   return (
     <section id="classes" className="py-32 bg-white relative overflow-hidden">
@@ -32,29 +32,70 @@ export default function ClassesPreview() {
                 Our <span className="italic text-accent-warm">Classes</span>
               </h2>
               <p className="font-body text-gray-dark mt-4 max-w-xl font-light leading-relaxed">
-                Four focused class types for Fall enrollment. Drawing and oil painting run 90 minutes.
-                Creative and handcraft classes run 60 minutes.
+                One weekly schedule — pick the day, time, and age group that fits. Full session dates
+                and registration are in Fall Enrollment below.
               </p>
             </div>
             <p className="font-body text-gray-dark max-w-xs font-light leading-relaxed text-sm">
-              Small class sizes. Expert instruction. A warm studio community for young artists and beginners.
+              Small class sizes. Expert instruction. A warm studio community.
             </p>
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5 lg:gap-6">
-          {classTypes.map((cls, i) => (
-            <ClassCard key={cls.id} cls={cls} delay={i * 80} />
+        <div className="border border-gray-lightest divide-y divide-gray-lightest mb-14">
+          {weeklySchedule.map((day) => (
+            <div key={day.day} className="grid lg:grid-cols-12">
+              <div className="lg:col-span-2 px-6 py-5 bg-gray-50/50 border-b lg:border-b-0 lg:border-r border-gray-lightest flex items-center">
+                <p className="font-display text-xl text-gray-darkest font-light">{day.day}</p>
+              </div>
+              <div className="lg:col-span-10 divide-y divide-gray-lightest">
+                {day.slots.map((slot) => (
+                  <div
+                    key={`${day.day}-${slot.time}-${slot.title}`}
+                    className="px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                  >
+                    <div>
+                      <p className="font-display text-lg text-gray-darkest font-light">{slot.title}</p>
+                      {slot.ages ? (
+                        <p className="font-body text-sm text-gray-darker mt-0.5">{slot.ages}</p>
+                      ) : null}
+                    </div>
+                    <p className="font-mono text-[11px] tracking-wide uppercase text-gray-dark shrink-0">
+                      {slot.time}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           ))}
+          <div className="grid lg:grid-cols-12">
+            <div className="lg:col-span-2 px-6 py-5 bg-gray-50/50 border-b lg:border-b-0 lg:border-r border-gray-lightest flex items-center">
+              <p className="font-display text-xl text-gray-darkest font-light">Private</p>
+            </div>
+            <div className="lg:col-span-10 px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div>
+                <p className="font-display text-lg text-gray-darkest font-light">
+                  {privateLesson.title}
+                </p>
+                <p className="font-body text-sm text-gray-darker mt-0.5">{privateLesson.note}</p>
+              </div>
+              <a
+                href="#contact"
+                className="font-mono text-[10px] tracking-widest uppercase text-accent-warm hover:underline shrink-0"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-14 border-t border-gray-lightest">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-14 border-t border-gray-lightest">
           <div>
             <p className="font-body text-gray-darkest/70 font-light mb-1">
-              Not sure which class is right for you?
+              Ready to enroll for Fall?
             </p>
             <p className="font-body text-gray-darker text-sm font-light">
-              Tell us your age, experience, and goals. We will help place you in the best fit.
+              Session dates and online registration are below.
             </p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
@@ -62,7 +103,7 @@ export default function ClassesPreview() {
               href="#fall-enrollment"
               className="px-8 py-3 bg-gray-darkest text-white font-body text-xs tracking-widest uppercase hover:bg-accent-warm transition-all duration-300"
             >
-              View Fall Schedule
+              Fall Enrollment
             </a>
             <a
               href="#contact"
@@ -74,89 +115,5 @@ export default function ClassesPreview() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ClassCard({
-  cls,
-  delay,
-}: {
-  cls: (typeof classTypes)[number];
-  delay: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { threshold: 0.1 });
-
-  return (
-    <div
-      ref={ref}
-      className="group relative border border-gray-lightest bg-white overflow-hidden hover:border-accent-warm/35 hover:shadow-sm transition-all duration-500"
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms, border-color 0.3s ease, box-shadow 0.3s ease`,
-      }}
-    >
-      <div className="absolute left-0 top-0 bottom-0 w-1 z-10" style={{ backgroundColor: cls.color }} />
-
-      <div className="relative aspect-[16/10] overflow-hidden bg-white-warm">
-        <Image
-          src={cls.image}
-          alt={cls.imageAlt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, 50vw"
-          quality={90}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-80" />
-        <div className="absolute top-4 left-5 right-5 flex items-start justify-between gap-3">
-          <span
-            className="font-display text-4xl font-light leading-none"
-            style={{ color: cls.color, opacity: 0.85 }}
-          >
-            {cls.number}
-          </span>
-          <div className="flex flex-col items-end gap-2">
-            <span
-              className="font-mono text-[8px] tracking-widest uppercase px-2.5 py-1 border bg-white/80 backdrop-blur-sm"
-              style={{ color: cls.color, borderColor: `${cls.color}55` }}
-            >
-              {cls.level}
-            </span>
-            <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker bg-white/75 backdrop-blur-sm px-2 py-1">
-              {cls.durationLabel}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="p-7 md:p-8 pt-5">
-        <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-2">
-          {cls.subtitle}
-        </p>
-        <h3 className="font-display text-2xl md:text-3xl text-gray-darkest font-light mb-1 group-hover:text-accent-warm transition-colors duration-300">
-          {cls.title}
-        </h3>
-        <p className="font-body text-sm text-gray-darker mb-4 font-light">{cls.titleZh}</p>
-        <p className="font-body text-gray-dark text-sm leading-relaxed font-light mb-6">
-          {cls.description}
-        </p>
-
-        <div className="flex items-center justify-between pt-5 border-t border-gray-lightest">
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: cls.color }} />
-            <span className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
-              Offered Mon–Sat in Fall
-            </span>
-          </div>
-          <a
-            href="#fall-enrollment"
-            className="font-mono text-[9px] tracking-widest uppercase text-accent-warm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          >
-            See schedule
-          </a>
-        </div>
-      </div>
-    </div>
   );
 }

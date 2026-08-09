@@ -5,7 +5,6 @@ import FounderBio from "@/components/FounderBio";
 import GalleryPreview from "@/components/GalleryPreview";
 import ClassesPreview from "@/components/ClassesPreview";
 import FallSessionsSection from "@/components/FallSessionsSection";
-import ScheduleSection from "@/components/ScheduleSection";
 import ContactSection from "@/components/ContactSection";
 import NewServicesPreview from "@/components/NewServicesPreview";
 
@@ -22,9 +21,8 @@ export default function Home() {
 
       <NewServicesPreview />
 
-      {/* Fall sessions (replaces summer camp) */}
+      {/* Fall sessions + registration */}
       <FallSessionsSection />
-      <ScheduleSection />
       <ContactSection />
     </>
   );

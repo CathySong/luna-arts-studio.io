@@ -4,14 +4,15 @@ import { Share2, ArrowLeft } from "lucide-react";
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 
 export default function FlyerPage() {
-  const { sessions, registrationFormUrl, contact } = fallEnrollmentConfig;
+  const { sessions, registrationFormUrl, contact, weeklySchedule, privateLesson } =
+    fallEnrollmentConfig;
 
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
           title: "Luna Art Studio Fall Enrollment 2026",
-          text: "Fall art classes are open for registration — Creative, Drawing, Oil Painting, and Handcraft Mon–Sat!",
+          text: "Fall art classes are open — Wed–Sat weekly classes with clear age groups!",
           url: window.location.href,
         });
       } catch {
@@ -60,11 +61,49 @@ export default function FlyerPage() {
                 🍂 Fall 2026
               </span>
               <h2 className="font-display text-4xl font-light text-gray-900 mb-4">
-                Fall Class Enrollment Details
+                Fall Class Schedule
               </h2>
               <p className="font-body text-gray-600 max-w-2xl mx-auto">
-                Four class types Mon–Sat at Luna Art Studio. Drawing & Oil Painting 90 min · Creative & Handcraft 60 min. Choose Session 1, Session 2, or both.
+                One clear weekly list. Choose your day, time, and age group — then enroll in Session 1,
+                Session 2, or both.
               </p>
+            </div>
+
+            <div className="mb-12 border border-gray-200 divide-y divide-gray-200 rounded-xl overflow-hidden">
+              {weeklySchedule.map((day) => (
+                <div key={day.day} className="grid md:grid-cols-12">
+                  <div className="md:col-span-3 px-6 py-4 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 flex items-center">
+                    <p className="font-display text-xl text-gray-900 font-light">{day.day}</p>
+                  </div>
+                  <div className="md:col-span-9 divide-y divide-gray-100">
+                    {day.slots.map((slot) => (
+                      <div
+                        key={`${day.day}-${slot.time}-${slot.title}`}
+                        className="px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                      >
+                        <div>
+                          <p className="font-display text-lg text-gray-900 font-light">{slot.title}</p>
+                          {slot.ages ? (
+                            <p className="font-body text-sm text-gray-600">{slot.ages}</p>
+                          ) : null}
+                        </div>
+                        <p className="font-mono text-[11px] tracking-wide uppercase text-gray-600 shrink-0">
+                          {slot.time}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="grid md:grid-cols-12">
+                <div className="md:col-span-3 px-6 py-4 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 flex items-center">
+                  <p className="font-display text-xl text-gray-900 font-light">Private</p>
+                </div>
+                <div className="md:col-span-9 px-6 py-4">
+                  <p className="font-display text-lg text-gray-900 font-light">{privateLesson.title}</p>
+                  <p className="font-body text-sm text-gray-600">{privateLesson.note}</p>
+                </div>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -81,7 +120,7 @@ export default function FlyerPage() {
                       {session.classCount} classes
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
-                      Mon–Sat
+                      Wed–Sat
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
                       {session.startDisplay} – {session.endDisplay}
@@ -112,53 +151,37 @@ export default function FlyerPage() {
 
             <div className="grid md:grid-cols-2 gap-12 pt-8 border-t border-gray-200">
               <div>
-                <h3 className="font-display text-2xl font-light text-gray-800 mb-4">
-                  📅 Key Info
-                </h3>
+                <h3 className="font-display text-2xl font-light text-gray-800 mb-4">Key Info</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Four class types: Creative, Drawing, Oil Painting, Handcraft
+                      Classes run Wednesday–Saturday · each class 90 minutes
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Session 1 starts Sep 9 · 9 weekly classes through Nov 4 (Mon–Sat)
+                      Session 1: Sep 9 – Nov 4 · 9 weekly classes
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Drawing & Oil Painting 90 min · Creative & Handcraft 60 min
+                      Session 2: Nov 11 – Feb 3 · 10 classes (holiday break late December)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Session 2 starts Nov 11 · 10 classes through Feb 3
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
-                    <span className="font-body text-gray-700">
-                      Session 2 skips late-December holiday weeks, resumes in January
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
-                    <span className="font-body text-gray-700">
-                      Small class sizes · Limited spots available
+                      Private lessons available by appointment
                     </span>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-display text-2xl font-light text-gray-800 mb-4">
-                  📞 Contact
-                </h3>
+                <h3 className="font-display text-2xl font-light text-gray-800 mb-4">Contact</h3>
                 <div className="space-y-3">
                   <p className="font-body text-gray-700">
                     <span className="font-medium">Email:</span> {contact.email}
