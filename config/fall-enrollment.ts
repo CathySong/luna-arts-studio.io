@@ -5,7 +5,7 @@ import { classTypes, type ClassTypeId } from "./classes";
 
 export const fallEnrollmentConfig = {
   // Fall registration Google Form
-  registrationFormUrl: "https://forms.gle/AFNYCseZ74WY3zKf8",
+  registrationFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLScMgvFa4_RkTECBlZOzSnDbBS_rXyr0bKrQsR1IedM2PZnyuQ/viewform?usp=header",
 
   seasonLabel: "Fall 2026 Enrollment",
   headline: "Fall Classes Now Open",
