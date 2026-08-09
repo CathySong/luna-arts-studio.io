@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Phone, Mail } from "lucide-react";
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 
 type ChatMessage = {
@@ -9,21 +9,29 @@ type ChatMessage = {
   content: string;
 };
 
+const { phone, email, wechat } = fallEnrollmentConfig.contact;
+const phoneHref = phone.replace(/\s+/g, "");
+
 const SUGGESTIONS = [
   "What Fall classes do you offer?",
   "What ages for Creative Art?",
   "How much do classes cost?",
-  "When does Session 1 start?",
+  "How can I talk to Luna?",
 ];
 
-const WELCOME =
-  "Hi! I'm Luna's studio assistant. Ask me about Fall classes, schedules, ages, enrollment, or pricing — I'll help you find the right fit.";
+const WELCOME = `Hi! I'm Luna's studio assistant. Ask me about Fall classes, schedules, ages, enrollment, or pricing.
+
+Prefer to talk with Luna directly?
+• Call or text: ${phone}
+• Email: ${email}
+• WeChat: ${wechat}`;
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "assistant", content: WELCOME },
   ]);
@@ -37,6 +45,16 @@ export default function ChatWidget() {
     }
   }, [open, messages, busy]);
 
+  async function copyWeChat() {
+    try {
+      await navigator.clipboard.writeText(wechat);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  }
+
   async function sendMessage(text: string) {
     const content = text.trim();
     if (!content || busy) return;
@@ -48,7 +66,6 @@ export default function ChatWidget() {
     setBusy(true);
 
     try {
-      // Omit the static welcome bubble from the API payload
       const payload = nextMessages.filter(
         (m, i) => !(i === 0 && m.role === "assistant" && m.content === WELCOME)
       );
@@ -70,7 +87,9 @@ export default function ChatWidget() {
       setMessages((prev) => [...prev, { role: "assistant", content: data.reply! }]);
     } catch (err) {
       const msg =
-        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        err instanceof Error
+          ? `${err.message}\n\nYou can also call/text Luna at ${phone}, email ${email}, or WeChat ${wechat}.`
+          : `Something went wrong. Call/text ${phone}, email ${email}, or WeChat ${wechat}.`;
       setError(msg);
     } finally {
       setBusy(false);
@@ -97,7 +116,7 @@ export default function ChatWidget() {
               </p>
               <h2 className="font-display text-2xl font-light leading-tight">Studio Chat</h2>
               <p className="font-body text-xs font-light opacity-90 mt-1">
-                Classes · schedule · pricing
+                Classes · pricing · talk to Luna
               </p>
             </div>
             <button
@@ -138,7 +157,9 @@ export default function ChatWidget() {
             )}
 
             {error && (
-              <p className="font-body text-xs text-red-600 leading-relaxed">{error}</p>
+              <p className="font-body text-xs text-red-600 leading-relaxed whitespace-pre-wrap">
+                {error}
+              </p>
             )}
 
             {messages.length <= 1 && !busy && (
@@ -159,19 +180,72 @@ export default function ChatWidget() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="border-t border-gray-lightest px-3 py-2 flex gap-3 text-[10px] font-mono tracking-widest uppercase text-gray-darker shrink-0">
-            <a
-              href={fallEnrollmentConfig.registrationFormUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent-warm transition-colors"
-            >
-              Register
-            </a>
-            <a href="/#contact" className="hover:text-accent-warm transition-colors">
-              Contact
-            </a>
-            <span className="ml-auto">{fallEnrollmentConfig.contact.phone}</span>
+          {/* Direct ways to reach Luna */}
+          <div className="border-t border-gray-lightest px-3 py-3 bg-gray-50/70 shrink-0">
+            <p className="font-mono text-[8px] tracking-widest uppercase text-gray-darker mb-2">
+              Talk to Luna
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href={`tel:${phoneHref}`}
+                className="flex items-center gap-2 px-2.5 py-2 bg-white border border-gray-lightest hover:border-accent-warm/40 transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-accent-warm shrink-0" />
+                <span className="min-w-0">
+                  <span className="block font-mono text-[8px] tracking-widest uppercase text-gray-darker">
+                    Call
+                  </span>
+                  <span className="block font-body text-[11px] text-gray-darkest truncate">
+                    {phone}
+                  </span>
+                </span>
+              </a>
+              <a
+                href={`sms:${phoneHref}`}
+                className="flex items-center gap-2 px-2.5 py-2 bg-white border border-gray-lightest hover:border-accent-warm/40 transition-colors"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-accent-warm shrink-0" />
+                <span className="min-w-0">
+                  <span className="block font-mono text-[8px] tracking-widest uppercase text-gray-darker">
+                    Text
+                  </span>
+                  <span className="block font-body text-[11px] text-gray-darkest truncate">
+                    {phone}
+                  </span>
+                </span>
+              </a>
+              <a
+                href={`mailto:${email}`}
+                className="flex items-center gap-2 px-2.5 py-2 bg-white border border-gray-lightest hover:border-accent-warm/40 transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-accent-warm shrink-0" />
+                <span className="min-w-0">
+                  <span className="block font-mono text-[8px] tracking-widest uppercase text-gray-darker">
+                    Email
+                  </span>
+                  <span className="block font-body text-[11px] text-gray-darkest truncate">
+                    {email}
+                  </span>
+                </span>
+              </a>
+              <button
+                type="button"
+                onClick={() => void copyWeChat()}
+                className="flex items-center gap-2 px-2.5 py-2 bg-white border border-gray-lightest hover:border-accent-warm/40 transition-colors text-left"
+              >
+                <span className="w-3.5 h-3.5 text-accent-warm shrink-0 font-display text-sm leading-none">
+                  微
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-mono text-[8px] tracking-widest uppercase text-gray-darker">
+                    {copied ? "Copied" : "WeChat"}
+                  </span>
+                  <span className="block font-body text-[11px] text-gray-darkest truncate">
+                    {wechat}
+                  </span>
+                </span>
+              </button>
+            </div>
           </div>
 
           <form

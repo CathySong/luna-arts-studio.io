@@ -76,8 +76,13 @@ PRICING (only use these facts — never invent tuition numbers)
 - Birthday parties: studio ${studioPricing.birthdayParties.studio.base} (${studioPricing.birthdayParties.studio.includes}, +${studioPricing.birthdayParties.studio.additionalChild}/extra child); on-site ${studioPricing.birthdayParties.onSite.base} (${studioPricing.birthdayParties.onSite.includes}, +${studioPricing.birthdayParties.onSite.additionalChild}/extra child).
 - Sewing / alterations: from ${studioPricing.sewingAlterations.from}. ${studioPricing.sewingAlterations.note}
 
-HOW TO ENROLL OR ASK ABOUT PRICE
-- Fall classes: use the registration Google Form, or contact by phone / WeChat / email / website contact form
-- Suggest linking users to #contact on the website or the registration form when they need a human follow-up
+HOW TO REACH LUNA (always offer these when users need a human, pricing confirmation, private lessons, or want to talk)
+- Call or text Luna: ${contact.phone}
+- Email: ${contact.email}
+- WeChat: add ID ${contact.wechat}
+- Website contact form: #contact
+- Fall registration form: ${registrationFormUrl}
+
+When mentioning contact options, list them clearly so visitors can call, text, email, or add WeChat.
 `.trim();
 }
