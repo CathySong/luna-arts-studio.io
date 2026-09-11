@@ -22,75 +22,57 @@ export const fallEnrollmentConfig = {
   seasonLabel: "Fall 2026 Enrollment",
   headline: "Fall Classes Now Open",
   subheadline:
-    "Wed–Sat weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
+    "Thu–Sat weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
 
-  // Session date anchors follow the established Wednesday calendar pattern.
-  // Other weekdays use the same week windows (Session 1 / Session 2).
+  // Session date anchors follow the Thursday calendar pattern.
+  // Other weekdays (Fri, Sat) use the same week windows (Session 1 / Session 2).
   sessions: [
     {
       id: "session-1",
       name: "Session 1",
       label: "Fall Session 1",
-      startDisplay: "Sep 9",
-      endDisplay: "Nov 4",
+      startDisplay: "Sep 10",
+      endDisplay: "Nov 5",
       classCount: 9,
-      // Wednesday reference dates (other days run the same weeks)
+      // Thursday reference dates (other days run the same weeks)
       dates: [
-        "Sep 9",
-        "Sep 16",
-        "Sep 23",
-        "Sep 30",
-        "Oct 7",
-        "Oct 14",
-        "Oct 21",
-        "Oct 28",
-        "Nov 4",
+        "Sep 10",
+        "Sep 17",
+        "Sep 24",
+        "Oct 1",
+        "Oct 8",
+        "Oct 15",
+        "Oct 22",
+        "Oct 29",
+        "Nov 5",
       ],
-      note: "9 weekly classes · same session window Wed–Sat",
+      note: "9 weekly classes · same session window Thu–Sat",
     },
     {
       id: "session-2",
       name: "Session 2",
       label: "Fall / Winter Session 2",
-      startDisplay: "Nov 11",
-      endDisplay: "Feb 3",
+      startDisplay: "Nov 12",
+      endDisplay: "Feb 4",
       classCount: 10,
       dates: [
-        "Nov 11",
-        "Nov 18",
-        "Dec 2",
-        "Dec 9",
-        "Dec 16",
-        "Jan 6",
-        "Jan 13",
-        "Jan 20",
-        "Jan 27",
-        "Feb 3",
+        "Nov 12",
+        "Nov 19",
+        "Dec 3",
+        "Dec 10",
+        "Dec 17",
+        "Jan 7",
+        "Jan 14",
+        "Jan 21",
+        "Jan 28",
+        "Feb 4",
       ],
-      note: "10 weekly classes · holiday break late December · same session window Wed–Sat",
+      note: "10 weekly classes · holiday break late December · same session window Thu–Sat",
     },
   ],
 
   // Canonical weekly timetable — one clear list so students pick the right slot.
   weeklySchedule: [
-    {
-      day: "Wednesday",
-      dayShort: "Wed",
-      slots: [
-        {
-          time: "10:00–11:30 AM",
-          title: "Adult Drawing",
-          ages: "Adults",
-          duration: "90 min",
-        },
-        {
-          time: "5:30–7:00 PM",
-          title: "Drawing & Creative Studio",
-          ages: "Ages 9–11",
-          duration: "90 min",
-        },
-      ],
-    },
     {
       day: "Thursday",
       dayShort: "Thu",

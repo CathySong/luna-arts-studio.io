@@ -81,7 +81,7 @@ export default function FallSessionsSection() {
                   {session.classCount} Classes
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
-                  Wed–Sat
+                  Thu–Sat
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
                   {session.startDisplay} – {session.endDisplay}
@@ -92,7 +92,7 @@ export default function FallSessionsSection() {
 
               <div className="border-t border-gray-lightest pt-6 mb-8">
                 <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-4">
-                  Session dates (Wed reference)
+                  Session dates (Thu reference)
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {session.dates.map((date) => (
@@ -124,7 +124,7 @@ export default function FallSessionsSection() {
               Schedule
             </p>
             <p className="font-body text-sm text-gray-darkest font-light mb-1">
-              Wednesday – Saturday
+              Thursday – Saturday
             </p>
             <p className="font-body text-xs text-gray-dark font-light">
               Session 1: {sessions[0].startDisplay} – {sessions[0].endDisplay}

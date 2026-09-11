@@ -31,7 +31,7 @@ export default function ScheduleSection() {
           </h2>
           <p className="font-body text-gray-dark mt-4 max-w-2xl font-light">
             Weekly class times are listed above. Here are the Session 1 and Session 2 date windows
-            (Wednesday reference dates — other days follow the same weeks).
+            (Thursday reference dates — other days follow the same weeks).
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function ScheduleSection() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 border-b border-gray-lightest bg-gray-50/50">
                 <div>
                   <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm mb-1">
-                    Session Window · Wed–Sat
+                    Session Window · Thu–Sat
                   </p>
                   <h3 className="font-display text-2xl text-gray-darkest font-light">
                     {session.name}
@@ -67,7 +67,7 @@ export default function ScheduleSection() {
                       Week {String(i + 1).padStart(2, "0")}
                     </p>
                     <p className="font-display text-lg text-gray-darkest font-light">{date}</p>
-                    <p className="font-body text-xs text-gray-dark mt-1">Wed reference</p>
+                    <p className="font-body text-xs text-gray-dark mt-1">Thu reference</p>
                   </div>
                 ))}
               </div>
