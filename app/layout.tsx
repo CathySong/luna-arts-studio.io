@@ -51,12 +51,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: "Luna Art Studio — Fall Enrollment Open | Fine Art Classes",
   description:
-    "Fall 2026 enrollment is open at Luna Art Studio in Warren, NJ. Wed–Sat weekly classes with clear age groups. Session 1 starts Sep 9; Session 2 Nov 11. Register now.",
+    "Fall 2026 enrollment is open at Luna Art Studio in Warren, NJ. Thu–Sat weekly classes with clear age groups. Session 1 starts Sep 10; Session 2 Nov 12. Register now.",
   keywords:
     "art studio, fall art classes, creative art, drawing class, sewing, mixed media, Warren NJ, New Jersey, fall enrollment",
   openGraph: {
     title: "Luna Art Studio",
-    description: "Fall 2026 Enrollment Open — Wed–Sat art classes with clear age groups in Warren, NJ",
+    description: "Fall 2026 Enrollment Open — Thu–Sat art classes with clear age groups in Warren, NJ",
     type: "website",
     siteName: "Luna Art Studio",
     locale: "en_US",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Luna Art Studio",
-    description: "Fall 2026 Enrollment Open — Wed–Sat art classes with clear age groups in Warren, NJ",
+    description: "Fall 2026 Enrollment Open — Thu–Sat art classes with clear age groups in Warren, NJ",
   },
   icons: {
     icon: [
