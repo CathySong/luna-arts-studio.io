@@ -6,10 +6,6 @@ const DEFAULT_PROMPT_REL = "lib/crm/prompts/attendance-review.md";
 let cachedFilePrompt: string | null = null;
 
 function resolvePromptFilePath(): string {
-  const custom = process.env.ATTENDANCE_REVIEW_PROMPT_PATH?.trim();
-  if (custom) {
-    return custom.startsWith("/") ? custom : join(process.cwd(), custom);
-  }
   return join(process.cwd(), DEFAULT_PROMPT_REL);
 }
 
@@ -20,7 +16,10 @@ const PROMPT_FALLBACK =
 export function loadAttendanceReviewPromptFromFile(): string {
   if (cachedFilePrompt) return cachedFilePrompt;
   try {
-    cachedFilePrompt = readFileSync(resolvePromptFilePath(), "utf8").trim();
+    cachedFilePrompt = readFileSync(
+      /* turbopackIgnore: true */ resolvePromptFilePath(),
+      "utf8"
+    ).trim();
   } catch {
     cachedFilePrompt = PROMPT_FALLBACK;
   }

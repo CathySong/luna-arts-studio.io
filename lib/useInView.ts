@@ -7,7 +7,7 @@ interface Options {
 }
 
 export function useInView(
-  ref: RefObject<Element>,
+  ref: RefObject<Element | null>,
   { threshold = 0, once = true }: Options = {}
 ): boolean {
   const [inView, setInView] = useState(false);

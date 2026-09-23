@@ -1,8 +1,8 @@
 # 🌙 Luna Art Studio
 
-A cinematic, production-ready website for **Luna Art Studio** — built with Next.js 14, Tailwind CSS, and TypeScript. Deployable to Vercel in minutes.
+A cinematic, production-ready website for **Luna Art Studio** — built with Next.js 16, Tailwind CSS, and TypeScript. Deployable to Vercel in minutes.
 
-![Luna Art Studio](https://img.shields.io/badge/Next.js-14-black?logo=next.js) ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-blue?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript) ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)
+![Luna Art Studio](https://img.shields.io/badge/Next.js-16-black?logo=next.js) ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-blue?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript) ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)
 
 ---
 
@@ -84,7 +84,7 @@ luna-art-studio/
 
 ## 🔧 Tech Stack
 
-- **Next.js 14** – React framework with App Router
+- **Next.js 16** – React framework with App Router
 - **Tailwind CSS** – Utility‑first styling
 - **TypeScript** – Type safety
 - **Lucide React** – Icon library

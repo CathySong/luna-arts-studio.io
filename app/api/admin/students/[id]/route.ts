@@ -9,14 +9,14 @@ import {
 } from "@/lib/crm/db";
 
 type SegmentContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function GET(req: NextRequest, ctx: SegmentContext) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const student = await getStudent(ctx.params.id);
+  const student = await getStudent((await ctx.params).id);
   if (!student) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   return NextResponse.json({ student });
@@ -29,7 +29,7 @@ export async function PATCH(req: NextRequest, ctx: SegmentContext) {
   const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
   try {
     const patch = coercePatch(body);
-    const updated = await updateStudent(ctx.params.id, patch);
+    const updated = await updateStudent((await ctx.params).id, patch);
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
     return NextResponse.json({ student: updated });
@@ -45,7 +45,7 @@ export async function DELETE(req: NextRequest, ctx: SegmentContext) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const removed = await deleteStudent(ctx.params.id);
+  const removed = await deleteStudent((await ctx.params).id);
   if (!removed) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   return NextResponse.json({ ok: true });

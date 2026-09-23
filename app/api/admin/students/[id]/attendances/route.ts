@@ -7,7 +7,7 @@ import { createAttendance, getStudent, listAttendancesByStudent } from "@/lib/cr
 import { saveCrmImages } from "@/lib/crm/upload-image";
 import type { AttendanceInput } from "@/lib/crm/types";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 export const runtime = "nodejs";
 
@@ -15,7 +15,7 @@ export async function GET(req: NextRequest, { params }: Params) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const attendances = await listAttendancesByStudent(params.id);
+  const attendances = await listAttendancesByStudent((await params).id);
   return NextResponse.json({ attendances });
 }
 
@@ -23,16 +23,16 @@ export async function POST(req: NextRequest, { params }: Params) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const student = await getStudent(params.id);
+  const student = await getStudent((await params).id);
   if (!student) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const contentType = req.headers.get("content-type") ?? "";
 
   if (contentType.includes("multipart/form-data")) {
-    return handleMultipartPost(req, params.id);
+    return handleMultipartPost(req, (await params).id);
   }
 
-  return handleJsonPost(req, params.id);
+  return handleJsonPost(req, (await params).id);
 }
 
 async function handleJsonPost(req: NextRequest, studentId: string) {

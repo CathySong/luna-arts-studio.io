@@ -6,7 +6,7 @@ import { getReview } from "@/lib/crm/db";
 import { generateReviewForStudent } from "@/lib/crm/reviews";
 
 type SegmentContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export const runtime = "nodejs";
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest, ctx: SegmentContext) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const prev = await getReview(ctx.params.id);
+  const prev = await getReview((await ctx.params).id);
   if (!prev) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   try {
