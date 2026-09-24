@@ -5,13 +5,13 @@ import { requireAdmin } from "@/lib/crm/api-auth";
 import { createPayment, getStudent, listPaymentsByStudent } from "@/lib/crm/db";
 import type { PaymentInput } from "@/lib/crm/types";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 export async function GET(req: NextRequest, { params }: Params) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const payments = await listPaymentsByStudent(params.id);
+  const payments = await listPaymentsByStudent((await params).id);
   return NextResponse.json({ payments });
 }
 
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest, { params }: Params) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const student = await getStudent(params.id);
+  const student = await getStudent((await params).id);
   if (!student) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = (await req.json()) as Partial<PaymentInput>;
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest, { params }: Params) {
     );
   }
 
-  const payment = await createPayment(params.id, {
+  const payment = await createPayment((await params).id, {
     amount,
     paidAt,
     lessonsPurchased,

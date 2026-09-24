@@ -8,14 +8,14 @@ import type { ClassReview, ReviewStatus } from "@/lib/crm/types";
 const STATUSES = new Set<ReviewStatus>(["draft", "generated", "approved"]);
 
 type SegmentContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function GET(req: NextRequest, ctx: SegmentContext) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const review = await getReview(ctx.params.id);
+  const review = await getReview((await ctx.params).id);
   if (!review) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   return NextResponse.json({ review });
@@ -51,7 +51,7 @@ export async function PATCH(req: NextRequest, ctx: SegmentContext) {
       return NextResponse.json({ error: "Nothing to update" }, { status: 400 });
     }
 
-    const updated = await patchReview(ctx.params.id, patchPayload);
+    const updated = await patchReview((await ctx.params).id, patchPayload);
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
     return NextResponse.json({ review: updated });

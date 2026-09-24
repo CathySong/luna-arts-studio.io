@@ -5,7 +5,7 @@ import { requireAdmin } from "@/lib/crm/api-auth";
 import { generateAllSessionReviews } from "@/lib/crm/reviews";
 
 type SegmentContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export const runtime = "nodejs";
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest, ctx: SegmentContext) {
   if (denied) return denied;
 
   try {
-    const report = await generateAllSessionReviews(ctx.params.id);
+    const report = await generateAllSessionReviews((await ctx.params).id);
     return NextResponse.json(report);
   } catch (error) {
     return NextResponse.json(

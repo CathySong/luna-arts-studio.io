@@ -6,14 +6,14 @@ import { getStudent, updateStudent } from "@/lib/crm/db";
 import { syncStudentNotebook } from "@/lib/crm/notebooklm";
 
 type SegmentContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function POST(req: NextRequest, ctx: SegmentContext) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const student = await getStudent(ctx.params.id);
+  const student = await getStudent((await ctx.params).id);
   if (!student) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const result = await syncStudentNotebook(student);
@@ -21,13 +21,13 @@ export async function POST(req: NextRequest, ctx: SegmentContext) {
     return NextResponse.json({ ok: false, error: result.error }, { status: 502 });
   }
 
-  await updateStudent(ctx.params.id, {
+  await updateStudent((await ctx.params).id, {
     ...(result.sourceId
       ? { notebooklmSourceId: result.sourceId, notebooklmSourceName: result.sourceName }
       : {}),
   });
 
-  const hydrated = await getStudent(ctx.params.id);
+  const hydrated = await getStudent((await ctx.params).id);
 
   return NextResponse.json({ ok: true, student: hydrated, notebook: result });
 }

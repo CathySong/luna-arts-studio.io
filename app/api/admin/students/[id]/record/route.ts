@@ -4,15 +4,15 @@ import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/crm/api-auth";
 import { getStudent, getStudentRecord } from "@/lib/crm/db";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 export async function GET(req: NextRequest, { params }: Params) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const student = await getStudent(params.id);
+  const student = await getStudent((await params).id);
   if (!student) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const record = await getStudentRecord(params.id);
+  const record = await getStudentRecord((await params).id);
   return NextResponse.json({ student, ...record });
 }

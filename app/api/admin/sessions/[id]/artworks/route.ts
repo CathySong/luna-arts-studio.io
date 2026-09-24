@@ -13,7 +13,7 @@ import {
 } from "@/lib/crm/db";
 
 type SegmentContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export const runtime = "nodejs";
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest, ctx: SegmentContext) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const session = await getSession(ctx.params.id);
+  const session = await getSession((await ctx.params).id);
   if (!session) return NextResponse.json({ error: "Session not found" }, { status: 404 });
 
   const fd = await req.formData();
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest, ctx: SegmentContext) {
   }
 
   const ext = inferExtension(typeof file.type === "string" ? file.type : "", file instanceof File ? file.name : undefined);
-  const baseName = `${ctx.params.id}-${studentId}-${Date.now()}.${ext}`;
+  const baseName = `${(await ctx.params).id}-${studentId}-${Date.now()}.${ext}`;
   await mkdir(getUploadDir(), { recursive: true });
   const absPath = path.join(getUploadDir(), baseName);
 
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest, ctx: SegmentContext) {
   const notes = readOptionalString(fd, "notes");
 
   const artwork = await createArtworkRecord({
-    sessionId: ctx.params.id,
+    sessionId: (await ctx.params).id,
     studentId,
     imageRelativePath: imagePath,
     title,

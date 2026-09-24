@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/crm/api-auth";
 import { deleteAttendance, updateAttendance } from "@/lib/crm/db";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 export const runtime = "nodejs";
 
@@ -51,7 +51,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     }
   }
 
-  const updated = await updateAttendance(params.id, patch as Parameters<typeof updateAttendance>[1]);
+  const updated = await updateAttendance((await params).id, patch as Parameters<typeof updateAttendance>[1]);
   if (!updated) {
     return NextResponse.json({ error: "not found" }, { status: 404 });
   }
@@ -62,7 +62,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
 
-  const ok = await deleteAttendance(params.id);
+  const ok = await deleteAttendance((await params).id);
   if (!ok) {
     return NextResponse.json({ error: "not found" }, { status: 404 });
   }

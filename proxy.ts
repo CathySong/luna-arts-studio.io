@@ -9,7 +9,7 @@ import {
 } from "@/lib/crm/session-cookie";
 import { updateSession } from "@/utils/supabase/middleware";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname === "/studio") {
