@@ -97,12 +97,12 @@ export default function Footer() {
             >
               工作室后台
             </Link>
-            <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
+            <Link href="/privacy" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
               Privacy
-            </a>
-            <a href="#" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
+            </Link>
+            <Link href="/terms" className="font-mono text-[9px] tracking-widest uppercase text-gray-darker hover:text-gray-dark transition-colors">
               Terms
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -3,10 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, interest, message } = body;
+    const { name, email, phone, interest, message, smsConsent } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    if (smsConsent && !phone) {
+      return NextResponse.json({ error: "Phone number required for SMS consent" }, { status: 400 });
     }
 
     // Option 1: Use Resend (recommended) — add RESEND_API_KEY to your .env.local
@@ -20,7 +24,15 @@ export async function POST(req: NextRequest) {
     // });
 
     // Option 2: Log for now (replace with real email service)
-    console.log("Contact form submission:", { name, email, phone, interest, message });
+    console.log("Contact form submission:", {
+      name,
+      email,
+      phone,
+      interest,
+      message,
+      smsConsent: Boolean(smsConsent),
+      smsConsentRecordedAt: smsConsent ? new Date().toISOString() : null,
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {

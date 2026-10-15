@@ -26,10 +26,14 @@ export default function ContactSection() {
     phone: "",
     interest: "",
     message: "",
+    smsConsent: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    const value = e.target instanceof HTMLInputElement && e.target.type === "checkbox"
+      ? e.target.checked
+      : e.target.value;
+    setForm((f) => ({ ...f, [e.target.name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,7 +47,7 @@ export default function ContactSection() {
       });
       if (res.ok) {
         setStatus("sent");
-        setForm({ name: "", email: "", phone: "", interest: "", message: "" });
+        setForm({ name: "", email: "", phone: "", interest: "", message: "", smsConsent: false });
       } else {
         setStatus("error");
       }
@@ -192,6 +196,26 @@ export default function ContactSection() {
                     required
                   />
                 </div>
+
+                <label className="flex items-start gap-3 border border-gray-lightest bg-gray-lightest/20 p-4">
+                  <input
+                    type="checkbox"
+                    name="smsConsent"
+                    checked={form.smsConsent}
+                    onChange={handleChange}
+                    disabled={!form.phone}
+                    className="mt-1 h-4 w-4 shrink-0 accent-accent-warm disabled:opacity-40"
+                  />
+                  <span className="font-body text-xs font-light leading-5 text-gray-dark">
+                    I agree to receive customer-care text messages from Luna Art Studio at the
+                    number provided, including inquiry responses, registration confirmations,
+                    reminders, schedule changes, and service updates. Message frequency varies.
+                    Message and data rates may apply. Consent is not a condition of purchase. Reply
+                    STOP to opt out or HELP for help. See our{" "}
+                    <a className="text-accent-warm underline" href="/terms">Terms</a> and{" "}
+                    <a className="text-accent-warm underline" href="/privacy">Privacy Policy</a>.
+                  </span>
+                </label>
 
                 <div className="flex items-center gap-4">
                   <button
