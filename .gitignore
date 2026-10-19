@@ -37,3 +37,4 @@ next-env.d.ts
 # Luna CRM local data & uploads
 /data/
 /public/uploads/
+.env*

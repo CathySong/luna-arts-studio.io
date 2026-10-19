@@ -1,0 +1,200 @@
+import twilio from "twilio";
+
+import { getSupabaseAdmin } from "./supabase-client";
+import { listStudents, updateStudent } from "./db";
+import type { Student } from "./types";
+
+export type SmsConsentStatus = "unknown" | "opted_in" | "opted_out";
+
+export type SmsStudentSetting = {
+  studentId: string;
+  enabled: boolean;
+  consentStatus: SmsConsentStatus;
+  initialMessage: string;
+  lastSentAt?: string;
+  updatedAt: string;
+};
+
+export type SmsMessageLog = {
+  id: string;
+  studentId?: string;
+  phone: string;
+  direction: "inbound" | "outbound";
+  messageType: string;
+  body: string;
+  status: string;
+  twilioMessageSid?: string;
+  errorMessage?: string;
+  createdAt: string;
+};
+
+export const DEFAULT_INITIAL_SMS =
+  "Hi {{parent_name}}, this is Luna Art Studio. We're setting up class updates for {{student_name}}. Reply YES to receive reminders. Reply STOP to opt out.";
+
+function settingFromRow(row: Record<string, unknown>): SmsStudentSetting {
+  return {
+    studentId: String(row.student_id),
+    enabled: Boolean(row.enabled),
+    consentStatus: row.consent_status as SmsConsentStatus,
+    initialMessage: String(row.initial_message || DEFAULT_INITIAL_SMS),
+    lastSentAt: row.last_sent_at ? new Date(String(row.last_sent_at)).toISOString() : undefined,
+    updatedAt: new Date(String(row.updated_at)).toISOString(),
+  };
+}
+
+function logFromRow(row: Record<string, unknown>): SmsMessageLog {
+  return {
+    id: String(row.id),
+    studentId: row.student_id ? String(row.student_id) : undefined,
+    phone: String(row.phone),
+    direction: row.direction as "inbound" | "outbound",
+    messageType: String(row.message_type),
+    body: String(row.body),
+    status: String(row.status),
+    twilioMessageSid: row.twilio_message_sid ? String(row.twilio_message_sid) : undefined,
+    errorMessage: row.error_message ? String(row.error_message) : undefined,
+    createdAt: new Date(String(row.created_at)).toISOString(),
+  };
+}
+
+export function renderInitialSms(template: string, student: Student): string {
+  return template
+    .replaceAll("{{student_name}}", student.name)
+    .replaceAll("{{parent_name}}", student.parentName || "there");
+}
+
+export async function listSmsAgentData() {
+  const [students, settingsResult, logsResult] = await Promise.all([
+    listStudents(),
+    getSupabaseAdmin().from("sms_student_settings").select("*").order("updated_at", { ascending: false }),
+    getSupabaseAdmin().from("sms_message_logs").select("*").order("created_at", { ascending: false }).limit(100),
+  ]);
+  if (settingsResult.error) throw new Error(`Unable to load SMS settings: ${settingsResult.error.message}`);
+  if (logsResult.error) throw new Error(`Unable to load SMS logs: ${logsResult.error.message}`);
+  return {
+    students,
+    settings: (settingsResult.data ?? []).map((row) => settingFromRow(row)),
+    logs: (logsResult.data ?? []).map((row) => logFromRow(row)),
+    defaultTemplate: DEFAULT_INITIAL_SMS,
+  };
+}
+
+export async function saveSmsStudent(input: {
+  studentId: string;
+  parentName?: string;
+  parentPhone?: string;
+  enabled: boolean;
+  consentStatus: SmsConsentStatus;
+  initialMessage: string;
+}) {
+  const student = await updateStudent(input.studentId, {
+    parentName: input.parentName?.trim() || undefined,
+    parentPhone: input.parentPhone?.trim() || undefined,
+  });
+  if (!student) throw new Error("Student not found");
+  const now = new Date().toISOString();
+  const { data, error } = await getSupabaseAdmin()
+    .from("sms_student_settings")
+    .upsert({
+      student_id: input.studentId,
+      enabled: input.enabled,
+      consent_status: input.consentStatus,
+      initial_message: input.initialMessage.trim() || DEFAULT_INITIAL_SMS,
+      updated_at: now,
+    })
+    .select()
+    .single();
+  if (error) throw new Error(`Unable to save SMS settings: ${error.message}`);
+  return { student, setting: settingFromRow(data) };
+}
+
+export async function appendSmsLog(input: Omit<SmsMessageLog, "id" | "createdAt">) {
+  const { data, error } = await getSupabaseAdmin()
+    .from("sms_message_logs")
+    .insert({
+      student_id: input.studentId ?? null,
+      phone: input.phone,
+      direction: input.direction,
+      message_type: input.messageType,
+      body: input.body,
+      status: input.status,
+      twilio_message_sid: input.twilioMessageSid ?? null,
+      error_message: input.errorMessage ?? null,
+    })
+    .select()
+    .single();
+  if (error) throw new Error(`Unable to write SMS log: ${error.message}`);
+  return logFromRow(data);
+}
+
+export async function findStudentByPhone(phone: string) {
+  const digits = phone.replace(/\D/g, "").slice(-10);
+  if (!digits) return undefined;
+  return (await listStudents()).find(
+    (student) => student.parentPhone?.replace(/\D/g, "").slice(-10) === digits
+  );
+}
+
+export async function setConsentByPhone(phone: string, consentStatus: SmsConsentStatus) {
+  const student = await findStudentByPhone(phone);
+  if (!student) return undefined;
+  const now = new Date().toISOString();
+  const { error } = await getSupabaseAdmin().from("sms_student_settings").upsert({
+    student_id: student.id,
+    consent_status: consentStatus,
+    enabled: consentStatus === "opted_in",
+    updated_at: now,
+  });
+  if (error) throw new Error(`Unable to update SMS consent: ${error.message}`);
+  return student;
+}
+
+export async function sendInitialSms(studentId: string) {
+  const student = (await listStudents()).find((item) => item.id === studentId);
+  if (!student) throw new Error("Student not found");
+  if (!student.parentPhone) throw new Error("Add a parent phone number first");
+  const { data: row, error } = await getSupabaseAdmin()
+    .from("sms_student_settings")
+    .select("*")
+    .eq("student_id", studentId)
+    .maybeSingle();
+  if (error) throw new Error(`Unable to load SMS settings: ${error.message}`);
+  const template = row?.initial_message || DEFAULT_INITIAL_SMS;
+  const body = renderInitialSms(template, student);
+  const accountSid = process.env.TWILIO_ACCOUNT_SID?.trim();
+  const authToken = process.env.TWILIO_AUTH_TOKEN?.trim();
+  const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID?.trim();
+  if (!accountSid || !authToken || !messagingServiceSid) throw new Error("Twilio is not configured");
+
+  try {
+    const message = await twilio(accountSid, authToken).messages.create({
+      to: student.parentPhone,
+      messagingServiceSid,
+      body,
+    });
+    await appendSmsLog({
+      studentId,
+      phone: student.parentPhone,
+      direction: "outbound",
+      messageType: "initial",
+      body,
+      status: message.status || "queued",
+      twilioMessageSid: message.sid,
+    });
+    await getSupabaseAdmin()
+      .from("sms_student_settings")
+      .upsert({ student_id: studentId, initial_message: template, last_sent_at: new Date().toISOString() });
+    return message.sid;
+  } catch (error) {
+    await appendSmsLog({
+      studentId,
+      phone: student.parentPhone,
+      direction: "outbound",
+      messageType: "initial",
+      body,
+      status: "failed",
+      errorMessage: error instanceof Error ? error.message : "Unknown Twilio error",
+    }).catch(() => undefined);
+    throw error;
+  }
+}
