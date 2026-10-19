@@ -1,5 +1,8 @@
+import OpenAI from "openai";
+
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 import { summerCampConfig } from "@/config/summer-camp";
+import { smsKnowledge } from "./knowledge";
 
 export const HUMAN_FOLLOW_UP_EN =
   "I'm not certain about that. Luna will contact you personally soon.";
@@ -81,6 +84,50 @@ const intents: Intent[] = [
 export async function generateSmsReply(message: string): Promise<AgentDecision> {
   const trimmedMessage = message.trim().slice(0, 800);
   const chinese = isLikelyChinese(trimmedMessage);
+
+  const apiKey = process.env.DEEPSEEK_API_KEY?.trim();
+  if (apiKey) {
+    try {
+      const client = new OpenAI({ apiKey, baseURL: "https://api.deepseek.com" });
+      const completion = await client.chat.completions.create({
+        model: process.env.DEEPSEEK_MODEL?.trim() || "deepseek-flash",
+        response_format: { type: "json_object" },
+        max_tokens: 180,
+        messages: [
+          {
+            role: "system",
+            content: `You are the SMS assistant for Lunar Art Studio. Answer only from the official facts below.
+
+Return JSON exactly as {"canAnswer":boolean,"reply":string}.
+- Every reply must begin with "Lunar Art Studio:".
+- Use the customer's language (English or Chinese).
+- Keep the entire reply concise and under 320 characters.
+- Never invent dates, pricing, availability, policies, or student information.
+- If the facts do not fully answer the question, set canAnswer=false and say that Luna will follow up personally.
+
+${smsKnowledge}`,
+          },
+          { role: "user", content: trimmedMessage },
+        ],
+      });
+      const content = completion.choices[0]?.message?.content;
+      if (content) {
+        const parsed = JSON.parse(content) as Partial<AgentDecision>;
+        if (typeof parsed.canAnswer === "boolean" && typeof parsed.reply === "string") {
+          const reply = parsed.reply.trim().slice(0, 320);
+          return {
+            canAnswer: parsed.canAnswer,
+            reply: /^Lunar Art Studio:/i.test(reply)
+              ? reply
+              : `Lunar Art Studio: ${reply}`,
+          };
+        }
+      }
+    } catch (error) {
+      console.error("[sms/agent] DeepSeek reply failed; using deterministic fallback", error);
+    }
+  }
+
   const intent = intents.find(({ patterns }) =>
     patterns.some((pattern) => pattern.test(trimmedMessage))
   );
@@ -88,9 +135,12 @@ export async function generateSmsReply(message: string): Promise<AgentDecision> 
   if (!intent) {
     return {
       canAnswer: false,
-      reply: chinese ? HUMAN_FOLLOW_UP_ZH : HUMAN_FOLLOW_UP_EN,
+      reply: `Lunar Art Studio: ${chinese ? HUMAN_FOLLOW_UP_ZH : HUMAN_FOLLOW_UP_EN}`,
     };
   }
 
-  return { canAnswer: true, reply: chinese ? intent.zh : intent.en };
+  return {
+    canAnswer: true,
+    reply: `Lunar Art Studio: ${chinese ? intent.zh : intent.en}`,
+  };
 }
