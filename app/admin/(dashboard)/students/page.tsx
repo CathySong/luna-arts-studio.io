@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import SmsAgentPanel from "@/components/crm/SmsAgentPanel";
 import { listStudentsWithEnrollment } from "@/lib/crm/db";
 
 type Props = {
@@ -113,8 +112,6 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
           </tbody>
         </table>
       </div>
-
-      <SmsAgentPanel />
     </div>
   );
 }
