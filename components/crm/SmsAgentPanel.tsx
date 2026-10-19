@@ -173,7 +173,7 @@ export default function SmsAgentPanel() {
                 </td>
                 <td className="px-3 py-3">
                   <textarea value={row.initialMessage} onChange={(e) => update(row.id, { initialMessage: e.target.value })} rows={3} className="w-full resize-y rounded border border-gray-lighter px-2 py-1.5 text-xs leading-5 outline-none focus:border-accent-warm" />
-                  <div className="mt-1 text-[11px] text-gray-dark">Tokens: {"{{student_name}}"}, {"{{parent_name}}"}</div>
+                  <div className="mt-1 text-[11px] text-gray-dark">Messages must begin with “Lunar Art Studio:”</div>
                 </td>
                 <td className="px-3 py-3">
                   <button type="button" disabled={!row.parentPhone || row.consentStatus === "opted_out"} onClick={() => void sendInitial(row)} className="whitespace-nowrap rounded-md bg-accent-warm px-3 py-1.5 text-xs font-medium text-gray-darkest disabled:cursor-not-allowed disabled:opacity-40">Send initial</button>

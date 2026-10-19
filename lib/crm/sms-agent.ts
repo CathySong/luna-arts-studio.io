@@ -29,14 +29,23 @@ export type SmsMessageLog = {
 };
 
 export const DEFAULT_INITIAL_SMS =
-  "Hi {{parent_name}}, this is Luna Art Studio. We're setting up class updates for {{student_name}}. Reply YES to receive reminders. Reply STOP to opt out.";
+  "Lunar Art Studio: We're setting up class updates for your student. Reply YES to receive reminders. Reply STOP to opt out.";
+
+const SMS_PREFIX = "Lunar Art Studio:";
+
+function normalizeInitialSms(template: string | null | undefined): string {
+  const value = template?.trim();
+  if (!value || /^Hi\s+\{\{parent_name\}\}/i.test(value)) return DEFAULT_INITIAL_SMS;
+  const withoutOldPrefix = value.replace(/^Luna(?:r)? Art Studio:\s*/i, "");
+  return `${SMS_PREFIX} ${withoutOldPrefix}`.trim();
+}
 
 function settingFromRow(row: Record<string, unknown>): SmsStudentSetting {
   return {
     studentId: String(row.student_id),
     enabled: Boolean(row.enabled),
     consentStatus: row.consent_status as SmsConsentStatus,
-    initialMessage: String(row.initial_message || DEFAULT_INITIAL_SMS),
+    initialMessage: normalizeInitialSms(String(row.initial_message || "")),
     lastSentAt: row.last_sent_at ? new Date(String(row.last_sent_at)).toISOString() : undefined,
     updatedAt: new Date(String(row.updated_at)).toISOString(),
   };
@@ -58,7 +67,7 @@ function logFromRow(row: Record<string, unknown>): SmsMessageLog {
 }
 
 export function renderInitialSms(template: string, student: Student): string {
-  return template
+  return normalizeInitialSms(template)
     .replaceAll("{{student_name}}", student.name)
     .replaceAll("{{parent_name}}", student.parentName || "there");
 }
@@ -99,7 +108,7 @@ export async function saveSmsStudent(input: {
       student_id: input.studentId,
       enabled: input.enabled,
       consent_status: input.consentStatus,
-      initial_message: input.initialMessage.trim() || DEFAULT_INITIAL_SMS,
+      initial_message: normalizeInitialSms(input.initialMessage),
       updated_at: now,
     })
     .select()
@@ -159,7 +168,7 @@ export async function sendInitialSms(studentId: string) {
     .eq("student_id", studentId)
     .maybeSingle();
   if (error) throw new Error(`Unable to load SMS settings: ${error.message}`);
-  const template = row?.initial_message || DEFAULT_INITIAL_SMS;
+  const template = normalizeInitialSms(row?.initial_message);
   const body = renderInitialSms(template, student);
   const accountSid = process.env.TWILIO_ACCOUNT_SID?.trim();
   const authToken = process.env.TWILIO_AUTH_TOKEN?.trim();
