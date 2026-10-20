@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { listStudentsWithEnrollment } from "@/lib/crm/db";
+import { getStudentSchedule } from "@/lib/crm/student-schedule";
 
 type Props = {
   searchParams?: { search?: string };
@@ -52,6 +53,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
               <th className="px-4 py-3 font-medium">Parent</th>
+              <th className="px-4 py-3 font-medium">固定上课时间</th>
               <th className="px-4 py-3 font-medium">Source</th>
               <th className="px-4 py-3 font-medium text-right">Price</th>
               <th className="px-4 py-3 font-medium">剩余课时</th>
@@ -68,6 +70,9 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
                   {s.parentEmail ? (
                     <span className="block text-xs text-gray-dark">{s.parentEmail}</span>
                   ) : null}
+                </td>
+                <td className="px-4 py-3 text-gray-darker text-xs min-w-[190px]">
+                  {getStudentSchedule(s) || <span className="text-gray-dark">—</span>}
                 </td>
                 <td className="px-4 py-3 text-gray-darker text-xs">
                   {s.source ? (
@@ -104,7 +109,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             ))}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={7} className="px-4 py-8 text-center text-gray-dark">
+                <td colSpan={8} className="px-4 py-8 text-center text-gray-dark">
                   No students yet.
                 </td>
               </tr>

@@ -8,6 +8,7 @@ import {
   listSessions,
   listStudents,
 } from "@/lib/crm/db";
+import { splitStudentSchedule } from "@/lib/crm/student-schedule";
 
 export default async function AdminDashboardHomePage() {
   const [students, sessions, artworks, reviews, attendances, payments] = await Promise.all([
@@ -44,6 +45,18 @@ export default async function AdminDashboardHomePage() {
   }
 
   const totalPaymentsIn = payments.reduce((sum, p) => sum + p.amount, 0);
+
+  const weekdayOrder = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+  const weeklyClasses = weekdayOrder
+    .map((weekday) => ({
+      weekday,
+      classes: students.flatMap((student) =>
+        splitStudentSchedule(student)
+          .filter((schedule) => schedule.startsWith(weekday))
+          .map((schedule) => ({ student, schedule }))
+      ),
+    }))
+    .filter((group) => group.classes.length > 0);
 
   const stats = [
     { label: "Students", value: students.length, href: "/admin/students" },
@@ -100,6 +113,40 @@ export default async function AdminDashboardHomePage() {
           </Link>
         ))}
       </div>
+
+      <section className="rounded-xl border border-gray-lighter bg-white p-6 card-shadow">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="font-display text-2xl text-gray-darkest">Weekly class schedule</h2>
+            <p className="mt-1 text-sm text-gray-darker">固定上课日期、时间和学生名单</p>
+          </div>
+          <Link href="/admin/students" className="text-sm font-medium text-accent-warm hover:text-gray-darkest">
+            View students →
+          </Link>
+        </div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {weeklyClasses.map((group) => (
+            <div key={group.weekday} className="rounded-lg border border-gray-lighter bg-white-warm/50 p-4">
+              <div className="text-xs font-semibold uppercase tracking-ultra text-accent-warm">
+                {group.weekday}
+              </div>
+              <div className="mt-3 space-y-3">
+                {group.classes.map(({ student, schedule }) => (
+                  <Link key={`${student.id}-${schedule}`} href={`/admin/students/${student.id}`} className="block group">
+                    <div className="text-sm font-medium text-gray-darkest group-hover:text-accent-warm">
+                      {student.name}
+                    </div>
+                    <div className="mt-0.5 text-xs text-gray-darker">{schedule.replace(`${group.weekday} `, "")}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+          {weeklyClasses.length === 0 ? (
+            <p className="text-sm text-gray-dark">No fixed class times saved yet.</p>
+          ) : null}
+        </div>
+      </section>
 
       <div className="rounded-xl border border-gray-lighter bg-white p-6 card-shadow flex flex-wrap gap-4">
         <Link
