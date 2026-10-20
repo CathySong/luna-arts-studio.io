@@ -68,6 +68,8 @@ function studentFromRow(r: Record<string, unknown>): Student {
     defaultPrice: r.default_price != null ? Number(r.default_price) : undefined,
     source: r.source != null ? String(r.source) : undefined,
     sourceCustom: r.source_custom != null ? String(r.source_custom) : undefined,
+    classDays: (r.class_days as string[]) ?? [],
+    classTimeSlots: (r.class_time_slots as string[]) ?? [],
     createdAt: new Date(String(r.created_at)).toISOString(),
     updatedAt: new Date(String(r.updated_at)).toISOString(),
   };
@@ -89,6 +91,8 @@ function studentToRow(s: Partial<Student> & { name?: string }) {
     default_price: s.defaultPrice ?? null,
     source: s.source ?? null,
     source_custom: s.sourceCustom ?? null,
+    class_days: s.classDays ?? [],
+    class_time_slots: s.classTimeSlots ?? [],
     updated_at: new Date().toISOString(),
   };
 }

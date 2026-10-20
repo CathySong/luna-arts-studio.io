@@ -40,6 +40,8 @@ export default function StudentForm({ student }: Props) {
       parentName: String(fd.get("parentName") ?? "").trim() || undefined,
       parentEmail: String(fd.get("parentEmail") ?? "").trim() || undefined,
       parentPhone: String(fd.get("parentPhone") ?? "").trim() || undefined,
+      classDays: splitTags(String(fd.get("classDays") ?? "")),
+      classTimeSlots: splitTags(String(fd.get("classTimeSlots") ?? "")),
       hobbies: splitTags(String(fd.get("hobbies") ?? "")),
       lovedArts: splitTags(String(fd.get("lovedArts") ?? "")),
       notes: String(fd.get("notes") ?? "").trim() || undefined,
@@ -63,6 +65,8 @@ export default function StudentForm({ student }: Props) {
           name: payload.name,
           hobbies: payload.hobbies,
           lovedArts: payload.lovedArts,
+          classDays: payload.classDays,
+          classTimeSlots: payload.classTimeSlots,
         };
         if (payload.age !== undefined && !Number.isNaN(payload.age)) body.age = payload.age;
         if (payload.parentName !== undefined) body.parentName = payload.parentName;
@@ -171,6 +175,27 @@ export default function StudentForm({ student }: Props) {
           className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
         />
       </label>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="flex flex-col gap-1 text-sm">
+          <span className="text-gray-darker">周几（多个用逗号分隔）</span>
+          <input
+            name="classDays"
+            defaultValue={(student?.classDays ?? []).join(", ")}
+            placeholder="例如：周三, 周四"
+            className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
+          />
+        </label>
+        <label className="flex flex-col gap-1 text-sm">
+          <span className="text-gray-darker">时间段（与周几顺序对应）</span>
+          <input
+            name="classTimeSlots"
+            defaultValue={(student?.classTimeSlots ?? []).join(", ")}
+            placeholder="例如：16:00–17:30, 16:30–18:00"
+            className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
+          />
+        </label>
+      </div>
 
       <label className="flex flex-col gap-1 text-sm">
         <span className="text-gray-darker">Hobbies (comma or newline separated)</span>

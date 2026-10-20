@@ -8,7 +8,7 @@ import {
   listSessions,
   listStudents,
 } from "@/lib/crm/db";
-import { splitStudentSchedule } from "@/lib/crm/student-schedule";
+import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 
 export default async function AdminDashboardHomePage() {
   const [students, sessions, artworks, reviews, attendances, payments] = await Promise.all([
@@ -51,8 +51,8 @@ export default async function AdminDashboardHomePage() {
     .map((weekday) => ({
       weekday,
       classes: students.flatMap((student) =>
-        splitStudentSchedule(student)
-          .filter((schedule) => schedule.startsWith(weekday))
+        getStructuredStudentSchedule(student)
+          .filter((schedule) => schedule.day === weekday)
           .map((schedule) => ({ student, schedule }))
       ),
     }))
@@ -136,7 +136,7 @@ export default async function AdminDashboardHomePage() {
                     <div className="text-sm font-medium text-gray-darkest group-hover:text-accent-warm">
                       {student.name}
                     </div>
-                    <div className="mt-0.5 text-xs text-gray-darker">{schedule.replace(`${group.weekday} `, "")}</div>
+                    <div className="mt-0.5 text-xs text-gray-darker">{schedule.time}</div>
                   </Link>
                 ))}
               </div>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { listStudentsWithEnrollment } from "@/lib/crm/db";
-import { getStudentSchedule } from "@/lib/crm/student-schedule";
+import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 
 type Props = {
   searchParams?: { search?: string };
@@ -49,7 +49,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
 
       <div className="grid gap-3 md:hidden">
         {rows.map(({ student: s, summary }) => {
-          const schedule = getStudentSchedule(s);
+          const schedule = getStructuredStudentSchedule(s);
           return (
             <Link
               key={s.id}
@@ -64,8 +64,20 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
                 <span className="text-xs font-medium text-accent-warm">Edit</span>
               </div>
               <div className="mt-3 rounded-lg bg-accent-warm/10 px-3 py-2">
-                <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-dark">固定上课时间</div>
-                <div className="mt-1 text-sm font-medium text-gray-darkest">{schedule || "—"}</div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-dark">周几</div>
+                    <div className="mt-1 text-sm font-medium text-gray-darkest">
+                      {schedule.map((item) => item.day).join("；") || "—"}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-dark">时间段</div>
+                    <div className="mt-1 text-sm font-medium text-gray-darkest">
+                      {schedule.map((item) => item.time).join("；") || "—"}
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="mt-3 text-xs text-gray-darker">
                 剩余课时 {summary.remainingLessons} · 已上 {summary.usedLessons} / 总计 {summary.totalLessons}
@@ -86,7 +98,8 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
               <th className="px-4 py-3 font-medium">Parent</th>
-              <th className="px-4 py-3 font-medium">固定上课时间</th>
+              <th className="px-4 py-3 font-medium">周几</th>
+              <th className="px-4 py-3 font-medium">时间段</th>
               <th className="px-4 py-3 font-medium">Source</th>
               <th className="px-4 py-3 font-medium text-right">Price</th>
               <th className="px-4 py-3 font-medium">剩余课时</th>
@@ -104,8 +117,11 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
                     <span className="block text-xs text-gray-dark">{s.parentEmail}</span>
                   ) : null}
                 </td>
-                <td className="px-4 py-3 text-gray-darker text-xs min-w-[190px]">
-                  {getStudentSchedule(s) || <span className="text-gray-dark">—</span>}
+                <td className="px-4 py-3 text-gray-darker text-xs whitespace-nowrap">
+                  {getStructuredStudentSchedule(s).map((item) => item.day).join("；") || "—"}
+                </td>
+                <td className="px-4 py-3 text-gray-darker text-xs whitespace-nowrap">
+                  {getStructuredStudentSchedule(s).map((item) => item.time).join("；") || "—"}
                 </td>
                 <td className="px-4 py-3 text-gray-darker text-xs">
                   {s.source ? (
@@ -142,7 +158,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             ))}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-4 py-8 text-center text-gray-dark">
+                <td colSpan={9} className="px-4 py-8 text-center text-gray-dark">
                   No students yet.
                 </td>
               </tr>

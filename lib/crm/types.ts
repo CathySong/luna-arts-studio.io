@@ -17,6 +17,10 @@ export interface Student {
   source?: string;
   /** Free-text source when source=other */
   sourceCustom?: string;
+  /** Recurring class weekdays, paired by array position with classTimeSlots. */
+  classDays: string[];
+  /** Recurring class time ranges, paired by array position with classDays. */
+  classTimeSlots: string[];
   createdAt: string;
   updatedAt: string;
 }

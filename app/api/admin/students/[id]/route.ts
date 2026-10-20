@@ -63,6 +63,8 @@ function coercePatch(body: Record<string, unknown>): Record<string, unknown> {
 
   if (body.hobbies !== undefined) patch.hobbies = stringArray(body.hobbies);
   if (body.lovedArts !== undefined) patch.lovedArts = stringArray(body.lovedArts);
+  if (body.classDays !== undefined) patch.classDays = stringArray(body.classDays);
+  if (body.classTimeSlots !== undefined) patch.classTimeSlots = stringArray(body.classTimeSlots);
   mapNumber(body, patch, "classesTaken");
 
   if (Object.keys(patch).length === 0) throw new Error("No updatable keys supplied.");
