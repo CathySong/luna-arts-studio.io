@@ -47,7 +47,40 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
         </button>
       </form>
 
-      <div className="rounded-xl border border-gray-lighter bg-white overflow-hidden card-shadow">
+      <div className="grid gap-3 md:hidden">
+        {rows.map(({ student: s, summary }) => {
+          const schedule = getStudentSchedule(s);
+          return (
+            <Link
+              key={s.id}
+              href={`/admin/students/${s.id}`}
+              className="rounded-xl border border-gray-lighter bg-white p-4 card-shadow"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="font-medium text-gray-darkest">{s.name}</div>
+                  <div className="mt-1 text-xs text-gray-darker">{s.parentName ?? "—"}</div>
+                </div>
+                <span className="text-xs font-medium text-accent-warm">Edit</span>
+              </div>
+              <div className="mt-3 rounded-lg bg-accent-warm/10 px-3 py-2">
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-dark">固定上课时间</div>
+                <div className="mt-1 text-sm font-medium text-gray-darkest">{schedule || "—"}</div>
+              </div>
+              <div className="mt-3 text-xs text-gray-darker">
+                剩余课时 {summary.remainingLessons} · 已上 {summary.usedLessons} / 总计 {summary.totalLessons}
+              </div>
+            </Link>
+          );
+        })}
+        {rows.length === 0 ? (
+          <div className="rounded-xl border border-gray-lighter bg-white px-4 py-8 text-center text-gray-dark">
+            No students yet.
+          </div>
+        ) : null}
+      </div>
+
+      <div className="hidden md:block rounded-xl border border-gray-lighter bg-white overflow-x-auto card-shadow">
         <table className="w-full text-sm">
           <thead className="bg-white-warm text-left text-xs uppercase tracking-ultra text-gray-dark">
             <tr>

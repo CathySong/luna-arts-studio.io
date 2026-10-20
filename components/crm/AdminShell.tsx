@@ -21,13 +21,13 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <div className="min-h-screen flex bg-white-warm text-gray-darkest font-body">
-      <aside className="w-56 shrink-0 border-r border-gray-lighter bg-white flex flex-col">
-        <div className="p-6 border-b border-gray-lighter">
+    <div className="min-h-screen flex flex-col md:flex-row bg-white-warm text-gray-darkest font-body">
+      <aside className="w-full md:w-56 shrink-0 border-b md:border-b-0 md:border-r border-gray-lighter bg-white flex flex-col">
+        <div className="px-4 py-3 md:p-6 border-b border-gray-lighter">
           <div className="font-display text-xl tracking-wide text-gray-darkest">Luna CRM</div>
-          <div className="text-xs text-gray-dark mt-1 uppercase tracking-ultra">Admin</div>
+          <div className="hidden md:block text-xs text-gray-dark mt-1 uppercase tracking-ultra">Admin</div>
         </div>
-        <nav className="flex-1 p-4 flex flex-col gap-1">
+        <nav className="flex-1 p-2 md:p-4 flex flex-row md:flex-col gap-1 overflow-x-auto">
           {NAV.map((item) => {
             const active =
               item.href === "/admin"
@@ -37,7 +37,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                className={`shrink-0 rounded-md px-3 py-2 text-sm transition-colors ${
                   active
                     ? "bg-accent-warm/15 text-gray-darkest border border-accent-warm/40"
                     : "text-gray-darker hover:bg-gray-lightest hover:text-gray-darkest"
@@ -48,7 +48,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             );
           })}
         </nav>
-        <div className="p-4 border-t border-gray-lighter">
+        <div className="hidden md:block p-4 border-t border-gray-lighter">
           <button
             type="button"
             onClick={() => void logout()}
@@ -59,7 +59,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         </div>
       </aside>
       <div className="flex-1 flex flex-col min-w-0">
-        <main className="flex-1 p-6 lg:p-10">{children}</main>
+        <main className="flex-1 p-4 sm:p-6 lg:p-10">{children}</main>
       </div>
     </div>
   );
