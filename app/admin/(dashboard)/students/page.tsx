@@ -6,6 +6,8 @@ import { listStudentsWithEnrollment } from "@/lib/crm/db";
 import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
 
 type Props = {
   searchParams?: { search?: string };
