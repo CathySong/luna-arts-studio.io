@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/crm/supabase-client";
+import { listWebsiteClasses } from "@/lib/crm/website-classes";
 
 export async function POST() {
   const db = getSupabaseAdmin();
@@ -36,5 +37,7 @@ export async function POST() {
   if (result.error) {
     return NextResponse.json({ error: result.error.message }, { status: 500 });
   }
-  return NextResponse.json({ ok: true, class: result.data });
+  const raw = await db.from("website_classes").select("*").order("sort_order");
+  const publicClasses = await listWebsiteClasses();
+  return NextResponse.json({ ok: true, class: result.data, raw: raw.data, rawError: raw.error?.message, publicClasses });
 }
