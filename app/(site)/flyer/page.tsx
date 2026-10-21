@@ -14,7 +14,7 @@ export default function FlyerPage() {
       try {
         await navigator.share({
           title: "Luna Art Studio Fall Enrollment 2026",
-          text: "Fall art classes are open — Wed–Sat weekly classes with clear age groups!",
+          text: "Fall art classes are open — Wed–Fri weekly classes with clear age groups!",
           url: window.location.href,
         });
       } catch {
@@ -122,7 +122,7 @@ export default function FlyerPage() {
                       {session.classCount} classes
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
-                      Wed–Sat
+                      Wed–Fri
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
                       {session.startDisplay} – {session.endDisplay}
@@ -158,7 +158,7 @@ export default function FlyerPage() {
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Classes run Wednesday–Saturday · each class 90 minutes
+                      Classes run Wednesday–Friday · each class 90 minutes
                     </span>
                   </li>
                   <li className="flex items-start gap-3">

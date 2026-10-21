@@ -81,7 +81,7 @@ export default function FallSessionsSection() {
                   {session.classCount} Classes
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
-                  Wed–Sat
+                  Wed–Fri
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
                   {session.startDisplay} – {session.endDisplay}
@@ -124,7 +124,7 @@ export default function FallSessionsSection() {
               Schedule
             </p>
             <p className="font-body text-sm text-gray-darkest font-light mb-1">
-              Thursday – Saturday
+              Wednesday – Friday
             </p>
             <p className="font-body text-xs text-gray-dark font-light">
               Session 1: {sessions[0].startDisplay} – {sessions[0].endDisplay}
