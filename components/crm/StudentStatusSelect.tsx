@@ -13,19 +13,16 @@ export default function StudentStatusSelect({ studentId, initialStatus }: Props)
   const [status, setStatus] = useState<StudentStatus>(initialStatus);
   const [savedStatus, setSavedStatus] = useState<StudentStatus>(initialStatus);
   const [saving, setSaving] = useState(false);
-  const [justSaved, setJustSaved] = useState(false);
 
   useEffect(() => {
     if (status === savedStatus && initialStatus !== savedStatus) {
       setStatus(initialStatus);
       setSavedStatus(initialStatus);
-      setJustSaved(false);
     }
   }, [initialStatus, savedStatus, status]);
 
   async function saveStatus() {
     setSaving(true);
-    setJustSaved(false);
 
     try {
       const response = await fetch(`/api/admin/students/${studentId}`, {
@@ -36,7 +33,6 @@ export default function StudentStatusSelect({ studentId, initialStatus }: Props)
       });
       if (!response.ok) throw new Error("Unable to update status");
       setSavedStatus(status);
-      setJustSaved(true);
     } catch {
       setStatus(savedStatus);
       window.alert("Unable to update student status. Please try again.");
@@ -55,7 +51,6 @@ export default function StudentStatusSelect({ studentId, initialStatus }: Props)
         disabled={saving}
         onChange={(event) => {
           setStatus(event.target.value as StudentStatus);
-          setJustSaved(false);
         }}
         className={`rounded-full border px-2.5 py-1 text-xs font-semibold outline-none disabled:opacity-60 ${
           status === "active"
@@ -66,14 +61,16 @@ export default function StudentStatusSelect({ studentId, initialStatus }: Props)
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
       </select>
-      <button
-        type="button"
-        disabled={!dirty || saving}
-        onClick={() => void saveStatus()}
-        className="rounded-md bg-accent-warm px-2.5 py-1 text-xs font-semibold text-gray-darkest transition-colors hover:bg-accent-warm-light disabled:cursor-default disabled:bg-gray-lightest disabled:text-gray-dark"
-      >
-        {saving ? "Saving…" : justSaved ? "Saved" : "Save"}
-      </button>
+      {dirty || saving ? (
+        <button
+          type="button"
+          disabled={saving}
+          onClick={() => void saveStatus()}
+          className="rounded-md bg-accent-warm px-2.5 py-1 text-xs font-semibold text-gray-darkest transition-colors hover:bg-accent-warm-light disabled:cursor-wait disabled:opacity-60"
+        >
+          {saving ? "Saving…" : "Save"}
+        </button>
+      ) : null}
     </div>
   );
 }
