@@ -22,7 +22,7 @@ export const fallEnrollmentConfig = {
   seasonLabel: "Fall 2026 Enrollment",
   headline: "Fall Classes Now Open",
   subheadline:
-    "Wed–Fri weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
+    "Wed–Sat weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
 
   // Session date anchors follow the Thursday calendar pattern.
   // Other weekdays (Fri, Sat) use the same week windows (Session 1 / Session 2).
@@ -46,7 +46,7 @@ export const fallEnrollmentConfig = {
         "Oct 29",
         "Nov 5",
       ],
-      note: "9 weekly classes · same session window Wed–Fri",
+      note: "9 weekly classes · same session window Wed–Sat",
     },
     {
       id: "session-2",
@@ -67,7 +67,7 @@ export const fallEnrollmentConfig = {
         "Jan 28",
         "Feb 4",
       ],
-      note: "10 weekly classes · holiday break late December · same session window Wed–Fri",
+      note: "10 weekly classes · holiday break late December · same session window Wed–Sat",
     },
   ],
 
@@ -123,6 +123,18 @@ export const fallEnrollmentConfig = {
           time: "5:00–6:30 PM",
           title: "Creative Art",
           ages: "Ages 6–9",
+          duration: "90 min",
+        },
+      ],
+    },
+    {
+      day: "Saturday",
+      dayShort: "Sat",
+      slots: [
+        {
+          time: "2:30–4:00 PM",
+          title: "Mixed Media",
+          ages: "Ages 8+",
           duration: "90 min",
         },
       ],

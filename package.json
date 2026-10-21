@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/restore-saturday-class.mjs",
     "start": "next start",
     "lint": "next lint",
     "test:crm": "node scripts/test-crm.mjs"
