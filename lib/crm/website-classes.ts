@@ -68,15 +68,14 @@ function toRow(item: Omit<WebsiteClass, "id"> | Partial<WebsiteClass>) {
 
 export async function listWebsiteClasses(includeInactive = false): Promise<WebsiteClass[]> {
   if (!isSupabaseConfigured()) return fallbackClasses();
-  let query = getSupabaseAdmin().from("website_classes").select("*").order("sort_order");
-  if (!includeInactive) query = query.eq("active", true);
-  const { data, error } = await query;
+  const { data, error } = await getSupabaseAdmin().from("website_classes").select("*").order("sort_order");
   if (error) {
     // Keep the public website useful while a new migration is being applied.
     if (!includeInactive) return fallbackClasses();
     throw new Error(`listWebsiteClasses: ${error.message}`);
   }
-  return (data ?? []).map((row) => fromRow(row));
+  const classes = (data ?? []).map((row) => fromRow(row));
+  return includeInactive ? classes : classes.filter((item) => item.active);
 }
 
 export async function createWebsiteClass(input: Omit<WebsiteClass, "id">) {
