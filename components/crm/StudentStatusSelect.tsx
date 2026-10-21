@@ -11,43 +11,61 @@ type Props = {
 
 export default function StudentStatusSelect({ studentId, initialStatus }: Props) {
   const [status, setStatus] = useState<StudentStatus>(initialStatus);
+  const [savedStatus, setSavedStatus] = useState<StudentStatus>(initialStatus);
   const [saving, setSaving] = useState(false);
+  const [justSaved, setJustSaved] = useState(false);
 
-  async function updateStatus(nextStatus: StudentStatus) {
-    const previous = status;
-    setStatus(nextStatus);
+  async function saveStatus() {
     setSaving(true);
+    setJustSaved(false);
 
     try {
       const response = await fetch(`/api/admin/students/${studentId}`, {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: nextStatus }),
+        body: JSON.stringify({ status }),
       });
       if (!response.ok) throw new Error("Unable to update status");
+      setSavedStatus(status);
+      setJustSaved(true);
     } catch {
-      setStatus(previous);
+      setStatus(savedStatus);
       window.alert("Unable to update student status. Please try again.");
     } finally {
       setSaving(false);
     }
   }
 
+  const dirty = status !== savedStatus;
+
   return (
-    <select
-      aria-label="Student status"
-      value={status}
-      disabled={saving}
-      onChange={(event) => void updateStatus(event.target.value as StudentStatus)}
-      className={`rounded-full border px-2.5 py-1 text-xs font-semibold outline-none disabled:opacity-60 ${
-        status === "active"
-          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-          : "border-gray-lighter bg-gray-lightest text-gray-darker"
-      }`}
-    >
-      <option value="active">Active</option>
-      <option value="inactive">Inactive</option>
-    </select>
+    <div className="flex items-center gap-2">
+      <select
+        aria-label="Student status"
+        value={status}
+        disabled={saving}
+        onChange={(event) => {
+          setStatus(event.target.value as StudentStatus);
+          setJustSaved(false);
+        }}
+        className={`rounded-full border px-2.5 py-1 text-xs font-semibold outline-none disabled:opacity-60 ${
+          status === "active"
+            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+            : "border-gray-lighter bg-gray-lightest text-gray-darker"
+        }`}
+      >
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <button
+        type="button"
+        disabled={!dirty || saving}
+        onClick={() => void saveStatus()}
+        className="rounded-md bg-accent-warm px-2.5 py-1 text-xs font-semibold text-gray-darkest transition-colors hover:bg-accent-warm-light disabled:cursor-default disabled:bg-gray-lightest disabled:text-gray-dark"
+      >
+        {saving ? "Saving…" : justSaved ? "Saved" : "Save"}
+      </button>
+    </div>
   );
 }
