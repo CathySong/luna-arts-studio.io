@@ -5,6 +5,8 @@ import StudentsAutoRefresh from "@/components/crm/StudentsAutoRefresh";
 import { listStudentsWithEnrollment } from "@/lib/crm/db";
 import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   searchParams?: { search?: string };
 };
