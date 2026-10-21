@@ -98,7 +98,7 @@ export async function listSmsAgentData() {
   };
 }
 
-export async function sendBulkReminderSms(studentIds: string[], template: string) {
+export async function sendBulkReminderSms(studentIds: string[], template: string, messageType = "reminder") {
   const uniqueIds = Array.from(new Set(studentIds)).slice(0, 500);
   if (!uniqueIds.length) throw new Error("Select at least one student");
 
@@ -122,7 +122,7 @@ export async function sendBulkReminderSms(studentIds: string[], template: string
   for (const studentId of uniqueIds) {
     const student = studentMap.get(studentId);
     const setting = settingMap.get(studentId);
-    if (!student?.parentPhone) {
+    if (!student?.parentPhone || student.status !== "active") {
       results.push({ studentId, ok: false, error: "Missing parent phone" });
       continue;
     }
@@ -143,7 +143,7 @@ export async function sendBulkReminderSms(studentIds: string[], template: string
         studentId,
         phone: student.parentPhone,
         direction: "outbound",
-        messageType: "reminder",
+        messageType,
         body,
         status: message.status || "queued",
         twilioMessageSid: message.sid,
@@ -155,7 +155,7 @@ export async function sendBulkReminderSms(studentIds: string[], template: string
         studentId,
         phone: student.parentPhone,
         direction: "outbound",
-        messageType: "reminder",
+        messageType,
         body,
         status: "failed",
         errorMessage,
