@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import StudentStatusSelect from "@/components/crm/StudentStatusSelect";
+import StudentsAutoRefresh from "@/components/crm/StudentsAutoRefresh";
 import { listStudentsWithEnrollment } from "@/lib/crm/db";
 import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 
@@ -20,6 +21,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
 
   return (
     <div className="space-y-8">
+      <StudentsAutoRefresh />
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
           <div className="font-display text-3xl text-gray-darkest tracking-wide">Students</div>

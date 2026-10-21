@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { StudentStatus } from "@/lib/crm/types";
 
@@ -14,6 +14,14 @@ export default function StudentStatusSelect({ studentId, initialStatus }: Props)
   const [savedStatus, setSavedStatus] = useState<StudentStatus>(initialStatus);
   const [saving, setSaving] = useState(false);
   const [justSaved, setJustSaved] = useState(false);
+
+  useEffect(() => {
+    if (status === savedStatus && initialStatus !== savedStatus) {
+      setStatus(initialStatus);
+      setSavedStatus(initialStatus);
+      setJustSaved(false);
+    }
+  }, [initialStatus, savedStatus, status]);
 
   async function saveStatus() {
     setSaving(true);
