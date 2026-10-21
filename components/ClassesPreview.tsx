@@ -2,11 +2,13 @@
 import { useRef } from "react";
 import { useInView } from "@/lib/useInView";
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
+import { useWebsiteSchedule } from "@/lib/useWebsiteSchedule";
 
 export default function ClassesPreview() {
   const titleRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { threshold: 0.3 });
-  const { weeklySchedule, privateLesson } = fallEnrollmentConfig;
+  const { privateLesson } = fallEnrollmentConfig;
+  const weeklySchedule = useWebsiteSchedule();
 
   return (
     <section id="classes" className="py-32 bg-white relative overflow-hidden">

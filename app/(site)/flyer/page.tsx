@@ -2,17 +2,19 @@
 import Link from "next/link";
 import { Share2, ArrowLeft } from "lucide-react";
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
+import { useWebsiteSchedule } from "@/lib/useWebsiteSchedule";
 
 export default function FlyerPage() {
-  const { sessions, registrationFormUrl, contact, weeklySchedule, privateLesson } =
+  const { sessions, registrationFormUrl, contact, privateLesson } =
     fallEnrollmentConfig;
+  const weeklySchedule = useWebsiteSchedule();
 
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
           title: "Luna Art Studio Fall Enrollment 2026",
-          text: "Fall art classes are open — Thu–Sat weekly classes with clear age groups!",
+          text: "Fall art classes are open — Wed–Sat weekly classes with clear age groups!",
           url: window.location.href,
         });
       } catch {
@@ -120,7 +122,7 @@ export default function FlyerPage() {
                       {session.classCount} classes
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
-                      Thu–Sat
+                      Wed–Sat
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
                       {session.startDisplay} – {session.endDisplay}
@@ -156,7 +158,7 @@ export default function FlyerPage() {
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">
-                      Classes run Thursday–Saturday · each class 90 minutes
+                      Classes run Wednesday–Saturday · each class 90 minutes
                     </span>
                   </li>
                   <li className="flex items-start gap-3">

@@ -81,7 +81,7 @@ export default function FallSessionsSection() {
                   {session.classCount} Classes
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
-                  Thu–Sat
+                  Wed–Sat
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
                   {session.startDisplay} – {session.endDisplay}

@@ -22,7 +22,7 @@ export const fallEnrollmentConfig = {
   seasonLabel: "Fall 2026 Enrollment",
   headline: "Fall Classes Now Open",
   subheadline:
-    "Thu–Sat weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
+    "Wed–Sat weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
 
   // Session date anchors follow the Thursday calendar pattern.
   // Other weekdays (Fri, Sat) use the same week windows (Session 1 / Session 2).
@@ -46,7 +46,7 @@ export const fallEnrollmentConfig = {
         "Oct 29",
         "Nov 5",
       ],
-      note: "9 weekly classes · same session window Thu–Sat",
+      note: "9 weekly classes · same session window Wed–Sat",
     },
     {
       id: "session-2",
@@ -67,19 +67,32 @@ export const fallEnrollmentConfig = {
         "Jan 28",
         "Feb 4",
       ],
-      note: "10 weekly classes · holiday break late December · same session window Thu–Sat",
+      note: "10 weekly classes · holiday break late December · same session window Wed–Sat",
     },
   ],
 
   // Canonical weekly timetable — one clear list so students pick the right slot.
   weeklySchedule: [
     {
+      day: "Wednesday",
+      dayShort: "Wed",
+      slots: [
+        {
+          time: "5:30–7:00 PM",
+          title: "Creative Art",
+          ages: "Ages 5–9",
+          duration: "90 min",
+        },
+      ],
+    },
+    {
       day: "Thursday",
       dayShort: "Thu",
       slots: [
         {
-          time: "4:15–5:45 PM",
-          title: "Sewing & Textile Art",
+          time: "4:30–6:00 PM",
+          title: "Sewing",
+          ages: "Ages 6+",
           duration: "90 min",
         },
         {

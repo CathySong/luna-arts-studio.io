@@ -6,7 +6,7 @@ import { Send, MapPin, Clock, Mail, Phone, MessageSquare } from "lucide-react";
 const interests = [
   "Adult Drawing",
   "Drawing & Creative Studio",
-  "Sewing & Textile Art",
+  "Sewing",
   "Drawing Fundamentals & Painting",
   "Creative Art",
   "Mixed Media",
