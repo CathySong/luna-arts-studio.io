@@ -70,6 +70,7 @@ function studentFromRow(r: Record<string, unknown>): Student {
     sourceCustom: r.source_custom != null ? String(r.source_custom) : undefined,
     classDays: (r.class_days as string[]) ?? [],
     classTimeSlots: (r.class_time_slots as string[]) ?? [],
+    status: r.status === "inactive" ? "inactive" : "active",
     createdAt: new Date(String(r.created_at)).toISOString(),
     updatedAt: new Date(String(r.updated_at)).toISOString(),
   };
@@ -93,6 +94,7 @@ function studentToRow(s: Partial<Student> & { name?: string }) {
     source_custom: s.sourceCustom ?? null,
     class_days: s.classDays ?? [],
     class_time_slots: s.classTimeSlots ?? [],
+    status: s.status ?? "active",
     updated_at: new Date().toISOString(),
   };
 }

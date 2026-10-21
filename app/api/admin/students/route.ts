@@ -57,6 +57,7 @@ function coerceStudent(candidate: Partial<StudentInput>): StudentInput {
     parentPhone: optionalString(candidate.parentPhone),
     classDays: coerceStringArray(candidate.classDays ?? []),
     classTimeSlots: coerceStringArray(candidate.classTimeSlots ?? []),
+    status: candidate.status === "inactive" ? "inactive" : "active",
     hobbies: coerceStringArray(candidate.hobbies ?? []),
     lovedArts: coerceStringArray(candidate.lovedArts ?? []),
     notes: optionalString(candidate.notes),

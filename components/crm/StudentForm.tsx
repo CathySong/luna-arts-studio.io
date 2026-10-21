@@ -42,6 +42,7 @@ export default function StudentForm({ student }: Props) {
       parentPhone: String(fd.get("parentPhone") ?? "").trim() || undefined,
       classDays: splitTags(String(fd.get("classDays") ?? "")),
       classTimeSlots: splitTags(String(fd.get("classTimeSlots") ?? "")),
+      status: String(fd.get("status") ?? "active") === "inactive" ? "inactive" as const : "active" as const,
       hobbies: splitTags(String(fd.get("hobbies") ?? "")),
       lovedArts: splitTags(String(fd.get("lovedArts") ?? "")),
       notes: String(fd.get("notes") ?? "").trim() || undefined,
@@ -67,6 +68,7 @@ export default function StudentForm({ student }: Props) {
           lovedArts: payload.lovedArts,
           classDays: payload.classDays,
           classTimeSlots: payload.classTimeSlots,
+          status: payload.status,
         };
         if (payload.age !== undefined && !Number.isNaN(payload.age)) body.age = payload.age;
         if (payload.parentName !== undefined) body.parentName = payload.parentName;
@@ -146,6 +148,18 @@ export default function StudentForm({ student }: Props) {
           />
         </label>
       </div>
+
+      <label className="flex flex-col gap-1 text-sm max-w-xs">
+        <span className="text-gray-darker">Status</span>
+        <select
+          name="status"
+          defaultValue={student?.status ?? "active"}
+          className="rounded-md border border-gray-lighter bg-white px-3 py-2 text-gray-darkest outline-none focus:border-accent-warm"
+        >
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </label>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1 text-sm">

@@ -60,6 +60,12 @@ function coercePatch(body: Record<string, unknown>): Record<string, unknown> {
   mapString(body, patch, "parentEmail");
   mapString(body, patch, "parentPhone");
   mapString(body, patch, "notes");
+  if (body.status !== undefined) {
+    if (body.status !== "active" && body.status !== "inactive") {
+      throw new Error("status must be active or inactive");
+    }
+    patch.status = body.status;
+  }
 
   if (body.hobbies !== undefined) patch.hobbies = stringArray(body.hobbies);
   if (body.lovedArts !== undefined) patch.lovedArts = stringArray(body.lovedArts);

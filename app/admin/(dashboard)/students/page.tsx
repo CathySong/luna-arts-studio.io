@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import StudentStatusSelect from "@/components/crm/StudentStatusSelect";
 import { listStudentsWithEnrollment } from "@/lib/crm/db";
 import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 
@@ -51,17 +52,21 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
         {rows.map(({ student: s, summary }) => {
           const schedule = getStructuredStudentSchedule(s);
           return (
-            <Link
+            <div
               key={s.id}
-              href={`/admin/students/${s.id}`}
               className="rounded-xl border border-gray-lighter bg-white p-4 card-shadow"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="font-medium text-gray-darkest">{s.name}</div>
+                  <Link href={`/admin/students/${s.id}`} className="font-medium text-gray-darkest hover:text-accent-warm">
+                    {s.name}
+                  </Link>
                   <div className="mt-1 text-xs text-gray-darker">{s.parentName ?? "—"}</div>
                 </div>
-                <span className="text-xs font-medium text-accent-warm">Edit</span>
+                <div className="flex items-center gap-3">
+                  <StudentStatusSelect studentId={s.id} initialStatus={s.status} />
+                  <Link href={`/admin/students/${s.id}`} className="text-xs font-medium text-accent-warm">Edit</Link>
+                </div>
               </div>
               <div className="mt-3 rounded-lg bg-accent-warm/10 px-3 py-2">
                 <div className="grid grid-cols-2 gap-3">
@@ -82,7 +87,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
               <div className="mt-3 text-xs text-gray-darker">
                 剩余课时 {summary.remainingLessons} · 已上 {summary.usedLessons} / 总计 {summary.totalLessons}
               </div>
-            </Link>
+            </div>
           );
         })}
         {rows.length === 0 ? (
@@ -100,6 +105,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
               <th className="px-4 py-3 font-medium">Parent</th>
               <th className="px-4 py-3 font-medium">周几</th>
               <th className="px-4 py-3 font-medium">时间段</th>
+              <th className="px-4 py-3 font-medium">Status</th>
               <th className="px-4 py-3 font-medium">Source</th>
               <th className="px-4 py-3 font-medium text-right">Price</th>
               <th className="px-4 py-3 font-medium">剩余课时</th>
@@ -122,6 +128,9 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
                 </td>
                 <td className="px-4 py-3 text-gray-darker text-xs whitespace-nowrap">
                   {getStructuredStudentSchedule(s).map((item) => item.time).join("；") || "—"}
+                </td>
+                <td className="px-4 py-3">
+                  <StudentStatusSelect studentId={s.id} initialStatus={s.status} />
                 </td>
                 <td className="px-4 py-3 text-gray-darker text-xs">
                   {s.source ? (
@@ -158,7 +167,7 @@ export default async function AdminStudentsPage({ searchParams }: Props) {
             ))}
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={9} className="px-4 py-8 text-center text-gray-dark">
+                <td colSpan={10} className="px-4 py-8 text-center text-gray-dark">
                   No students yet.
                 </td>
               </tr>

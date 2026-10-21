@@ -1,3 +1,5 @@
+export type StudentStatus = "active" | "inactive";
+
 export interface Student {
   id: string;
   name: string;
@@ -21,6 +23,7 @@ export interface Student {
   classDays: string[];
   /** Recurring class time ranges, paired by array position with classDays. */
   classTimeSlots: string[];
+  status: StudentStatus;
   createdAt: string;
   updatedAt: string;
 }
