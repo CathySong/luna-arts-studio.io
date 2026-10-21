@@ -29,15 +29,24 @@ export type SmsMessageLog = {
 };
 
 export const DEFAULT_INITIAL_SMS =
-  "Lunar Art Studio: We're setting up class updates for your student. Reply YES to receive reminders. Reply STOP to opt out.";
+  "Luna Art Studio: We're setting up class updates for your student. Reply YES to receive reminders. Reply STOP to opt out.";
 
-const SMS_PREFIX = "Lunar Art Studio:";
+const SMS_PREFIX = "Luna Art Studio:";
+export const DEFAULT_REMINDER_SMS =
+  "Luna Art Studio: Class reminder for {{student_name}}. Please reply if you have any questions. Reply STOP to opt out.";
 
 function normalizeInitialSms(template: string | null | undefined): string {
   const value = template?.trim();
   if (!value || /^Hi\s+\{\{parent_name\}\}/i.test(value)) return DEFAULT_INITIAL_SMS;
   const withoutOldPrefix = value.replace(/^Luna(?:r)? Art Studio:\s*/i, "");
   return `${SMS_PREFIX} ${withoutOldPrefix}`.trim();
+}
+
+function normalizeReminderSms(template: string): string {
+  const value = template.trim();
+  if (!value) throw new Error("Reminder message is required");
+  const withoutOldPrefix = value.replace(/^Luna(?:r)? Art Studio:\s*/i, "");
+  return `${SMS_PREFIX} ${withoutOldPrefix}`.trim().slice(0, 640);
 }
 
 function settingFromRow(row: Record<string, unknown>): SmsStudentSetting {
@@ -85,6 +94,81 @@ export async function listSmsAgentData() {
     settings: (settingsResult.data ?? []).map((row) => settingFromRow(row)),
     logs: (logsResult.data ?? []).map((row) => logFromRow(row)),
     defaultTemplate: DEFAULT_INITIAL_SMS,
+    defaultReminder: DEFAULT_REMINDER_SMS,
+  };
+}
+
+export async function sendBulkReminderSms(studentIds: string[], template: string) {
+  const uniqueIds = Array.from(new Set(studentIds)).slice(0, 500);
+  if (!uniqueIds.length) throw new Error("Select at least one student");
+
+  const students = await listStudents();
+  const studentMap = new Map(students.map((student) => [student.id, student]));
+  const { data: settings, error } = await getSupabaseAdmin()
+    .from("sms_student_settings")
+    .select("student_id,enabled,consent_status")
+    .in("student_id", uniqueIds);
+  if (error) throw new Error(`Unable to load SMS settings: ${error.message}`);
+  const settingMap = new Map((settings ?? []).map((row) => [String(row.student_id), row]));
+  const accountSid = process.env.TWILIO_ACCOUNT_SID?.trim();
+  const authToken = process.env.TWILIO_AUTH_TOKEN?.trim();
+  const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID?.trim();
+  if (!accountSid || !authToken || !messagingServiceSid) throw new Error("Twilio is not configured");
+
+  const client = twilio(accountSid, authToken);
+  const baseMessage = normalizeReminderSms(template);
+  const results: Array<{ studentId: string; ok: boolean; error?: string }> = [];
+
+  for (const studentId of uniqueIds) {
+    const student = studentMap.get(studentId);
+    const setting = settingMap.get(studentId);
+    if (!student?.parentPhone) {
+      results.push({ studentId, ok: false, error: "Missing parent phone" });
+      continue;
+    }
+    if (!setting?.enabled || setting.consent_status !== "opted_in") {
+      results.push({ studentId, ok: false, error: "SMS is not enabled with opt-in consent" });
+      continue;
+    }
+    const body = baseMessage
+      .replaceAll("{{student_name}}", student.name)
+      .replaceAll("{{parent_name}}", student.parentName || "there");
+    try {
+      const message = await client.messages.create({
+        to: student.parentPhone,
+        messagingServiceSid,
+        body,
+      });
+      await appendSmsLog({
+        studentId,
+        phone: student.parentPhone,
+        direction: "outbound",
+        messageType: "reminder",
+        body,
+        status: message.status || "queued",
+        twilioMessageSid: message.sid,
+      });
+      results.push({ studentId, ok: true });
+    } catch (sendError) {
+      const errorMessage = sendError instanceof Error ? sendError.message : "Unknown Twilio error";
+      await appendSmsLog({
+        studentId,
+        phone: student.parentPhone,
+        direction: "outbound",
+        messageType: "reminder",
+        body,
+        status: "failed",
+        errorMessage,
+      }).catch(() => undefined);
+      results.push({ studentId, ok: false, error: errorMessage });
+    }
+  }
+
+  return {
+    requested: uniqueIds.length,
+    sent: results.filter((item) => item.ok).length,
+    failed: results.filter((item) => !item.ok).length,
+    results,
   };
 }
 

@@ -5,6 +5,7 @@ import { requireAdmin } from "@/lib/crm/api-auth";
 import {
   listSmsAgentData,
   saveSmsStudent,
+  sendBulkReminderSms,
   sendInitialSms,
   type SmsConsentStatus,
 } from "@/lib/crm/sms-agent";
@@ -55,7 +56,25 @@ export async function PATCH(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
-  const body = (await req.json().catch(() => null)) as { studentId?: string } | null;
+  const body = (await req.json().catch(() => null)) as {
+    mode?: string;
+    studentId?: string;
+    studentIds?: string[];
+    message?: string;
+  } | null;
+  if (body?.mode === "bulk_reminder") {
+    try {
+      return NextResponse.json(await sendBulkReminderSms(
+        Array.isArray(body.studentIds) ? body.studentIds.filter((id): id is string => typeof id === "string") : [],
+        typeof body.message === "string" ? body.message : ""
+      ));
+    } catch (error) {
+      return NextResponse.json(
+        { error: error instanceof Error ? error.message : "Unable to send reminders" },
+        { status: 400 }
+      );
+    }
+  }
   if (!body?.studentId) return NextResponse.json({ error: "studentId is required" }, { status: 400 });
   try {
     const sid = await sendInitialSms(body.studentId);

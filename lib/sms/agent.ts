@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 import { summerCampConfig } from "@/config/summer-camp";
-import { smsKnowledge } from "./knowledge";
+import { getSmsKnowledge } from "./knowledge";
 
 export const HUMAN_FOLLOW_UP_EN =
   "I'm not certain about that. Luna will contact you personally soon.";
@@ -41,8 +41,8 @@ const intents: Intent[] = [
   },
   {
     patterns: [/\b(fall|autumn).*(schedule|class|session|time|date)\b/i, /\b(schedule|time|date).*(fall|autumn)\b/i, /秋季.*(课表|课程|时间|日期)|课表/],
-    en: "Fall classes: Thu 4:15 sewing, 6:00 drawing/painting; Fri 3:30 ages 4-6, 5:00 ages 6-9 creative art; Sat 2:30 mixed media ages 8+, 4:15 creative art ages 5-8.",
-    zh: "秋季课表：周四4:15缝纫、6:00素描绘画；周五3:30创意课(4-6岁)、5:00创意课(6-9岁)；周六2:30混合媒材(8岁+)、4:15创意课(5-8岁)。",
+    en: "Fall classes: Wed 4:00 Drawing & Creative ages 8-10 and 5:30 Creative Art ages 5-9; Thu 4:30 Sewing ages 6+ and 6:00 Drawing Fundamentals & Painting ages 9+; Fri 3:30 Creative Art ages 4-6 and 5:00 Creative Art ages 6-9; Sat 2:30 Mixed Media ages 8+.",
+    zh: "秋季课表：周三4:00绘画与创意(8-10岁)、5:30创意美术(5-9岁)；周四4:30缝纫(6岁+)、6:00素描与绘画基础(9岁+)；周五3:30创意美术(4-6岁)、5:00创意美术(6-9岁)；周六2:30混合媒材(8岁+)。",
   },
   {
     patterns: [/\b(register|registration|enroll|sign up)\b/i, /报名|注册|怎么参加/],
@@ -88,6 +88,7 @@ export async function generateSmsReply(message: string): Promise<AgentDecision> 
   const apiKey = process.env.DEEPSEEK_API_KEY?.trim();
   if (apiKey) {
     try {
+      const smsKnowledge = await getSmsKnowledge();
       const client = new OpenAI({ apiKey, baseURL: "https://api.deepseek.com" });
       const completion = await client.chat.completions.create({
         model: process.env.DEEPSEEK_MODEL?.trim() || "deepseek-flash",
@@ -96,10 +97,10 @@ export async function generateSmsReply(message: string): Promise<AgentDecision> 
         messages: [
           {
             role: "system",
-            content: `You are the SMS assistant for Lunar Art Studio. Answer only from the official facts below.
+            content: `You are the SMS assistant for Luna Art Studio. Answer only from the official facts below.
 
 Return JSON exactly as {"canAnswer":boolean,"reply":string}.
-- Every reply must begin with "Lunar Art Studio:".
+- Every reply must begin with "Luna Art Studio:".
 - Use the customer's language (English or Chinese).
 - Keep the entire reply concise and under 320 characters.
 - Never invent dates, pricing, availability, policies, or student information.
@@ -117,9 +118,9 @@ ${smsKnowledge}`,
           const reply = parsed.reply.trim().slice(0, 320);
           return {
             canAnswer: parsed.canAnswer,
-            reply: /^Lunar Art Studio:/i.test(reply)
+            reply: /^Luna Art Studio:/i.test(reply)
               ? reply
-              : `Lunar Art Studio: ${reply}`,
+              : `Luna Art Studio: ${reply}`,
           };
         }
       }
@@ -135,12 +136,12 @@ ${smsKnowledge}`,
   if (!intent) {
     return {
       canAnswer: false,
-      reply: `Lunar Art Studio: ${chinese ? HUMAN_FOLLOW_UP_ZH : HUMAN_FOLLOW_UP_EN}`,
+      reply: `Luna Art Studio: ${chinese ? HUMAN_FOLLOW_UP_ZH : HUMAN_FOLLOW_UP_EN}`,
     };
   }
 
   return {
     canAnswer: true,
-    reply: `Lunar Art Studio: ${chinese ? intent.zh : intent.en}`,
+    reply: `Luna Art Studio: ${chinese ? intent.zh : intent.en}`,
   };
 }

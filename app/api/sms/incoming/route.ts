@@ -16,11 +16,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const YES_REPLY =
-  "Lunar Art Studio: You're enrolled in class reminders. We'll text you 24 hours before class. Reply HELP for help or STOP to opt out.";
+  "Luna Art Studio: You're enrolled in class reminders. We'll text you 24 hours before class. Reply HELP for help or STOP to opt out.";
 const HELP_REPLY =
-  "Lunar Art Studio: For help, visit https://lunaart.studio or call 732-718-0639. Reply STOP to opt out.";
+  "Luna Art Studio: For help, visit https://lunaart.studio or call 732-718-0639. Reply STOP to opt out.";
 const STOP_REPLY =
-  "Lunar Art Studio: You are unsubscribed and will receive no further messages. Reply START to opt in again.";
+  "Luna Art Studio: You are unsubscribed and will receive no further messages. Reply START to opt in again.";
 
 function xmlResponse(xml: string, status = 200) {
   return new NextResponse(xml, {
@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
     const fallback = /[\u3400-\u9fff]/.test(incomingMessage)
       ? HUMAN_FOLLOW_UP_ZH
       : HUMAN_FOLLOW_UP_EN;
-    const prefixedFallback = `Lunar Art Studio: ${fallback}`;
+    const prefixedFallback = `Luna Art Studio: ${fallback}`;
     response.message(prefixedFallback);
     await appendSmsLog({
       studentId: student?.id,

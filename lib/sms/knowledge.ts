@@ -1,6 +1,7 @@
 import { classTypes } from "@/config/classes";
 import { fallEnrollmentConfig } from "@/config/fall-enrollment";
 import { summerCampConfig } from "@/config/summer-camp";
+import { listWebsiteClasses } from "@/lib/crm/website-classes";
 
 const classCatalog = classTypes
   .map(
@@ -61,3 +62,11 @@ Summer camp 2026
 - Referral and multi-week discounts are each 5%.
 - Registration: ${summerCampConfig.registrationFormUrl}
 `.trim();
+
+export async function getSmsKnowledge() {
+  const classes = await listWebsiteClasses();
+  const liveSchedule = classes
+    .map((item) => `- ${item.day}: ${item.startTime}–${item.endTime}, ${item.title}${item.ages ? ` (${item.ages})` : ""}`)
+    .join("\n");
+  return smsKnowledge.replace(fallSchedule, liveSchedule || fallSchedule);
+}

@@ -21,7 +21,7 @@ type Log = {
   createdAt: string;
 };
 type Row = Student & Setting;
-type ApiData = { students: Student[]; settings: Setting[]; logs: Log[]; defaultTemplate: string };
+type ApiData = { students: Student[]; settings: Setting[]; logs: Log[]; defaultTemplate: string; defaultReminder: string };
 
 function buildRows(data: ApiData): Row[] {
   const settings = new Map(data.settings.map((item) => [item.studentId, item]));
@@ -42,6 +42,9 @@ export default function SmsAgentPanel() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [saveState, setSaveState] = useState<Record<string, string>>({});
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [reminderMessage, setReminderMessage] = useState("");
+  const [bulkState, setBulkState] = useState("");
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const rowsRef = useRef(rows);
   rowsRef.current = rows;
@@ -53,7 +56,10 @@ export default function SmsAgentPanel() {
     if (!res.ok) {
       setError(data.error || "Unable to load SMS Agent");
     } else {
-      if (!quiet) setRows(buildRows(data));
+      if (!quiet) {
+        setRows(buildRows(data));
+        setReminderMessage((current) => current || data.defaultReminder);
+      }
       setLogs(data.logs);
       setError("");
     }
@@ -114,6 +120,26 @@ export default function SmsAgentPanel() {
     if (res.ok) void load(true);
   }
 
+  async function sendReminders() {
+    const ids = Array.from(selectedIds);
+    if (!ids.length || !reminderMessage.trim()) return;
+    if (!window.confirm(`Send this reminder to ${ids.length} opted-in recipient${ids.length === 1 ? "" : "s"}?`)) return;
+    setBulkState("Sending…");
+    const res = await fetch("/api/admin/sms-agent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mode: "bulk_reminder", studentIds: ids, message: reminderMessage }),
+    });
+    const data = (await res.json()) as { sent?: number; failed?: number; error?: string };
+    if (!res.ok) {
+      setBulkState(data.error || "Send failed");
+      return;
+    }
+    setBulkState(`Sent ${data.sent || 0}; skipped/failed ${data.failed || 0}`);
+    setSelectedIds(new Set());
+    void load(true);
+  }
+
   const visibleRows = useMemo(() => {
     const q = search.trim().toLowerCase();
     return q
@@ -121,6 +147,29 @@ export default function SmsAgentPanel() {
       : rows;
   }, [rows, search]);
   const studentNames = useMemo(() => new Map(rows.map((row) => [row.id, row.name])), [rows]);
+  const eligibleRows = useMemo(
+    () => visibleRows.filter((row) => row.enabled && row.consentStatus === "opted_in" && row.parentPhone),
+    [visibleRows]
+  );
+  const allEligibleSelected = eligibleRows.length > 0 && eligibleRows.every((row) => selectedIds.has(row.id));
+
+  function toggleSelected(id: string, checked: boolean) {
+    setSelectedIds((current) => {
+      const next = new Set(current);
+      if (checked) next.add(id); else next.delete(id);
+      return next;
+    });
+  }
+
+  function toggleAllEligible(checked: boolean) {
+    setSelectedIds((current) => {
+      const next = new Set(current);
+      for (const row of eligibleRows) {
+        if (checked) next.add(row.id); else next.delete(row.id);
+      }
+      return next;
+    });
+  }
 
   if (loading) return <div className="rounded-xl border border-gray-lighter bg-white p-8 text-sm text-gray-darker">Loading SMS Agent…</div>;
 
@@ -151,17 +200,42 @@ export default function SmsAgentPanel() {
         className="w-full max-w-md rounded-md border border-gray-lighter px-3 py-2 text-sm outline-none focus:border-accent-warm"
       />
 
+      <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
+        <div className="font-display text-lg text-gray-darkest">Send class reminder</div>
+        <p className="mt-1 text-xs text-gray-darker">
+          Select recipients below. Only students with SMS enabled, a parent phone, and Opted in consent can be selected.
+        </p>
+        <textarea
+          value={reminderMessage}
+          onChange={(event) => setReminderMessage(event.target.value)}
+          rows={3}
+          className="mt-3 w-full resize-y rounded border border-amber-200 bg-white px-3 py-2 text-sm outline-none focus:border-accent-warm"
+        />
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            disabled={selectedIds.size === 0 || !reminderMessage.trim() || bulkState === "Sending…"}
+            onClick={() => void sendReminders()}
+            className="rounded-md bg-accent-warm px-4 py-2 text-sm font-medium text-gray-darkest disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Send reminder to {selectedIds.size} selected
+          </button>
+          <span className="text-xs text-gray-darker">{bulkState || `${eligibleRows.length} eligible in current list`}</span>
+        </div>
+      </div>
+
       <div className="overflow-x-auto rounded-lg border border-gray-lighter">
         <table className="min-w-[1120px] w-full text-sm">
           <thead className="bg-white-warm text-left text-xs uppercase tracking-wide text-gray-dark">
             <tr>
-              <th className="px-3 py-3">Active</th><th className="px-3 py-3">Student</th><th className="px-3 py-3">Parent</th>
+              <th className="px-3 py-3"><input type="checkbox" checked={allEligibleSelected} onChange={(e) => toggleAllEligible(e.target.checked)} aria-label="Select all eligible students" /></th><th className="px-3 py-3">Active</th><th className="px-3 py-3">Student</th><th className="px-3 py-3">Parent</th>
               <th className="px-3 py-3">Phone</th><th className="px-3 py-3">Consent</th><th className="px-3 py-3 min-w-[360px]">Initial message template</th><th className="px-3 py-3">Action</th>
             </tr>
           </thead>
           <tbody>
             {visibleRows.map((row) => (
               <tr key={row.id} className="border-t border-gray-lighter align-top">
+                <td className="px-3 py-3"><input type="checkbox" disabled={!row.enabled || row.consentStatus !== "opted_in" || !row.parentPhone} checked={selectedIds.has(row.id)} onChange={(e) => toggleSelected(row.id, e.target.checked)} aria-label={`Select ${row.name} for reminder`} /></td>
                 <td className="px-3 py-3"><input type="checkbox" checked={row.enabled} onChange={(e) => update(row.id, { enabled: e.target.checked })} aria-label={`Enable SMS for ${row.name}`} /></td>
                 <td className="px-3 py-3 font-medium text-gray-darkest">{row.name}</td>
                 <td className="px-3 py-3"><input value={row.parentName || ""} onChange={(e) => update(row.id, { parentName: e.target.value })} className="w-36 rounded border border-gray-lighter px-2 py-1.5 outline-none focus:border-accent-warm" /></td>
@@ -173,7 +247,7 @@ export default function SmsAgentPanel() {
                 </td>
                 <td className="px-3 py-3">
                   <textarea value={row.initialMessage} onChange={(e) => update(row.id, { initialMessage: e.target.value })} rows={3} className="w-full resize-y rounded border border-gray-lighter px-2 py-1.5 text-xs leading-5 outline-none focus:border-accent-warm" />
-                  <div className="mt-1 text-[11px] text-gray-dark">Messages must begin with “Lunar Art Studio:”</div>
+                  <div className="mt-1 text-[11px] text-gray-dark">Messages begin with “Luna Art Studio:”</div>
                 </td>
                 <td className="px-3 py-3">
                   <button type="button" disabled={!row.parentPhone || row.consentStatus === "opted_out"} onClick={() => void sendInitial(row)} className="whitespace-nowrap rounded-md bg-accent-warm px-3 py-1.5 text-xs font-medium text-gray-darkest disabled:cursor-not-allowed disabled:opacity-40">Send initial</button>
