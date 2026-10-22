@@ -69,7 +69,7 @@ function formatTimeRange(value: string) {
   const end = formatTime(range.end);
   const startWithoutSuffix = start.replace(/\s+(AM|PM)$/, "");
   const sameSuffix = start.endsWith(end.slice(-2));
-  return sameSuffix ? `${startWithoutSuffix}–${end}` : `${start}–${end}`;
+  return sameSuffix ? `${startWithoutSuffix}-${end}` : `${start}-${end}`;
 }
 
 function findClass(classes: WebsiteClass[], day: string, time: string) {
