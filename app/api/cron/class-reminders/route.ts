@@ -82,15 +82,6 @@ function findClass(classes: WebsiteClass[], day: string, time: string) {
   });
 }
 
-function formatClassDate(date: Date) {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: "UTC",
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  }).format(date);
-}
-
 export async function GET(req: NextRequest) {
   const secret = process.env.CRON_SECRET;
   if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
@@ -154,7 +145,7 @@ export async function GET(req: NextRequest) {
     const classDescription = title ? ` has ${title}` : " has class";
     const result = await sendBulkReminderSms(
       studentIds,
-      `Luna Art Studio: Reminder—{{student_name}}${classDescription} tomorrow, ${formatClassDate(localTomorrow)}, from ${formatTimeRange(time)}. We look forward to seeing you! Reply STOP to opt out.`,
+      `Luna Art Studio: Reminder: {{student_name}}${classDescription} tomorrow at ${formatTimeRange(time)}. Reply STOP to opt out.`,
       messageType
     );
     sent += result.sent;
