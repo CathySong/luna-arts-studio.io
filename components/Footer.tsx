@@ -34,7 +34,9 @@ export default function Footer() {
               {["Instagram", "Facebook", "Pinterest"].map((s) => (
                 <a
                   key={s}
-                  href="#"
+                  href={s === "Instagram" ? "https://www.instagram.com/luna_stitch_and_sketch?mdxt=MXVodjlmMnFpYnJoOA%3D%3D&utm_source=qr" : "#"}
+                  target={s === "Instagram" ? "_blank" : undefined}
+                  rel={s === "Instagram" ? "noopener noreferrer" : undefined}
                   className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-dark hover:text-accent-warm transition-colors"
                 >
                   {s}
