@@ -37,12 +37,14 @@ export default function Footer() {
                   href={
                     s === "Instagram"
                       ? "https://www.instagram.com/luna_stitch_and_sketch?mdxt=MXVodjlmMnFpYnJoOA%3D%3D&utm_source=qr"
+                      : s === "Facebook"
+                        ? "https://www.facebook.com/share/1DdjSBUfwi/?mibextid=wwXIfr"
                       : s === "Pinterest"
                         ? "https://pin.it/4xaxAyWaT"
                         : "#"
                   }
-                  target={s === "Instagram" || s === "Pinterest" ? "_blank" : undefined}
-                  rel={s === "Instagram" || s === "Pinterest" ? "noopener noreferrer" : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-dark hover:text-accent-warm transition-colors"
                 >
                   {s}
