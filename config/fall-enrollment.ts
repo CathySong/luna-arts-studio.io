@@ -1,5 +1,5 @@
-// Fall Enrollment Configuration
-// Update the Google Form URL here when you have the actual Fall form link
+// Winter Enrollment Configuration
+// Update the Google Form URL here when you have the actual Winter form link
 
 export type WeeklyClassSlot = {
   time: string;
@@ -15,12 +15,12 @@ export type WeeklyDaySchedule = {
 };
 
 export const fallEnrollmentConfig = {
-  // Fall registration Google Form
+  // Winter registration Google Form
   registrationFormUrl:
     "https://docs.google.com/forms/d/e/1FAIpQLScMgvFa4_RkTECBlZOzSnDbBS_rXyr0bKrQsR1IedM2PZnyuQ/viewform?usp=header",
 
   seasonLabel: "Winter 2026 Enrollment",
-  headline: "Fall Classes Now Open",
+  headline: "Winter Classes Now Open",
   subheadline: "Clear age groups · Private lessons by appointment · Limited spots",
 
   // Session date anchors follow the Thursday calendar pattern.
@@ -29,7 +29,7 @@ export const fallEnrollmentConfig = {
     {
       id: "session-1",
       name: "Session 1",
-      label: "Fall Session 1",
+      label: "Winter Session 1",
       startDisplay: "Sep 10",
       endDisplay: "Nov 5",
       classCount: 9,
@@ -50,7 +50,7 @@ export const fallEnrollmentConfig = {
     {
       id: "session-2",
       name: "Session 2",
-      label: "Fall / Winter Session 2",
+      label: "Winter Session 2",
       startDisplay: "Nov 12",
       endDisplay: "Feb 4",
       classCount: 10,

@@ -36,12 +36,12 @@ Contact and location
 Classes
 ${classCatalog}
 
-Fall 2026 enrollment
+Winter 2026 enrollment
 - ${fallEnrollmentConfig.sessions[0].label}: ${fallEnrollmentConfig.sessions[0].startDisplay}-${fallEnrollmentConfig.sessions[0].endDisplay}, ${fallEnrollmentConfig.sessions[0].classCount} weekly classes.
 - ${fallEnrollmentConfig.sessions[1].label}: ${fallEnrollmentConfig.sessions[1].startDisplay}-${fallEnrollmentConfig.sessions[1].endDisplay}, ${fallEnrollmentConfig.sessions[1].classCount} weekly classes, with a late-December holiday break.
 ${fallSchedule}
 - Private lessons are available by appointment; contact the studio to schedule.
-- Fall registration: ${fallEnrollmentConfig.registrationFormUrl}
+- Winter registration: ${fallEnrollmentConfig.registrationFormUrl}
 
 Birthday parties and group events
 - Two-hour creative workshops for up to 12 children; materials and take-home creations are included.

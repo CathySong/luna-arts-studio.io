@@ -122,7 +122,7 @@ export default function FounderBio() {
                 href="#fall-enrollment"
                 className="inline-flex items-center justify-center px-7 py-3 bg-gray-darkest text-white font-body text-xs tracking-widest uppercase hover:bg-accent-warm transition-colors duration-300"
               >
-                Enroll this fall
+                Enroll this winter
               </a>
               <a
                 href="#contact"

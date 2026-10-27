@@ -40,14 +40,14 @@ const intents: Intent[] = [
     zh: `可联系 Luna Art Studio：电话 ${fallEnrollmentConfig.contact.phone}，邮箱 ${fallEnrollmentConfig.contact.email}，微信 ${fallEnrollmentConfig.contact.wechat}。`,
   },
   {
-    patterns: [/\b(fall|autumn).*(schedule|class|session|time|date)\b/i, /\b(schedule|time|date).*(fall|autumn)\b/i, /秋季.*(课表|课程|时间|日期)|课表/],
-    en: "Fall classes: Wed 4:00 Drawing & Creative ages 8-10 and 5:30 Creative Art ages 5-9; Thu 4:30 Sewing ages 6+ and 6:00 Drawing Fundamentals & Painting ages 9+; Fri 3:30 Creative Art ages 4-6 and 5:00 Creative Art ages 6-9; Sat 2:30 Mixed Media ages 8+.",
-    zh: "秋季课表：周三4:00绘画与创意(8-10岁)、5:30创意美术(5-9岁)；周四4:30缝纫(6岁+)、6:00素描与绘画基础(9岁+)；周五3:30创意美术(4-6岁)、5:00创意美术(6-9岁)；周六2:30混合媒材(8岁+)。",
+    patterns: [/\b(fall|autumn|winter).*(schedule|class|session|time|date)\b/i, /\b(schedule|time|date).*(fall|autumn|winter)\b/i, /(秋季|冬季).*(课表|课程|时间|日期)|课表/],
+    en: "Winter classes run Monday through Saturday. Please check the current weekly schedule or contact Luna Art Studio for the latest class times.",
+    zh: "冬季课程为周一至周六。请查看最新每周课表，或联系 Luna Art Studio 确认当前上课时间。",
   },
   {
     patterns: [/\b(register|registration|enroll|sign up)\b/i, /报名|注册|怎么参加/],
-    en: `Fall registration: ${fallEnrollmentConfig.registrationFormUrl}`,
-    zh: `秋季课程报名链接：${fallEnrollmentConfig.registrationFormUrl}`,
+    en: `Winter registration: ${fallEnrollmentConfig.registrationFormUrl}`,
+    zh: `冬季课程报名链接：${fallEnrollmentConfig.registrationFormUrl}`,
   },
   {
     patterns: [/\b(private lesson|one.?on.?one)\b/i, /私教|一对一|私人课程/],

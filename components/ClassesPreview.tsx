@@ -94,7 +94,7 @@ export default function ClassesPreview() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-14 border-t border-gray-lightest">
           <div>
             <p className="font-body text-gray-darkest/70 font-light mb-1">
-              Ready to enroll for Fall?
+              Ready to enroll for Winter?
             </p>
             <p className="font-body text-gray-darker text-sm font-light">
               Session dates and online registration are below.

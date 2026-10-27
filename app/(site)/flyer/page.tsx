@@ -60,10 +60,10 @@ export default function FlyerPage() {
           <div className="p-8 md:p-12">
             <div className="text-center mb-12">
               <span className="inline-block bg-accent-warm/15 text-accent-warm font-mono text-xs tracking-widest uppercase px-6 py-3 rounded-full mb-6">
-                🍂 Fall 2026
+                ❄️ Winter 2026
               </span>
               <h2 className="font-display text-4xl font-light text-gray-900 mb-4">
-                Fall Class Schedule
+                Winter Class Schedule
               </h2>
               <p className="font-body text-gray-600 max-w-2xl mx-auto">
                 One clear weekly list. Choose your day, time, and age group — then enroll in Session 1,
@@ -194,7 +194,7 @@ export default function FlyerPage() {
 
             <div className="mt-12 pt-12 border-t border-gray-200 text-center">
               <h3 className="font-display text-2xl font-light text-gray-900 mb-6">
-                Ready to Join Fall Classes?
+                Ready to Join Winter Classes?
               </h3>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a

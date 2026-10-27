@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   description:
     "Winter 2026 enrollment is open at Luna Art Studio in Warren, NJ. Weekly classes with clear age groups. Session 1 starts Sep 10; Session 2 Nov 12. Register now.",
   keywords:
-    "art studio, fall art classes, creative art, drawing class, sewing, mixed media, Warren NJ, New Jersey, fall enrollment",
+    "art studio, winter art classes, creative art, drawing class, sewing, mixed media, Warren NJ, New Jersey, winter enrollment",
   openGraph: {
     title: "Luna Art Studio",
     description: "Winter 2026 Enrollment Open — art classes with clear age groups in Warren, NJ",

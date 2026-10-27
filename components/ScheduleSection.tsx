@@ -23,7 +23,7 @@ export default function ScheduleSection() {
               className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60"
               style={{ letterSpacing: "0.35em" }}
             >
-              Fall Class Calendar
+              Winter Class Calendar
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">

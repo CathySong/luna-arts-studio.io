@@ -11,7 +11,7 @@ import NewServicesPreview from "@/components/NewServicesPreview";
 export default function Home() {
   return (
     <>
-      {/* Fall Enrollment Hero with promo banner */}
+      {/* Winter Enrollment Hero with promo banner */}
       <FallEnrollmentHero />
 
       <AboutPreview />
@@ -21,7 +21,7 @@ export default function Home() {
 
       <NewServicesPreview />
 
-      {/* Fall sessions + registration */}
+      {/* Winter sessions + registration */}
       <FallSessionsSection />
       <ContactSection />
     </>

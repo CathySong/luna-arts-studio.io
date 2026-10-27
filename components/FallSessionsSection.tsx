@@ -27,7 +27,7 @@ export default function FallSessionsSection() {
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight mb-6">
-            Fall <span className="italic text-accent-warm">Sessions</span>
+            Winter <span className="italic text-accent-warm">Sessions</span>
           </h2>
           <p className="font-body text-gray-dark max-w-2xl font-light leading-relaxed">
             Class times are listed under Our Classes. Choose Session 1, Session 2, or both — then
@@ -158,7 +158,7 @@ export default function FallSessionsSection() {
               rel="noopener noreferrer"
               className="px-8 py-3 bg-accent-warm text-white font-mono text-xs tracking-widest uppercase hover:bg-accent-warm/90 transition-all duration-300"
             >
-              Register for Fall
+              Register for Winter
             </a>
             <a
               href="#contact"

@@ -22,7 +22,7 @@ export default function FallEnrollmentHero() {
                   </span>
                 </div>
                 <h3 className="font-display text-lg md:text-xl font-semibold mb-1 leading-snug">
-                  Fall Class Registration Open
+                  Winter Class Registration Open
                 </h3>
                 <p className="font-body text-xs md:text-sm font-light opacity-90 leading-relaxed">
                   Session 1 starts {session1.startDisplay} · Session 2 starts{" "}
@@ -52,13 +52,13 @@ export default function FallEnrollmentHero() {
         </div>
       )}
 
-      {/* Fall hero content */}
+      {/* Winter hero content */}
       <div className="relative w-full bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-12">
               <span className="inline-block bg-accent-warm/15 text-accent-warm font-mono text-xs tracking-widest uppercase px-6 py-3 rounded-full mb-8">
-                🍂 Fall Art Classes 2026
+                ❄️ Winter Art Classes 2026
               </span>
               <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-tight">
                 Winter <span className="text-accent-warm">Enrollment</span>
@@ -75,7 +75,7 @@ export default function FallEnrollmentHero() {
                 href="#fall-enrollment"
                 className="bg-white border-2 border-gray-300 text-gray-900 font-display text-xl font-bold px-10 py-5 rounded-full hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                View Fall Sessions
+                View Winter Sessions
               </a>
               <a
                 href={fallEnrollmentConfig.registrationFormUrl}
@@ -118,7 +118,7 @@ export default function FallEnrollmentHero() {
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div className="text-accent-warm font-display text-4xl font-bold mb-3">2</div>
-                <p className="font-body text-gray-700 font-medium">Fall Sessions Open</p>
+                <p className="font-body text-gray-700 font-medium">Winter Sessions Open</p>
                 <p className="font-mono text-sm text-gray-500 mt-2">Enroll for one or both</p>
               </div>
             </div>
