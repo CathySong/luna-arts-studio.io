@@ -63,7 +63,7 @@ export default function FallSessionsSection() {
               className={`border p-8 transition-all duration-300 ${
                 index === 0
                   ? "border-gray-lightest bg-white-soft text-gray"
-                  : "border-accent-warm/50 bg-accent-warm/5 shadow-lg shadow-accent-warm/10"
+                  : "border-2 border-accent-warm bg-accent-warm/10 shadow-xl shadow-accent-warm/20"
               }`}
             >
               <div className="flex items-start justify-between mb-6">
