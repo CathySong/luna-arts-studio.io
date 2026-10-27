@@ -63,7 +63,7 @@ export default function FallSessionsSection() {
               className={`border p-8 transition-all duration-300 ${
                 index === 0
                   ? "border-gray-200 bg-gray-100 text-gray-500"
-                  : "border-gray-lightest bg-white hover:border-accent-warm/30"
+                  : "border-accent-warm/50 bg-accent-warm/5 shadow-lg shadow-accent-warm/10"
               }`}
             >
               <div className="flex items-start justify-between mb-6">
@@ -84,22 +84,22 @@ export default function FallSessionsSection() {
                 <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-300 text-gray-400" : "border-accent-warm/30 text-accent-warm"}`}>
                   {session.classCount} Classes
                 </span>
-                <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
+                <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-300 text-gray-400" : "border-accent-warm/20 text-gray-dark"}`}>
                   {session.startDisplay} – {session.endDisplay}
                 </span>
               </div>
 
-              <p className="font-body text-sm text-gray-dark font-light mb-6">{session.note}</p>
+              <p className={`font-body text-sm font-light mb-6 ${index === 0 ? "text-gray-400" : "text-gray-dark"}`}>{session.note}</p>
 
-              <div className="border-t border-gray-lightest pt-6 mb-8">
-                <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker mb-4">
+              <div className={`border-t pt-6 mb-8 ${index === 0 ? "border-gray-200" : "border-accent-warm/20"}`}>
+                <p className={`font-mono text-[9px] tracking-widest uppercase mb-4 ${index === 0 ? "text-gray-400" : "text-gray-darker"}`}>
                   Session dates (Thu reference)
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {session.dates.map((date) => (
                     <span
                       key={date}
-                      className="font-mono text-[11px] px-2.5 py-1.5 bg-gray-50 text-gray-darkest border border-gray-100"
+                      className={`font-mono text-[11px] px-2.5 py-1.5 border ${index === 0 ? "bg-gray-200/60 text-gray-400 border-gray-200" : "bg-white text-gray-darkest border-accent-warm/15"}`}
                     >
                       {date}
                     </span>
@@ -111,7 +111,11 @@ export default function FallSessionsSection() {
                 href={registrationFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-accent-warm border border-accent-warm/30 px-5 py-3 hover:bg-accent-warm hover:text-white transition-all duration-300"
+                className={`inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase border px-5 py-3 transition-all duration-300 ${
+                  index === 0
+                    ? "text-gray-400 border-gray-300 hover:bg-gray-200"
+                    : "text-white bg-accent-warm border-accent-warm hover:bg-accent-warm/90 shadow-md"
+                }`}
               >
                 Enroll in {session.name}
               </a>
