@@ -37,13 +37,13 @@ export default function ScheduleSection() {
 
         <div className="space-y-10">
           {sessions.map((session, index) => (
-            <div key={session.id} className="border border-gray-lightest">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 border-b border-gray-lightest bg-gray-50/50">
+            <div key={session.id} className={`border ${index === 0 ? "border-gray-200 bg-gray-100" : "border-gray-lightest"}`}>
+              <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 border-b ${index === 0 ? "border-gray-200 bg-gray-200/70" : "border-gray-lightest bg-gray-50/50"}`}>
                 <div>
-                  <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm mb-1">
+                  <p className={`font-mono text-[9px] tracking-widest uppercase mb-1 ${index === 0 ? "text-gray-400" : "text-accent-warm"}`}>
                     Session Window
                   </p>
-                  <h3 className="font-display text-2xl text-gray-darkest font-light">
+                  <h3 className={`font-display text-2xl font-light ${index === 0 ? "text-gray-500" : "text-gray-darkest"}`}>
                     {session.name}
                   </h3>
                 </div>

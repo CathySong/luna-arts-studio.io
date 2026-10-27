@@ -110,15 +110,15 @@ export default function FlyerPage() {
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               {sessions.map((session, index) => (
-                <div key={session.id} className="border border-gray-200 p-8 rounded-xl">
-                  <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm mb-2">
+                <div key={session.id} className={`border p-8 rounded-xl ${index === 0 ? "border-gray-300 bg-gray-100 text-gray-500" : "border-gray-200 bg-white"}`}>
+                  <p className={`font-mono text-[9px] tracking-widest uppercase mb-2 ${index === 0 ? "text-gray-400" : "text-accent-warm"}`}>
                     {session.label}
                   </p>
-                  <h3 className="font-display text-3xl text-gray-900 font-light mb-4">
+                  <h3 className={`font-display text-3xl font-light mb-4 ${index === 0 ? "text-gray-500" : "text-gray-900"}`}>
                     {session.name}
                   </h3>
                   <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-accent-warm/30 text-accent-warm">
+                    <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-300 text-gray-400" : "border-accent-warm/30 text-accent-warm"}`}>
                       {session.classCount} classes
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">

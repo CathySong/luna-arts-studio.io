@@ -60,24 +60,28 @@ export default function FallSessionsSection() {
           {sessions.map((session, index) => (
             <div
               key={session.id}
-              className="border border-gray-lightest p-8 hover:border-accent-warm/30 transition-all duration-300 bg-white"
+              className={`border p-8 transition-all duration-300 ${
+                index === 0
+                  ? "border-gray-200 bg-gray-100 text-gray-500"
+                  : "border-gray-lightest bg-white hover:border-accent-warm/30"
+              }`}
             >
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-accent-warm mb-2 block">
+                  <span className={`font-mono text-[9px] tracking-widest uppercase mb-2 block ${index === 0 ? "text-gray-400" : "text-accent-warm"}`}>
                     {session.label}
                   </span>
-                  <h3 className="font-display text-3xl text-gray-darkest font-light">
+                  <h3 className={`font-display text-3xl font-light ${index === 0 ? "text-gray-500" : "text-gray-darkest"}`}>
                     {session.name}
                   </h3>
                 </div>
-                <span className="font-display text-5xl font-light text-accent-warm/20 leading-none">
+                <span className={`font-display text-5xl font-light leading-none ${index === 0 ? "text-gray-300" : "text-accent-warm/20"}`}>
                   0{index + 1}
                 </span>
               </div>
 
               <div className="flex flex-wrap gap-3 mb-6">
-                <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-accent-warm/30 text-accent-warm">
+                <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-300 text-gray-400" : "border-accent-warm/30 text-accent-warm"}`}>
                   {session.classCount} Classes
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
