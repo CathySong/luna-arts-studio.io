@@ -62,44 +62,44 @@ export default function FallSessionsSection() {
               key={session.id}
               className={`border p-8 transition-all duration-300 ${
                 index === 0
-                  ? "border-gray-100 bg-gray-100 text-gray-500"
+                  ? "border-gray-lightest bg-white-soft text-gray"
                   : "border-accent-warm/50 bg-accent-warm/5 shadow-lg shadow-accent-warm/10"
               }`}
             >
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <span className={`font-mono text-[9px] tracking-widest uppercase mb-2 block ${index === 0 ? "text-gray-400" : "text-accent-warm"}`}>
+                  <span className={`font-mono text-[9px] tracking-widest uppercase mb-2 block ${index === 0 ? "text-gray" : "text-accent-warm"}`}>
                     {session.label}
                   </span>
-                  <h3 className={`font-display text-3xl font-light ${index === 0 ? "text-gray-500" : "text-gray-darkest"}`}>
+                  <h3 className={`font-display text-3xl font-light ${index === 0 ? "text-gray-dark" : "text-gray-darkest"}`}>
                     {session.name}
                   </h3>
                 </div>
-                <span className={`font-display text-5xl font-light leading-none ${index === 0 ? "text-gray-300" : "text-accent-warm/20"}`}>
+                <span className={`font-display text-5xl font-light leading-none ${index === 0 ? "text-gray-light" : "text-accent-warm/20"}`}>
                   0{index + 1}
                 </span>
               </div>
 
               <div className="flex flex-wrap gap-3 mb-6">
-                <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-200 text-gray-400" : "border-accent-warm/30 text-accent-warm"}`}>
+                <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-lighter text-gray" : "border-accent-warm/30 text-accent-warm"}`}>
                   {session.classCount} Classes
                 </span>
-                <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-200 text-gray-400" : "border-accent-warm/20 text-gray-dark"}`}>
+                <span className={`font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border ${index === 0 ? "border-gray-lighter text-gray" : "border-accent-warm/20 text-gray-dark"}`}>
                   {session.startDisplay} – {session.endDisplay}
                 </span>
               </div>
 
-              <p className={`font-body text-sm font-light mb-6 ${index === 0 ? "text-gray-400" : "text-gray-dark"}`}>{session.note}</p>
+              <p className={`font-body text-sm font-light mb-6 ${index === 0 ? "text-gray" : "text-gray-dark"}`}>{session.note}</p>
 
-              <div className={`border-t pt-6 mb-8 ${index === 0 ? "border-gray-100" : "border-accent-warm/20"}`}>
-                <p className={`font-mono text-[9px] tracking-widest uppercase mb-4 ${index === 0 ? "text-gray-400" : "text-gray-darker"}`}>
+              <div className={`border-t pt-6 mb-8 ${index === 0 ? "border-gray-lightest" : "border-accent-warm/20"}`}>
+                <p className={`font-mono text-[9px] tracking-widest uppercase mb-4 ${index === 0 ? "text-gray" : "text-gray-darker"}`}>
                   Session dates (Thu reference)
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {session.dates.map((date) => (
                     <span
                       key={date}
-                      className={`font-mono text-[11px] px-2.5 py-1.5 border ${index === 0 ? "bg-gray-200/40 text-gray-400 border-gray-100" : "bg-white text-gray-darkest border-accent-warm/15"}`}
+                      className={`font-mono text-[11px] px-2.5 py-1.5 border ${index === 0 ? "bg-white-soft text-gray border-gray-lightest" : "bg-white text-gray-darkest border-accent-warm/15"}`}
                     >
                       {date}
                     </span>
@@ -113,7 +113,7 @@ export default function FallSessionsSection() {
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase border px-5 py-3 transition-all duration-300 ${
                   index === 0
-                    ? "text-gray-400 border-gray-200 hover:bg-gray-200"
+                    ? "text-gray border-gray-lighter hover:bg-gray-lightest"
                     : "text-white bg-accent-warm border-accent-warm hover:bg-accent-warm/90 shadow-md"
                 }`}
               >

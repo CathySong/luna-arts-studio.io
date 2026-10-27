@@ -98,12 +98,12 @@ export default function FallEnrollmentHero() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-              <div className="text-center p-6 bg-gray-100 rounded-2xl border border-gray-200">
-                <div className="text-gray-400 font-display text-4xl font-bold mb-3">
+              <div className="text-center p-6 bg-white-soft rounded-2xl border border-gray-lightest">
+                <div className="text-gray font-display text-4xl font-bold mb-3">
                   {session1.startDisplay}
                 </div>
-                <p className="font-body text-gray-500 font-medium">Session 1 Starts</p>
-                <p className="font-mono text-sm text-gray-400 mt-2">
+                <p className="font-body text-gray-dark font-medium">Session 1 Starts</p>
+                <p className="font-mono text-sm text-gray mt-2">
                   {session1.classCount} weekly classes
                 </p>
               </div>
