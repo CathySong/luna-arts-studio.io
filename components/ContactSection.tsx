@@ -11,7 +11,7 @@ const interests = [
   "Creative Art",
   "Mixed Media",
   "Private Lesson",
-  "Fall Enrollment",
+  "Winter Enrollment",
   "Gallery / Purchase",
   "Other",
 ];

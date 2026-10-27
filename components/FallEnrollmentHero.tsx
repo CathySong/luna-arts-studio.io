@@ -26,7 +26,7 @@ export default function FallEnrollmentHero() {
                 </h3>
                 <p className="font-body text-xs md:text-sm font-light opacity-90 leading-relaxed">
                   Session 1 starts {session1.startDisplay} · Session 2 starts{" "}
-                  {session2.startDisplay} · Wed–Sat · Limited spots
+                  {session2.startDisplay} · Limited spots
                 </p>
               </div>
 
@@ -61,7 +61,7 @@ export default function FallEnrollmentHero() {
                 🍂 Fall Art Classes 2026
               </span>
               <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-tight">
-                Fall <span className="text-accent-warm">Enrollment</span>
+                Winter <span className="text-accent-warm">Enrollment</span>
                 <br />
                 <span className="text-gray-700">Now Open</span>
               </h1>
@@ -104,7 +104,7 @@ export default function FallEnrollmentHero() {
                 </div>
                 <p className="font-body text-gray-700 font-medium">Session 1 Starts</p>
                 <p className="font-mono text-sm text-gray-500 mt-2">
-                  {session1.classCount} weekly classes · Wed–Sat
+                  {session1.classCount} weekly classes
                 </p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
@@ -113,7 +113,7 @@ export default function FallEnrollmentHero() {
                 </div>
                 <p className="font-body text-gray-700 font-medium">Session 2 Starts</p>
                 <p className="font-mono text-sm text-gray-500 mt-2">
-                  {session2.classCount} weekly classes · Wed–Sat
+                  {session2.classCount} weekly classes
                 </p>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">

@@ -19,10 +19,9 @@ export const fallEnrollmentConfig = {
   registrationFormUrl:
     "https://docs.google.com/forms/d/e/1FAIpQLScMgvFa4_RkTECBlZOzSnDbBS_rXyr0bKrQsR1IedM2PZnyuQ/viewform?usp=header",
 
-  seasonLabel: "Fall 2026 Enrollment",
+  seasonLabel: "Winter 2026 Enrollment",
   headline: "Fall Classes Now Open",
-  subheadline:
-    "Wed–Sat weekly classes · Clear age groups · Private lessons by appointment · Limited spots",
+  subheadline: "Clear age groups · Private lessons by appointment · Limited spots",
 
   // Session date anchors follow the Thursday calendar pattern.
   // Other weekdays (Fri, Sat) use the same week windows (Session 1 / Session 2).
@@ -46,7 +45,7 @@ export const fallEnrollmentConfig = {
         "Oct 29",
         "Nov 5",
       ],
-      note: "9 weekly classes · same session window Wed–Sat",
+      note: "9 weekly classes · same session window across all class days",
     },
     {
       id: "session-2",
@@ -67,7 +66,7 @@ export const fallEnrollmentConfig = {
         "Jan 28",
         "Feb 4",
       ],
-      note: "10 weekly classes · holiday break late December · same session window Wed–Sat",
+      note: "10 weekly classes · holiday break late December · same session window across all class days",
     },
   ],
 

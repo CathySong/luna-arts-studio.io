@@ -41,7 +41,7 @@ export default function ScheduleSection() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 border-b border-gray-lightest bg-gray-50/50">
                 <div>
                   <p className="font-mono text-[9px] tracking-widest uppercase text-accent-warm mb-1">
-                    Session Window · Wed–Sat
+                    Session Window
                   </p>
                   <h3 className="font-display text-2xl text-gray-darkest font-light">
                     {session.name}

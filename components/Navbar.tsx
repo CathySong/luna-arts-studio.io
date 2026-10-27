@@ -14,7 +14,7 @@ type NavLink = {
 const links: NavLink[] = [
   { href: "/#about-luna", label: "About Luna", sectionId: "about-luna" },
   { href: "/#classes", label: "Classes", sectionId: "classes" },
-  { href: "/#fall-enrollment", label: "Fall Enrollment", sectionId: "fall-enrollment" },
+  { href: "/#fall-enrollment", label: "Winter Enrollment", sectionId: "fall-enrollment" },
   { href: "/sewing", label: "Tailor & Sewing" },
   { href: "/events", label: "Birthday Parties" },
   { href: "/#contact", label: "Contact", sectionId: "contact" },

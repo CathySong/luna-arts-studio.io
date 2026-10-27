@@ -35,7 +35,7 @@ export default function ClassesPreview() {
               </h2>
               <p className="font-body text-gray-dark mt-4 max-w-xl font-light leading-relaxed">
                 One weekly schedule — pick the day, time, and age group that fits. Full session dates
-                and registration are in Fall Enrollment below.
+                and registration are in Winter Enrollment below.
               </p>
             </div>
             <p className="font-body text-gray-dark max-w-xs font-light leading-relaxed text-sm">
@@ -105,7 +105,7 @@ export default function ClassesPreview() {
               href="#fall-enrollment"
               className="px-8 py-3 bg-gray-darkest text-white font-body text-xs tracking-widest uppercase hover:bg-accent-warm transition-all duration-300"
             >
-              Fall Enrollment
+              Winter Enrollment
             </a>
             <a
               href="#contact"

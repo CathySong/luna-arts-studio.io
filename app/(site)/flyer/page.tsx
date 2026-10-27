@@ -13,8 +13,8 @@ export default function FlyerPage() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Luna Art Studio Fall Enrollment 2026",
-          text: "Fall art classes are open — Wed–Sat weekly classes with clear age groups!",
+          title: "Luna Art Studio Winter Enrollment 2026",
+          text: "Winter art classes are open with clear age groups!",
           url: window.location.href,
         });
       } catch {
@@ -40,7 +40,7 @@ export default function FlyerPage() {
             </Link>
 
             <h1 className="font-display text-2xl font-light text-gray-900">
-              Fall Enrollment 2026
+              Winter Enrollment 2026
             </h1>
 
             <button
@@ -122,9 +122,6 @@ export default function FlyerPage() {
                       {session.classCount} classes
                     </span>
                     <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
-                      Wed–Sat
-                    </span>
-                    <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-200 text-gray-600">
                       {session.startDisplay} – {session.endDisplay}
                     </span>
                   </div>
@@ -155,12 +152,6 @@ export default function FlyerPage() {
               <div>
                 <h3 className="font-display text-2xl font-light text-gray-800 mb-4">Key Info</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
-                    <span className="font-body text-gray-700">
-                      Classes run Wednesday–Saturday · each class 90 minutes
-                    </span>
-                  </li>
                   <li className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent-warm rounded-full mt-2" />
                     <span className="font-body text-gray-700">

@@ -23,7 +23,7 @@ export default function FallSessionsSection() {
               className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60"
               style={{ letterSpacing: "0.35em" }}
             >
-              Fall Enrollment
+              Winter Enrollment
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight mb-6">
@@ -81,9 +81,6 @@ export default function FallSessionsSection() {
                   {session.classCount} Classes
                 </span>
                 <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
-                  Wed–Sat
-                </span>
-                <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1.5 border border-gray-lightest text-gray-dark">
                   {session.startDisplay} – {session.endDisplay}
                 </span>
               </div>
@@ -124,12 +121,10 @@ export default function FallSessionsSection() {
               Schedule
             </p>
             <p className="font-body text-sm text-gray-darkest font-light mb-1">
-              Wednesday – Friday
+              Weekly classes
             </p>
             <p className="font-body text-xs text-gray-dark font-light">
-              Session 1: {sessions[0].startDisplay} – {sessions[0].endDisplay}
-              <br />
-              Session 2: {sessions[1].startDisplay} – {sessions[1].endDisplay}
+              See Our Classes for current days and times
             </p>
           </div>
           <div>
