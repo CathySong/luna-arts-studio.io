@@ -16,7 +16,11 @@ export async function GET(req: NextRequest) {
   const denied = await requireAdmin(req);
   if (denied) return denied;
   try {
-    return NextResponse.json(await listSmsAgentData());
+    const range = req.nextUrl.searchParams.get("range") || "30d";
+    const rangeDays: Record<string, number> = { "7d": 7, "30d": 30, "90d": 90 };
+    const days = rangeDays[range];
+    const since = days ? new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString() : undefined;
+    return NextResponse.json(await listSmsAgentData(since));
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Unable to load SMS Agent" },

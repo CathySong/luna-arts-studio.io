@@ -21,7 +21,9 @@ type Log = {
   createdAt: string;
 };
 type Row = Student & Setting;
-type ApiData = { students: Student[]; settings: Setting[]; logs: Log[]; defaultTemplate: string; defaultReminder: string };
+type Stats = { activeStudents: number; smsSent: number; delivered: number; optedOut: number };
+type DateRange = "7d" | "30d" | "90d" | "all";
+type ApiData = { students: Student[]; settings: Setting[]; logs: Log[]; defaultTemplate: string; defaultReminder: string; stats: Stats };
 
 function buildRows(data: ApiData): Row[] {
   const settings = new Map(data.settings.map((item) => [item.studentId, item]));
@@ -45,13 +47,15 @@ export default function SmsAgentPanel() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [reminderMessage, setReminderMessage] = useState("");
   const [bulkState, setBulkState] = useState("");
+  const [dateRange, setDateRange] = useState<DateRange>("30d");
+  const [stats, setStats] = useState<Stats>({ activeStudents: 0, smsSent: 0, delivered: 0, optedOut: 0 });
   const timers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const rowsRef = useRef(rows);
   rowsRef.current = rows;
 
   const load = useCallback(async (quiet = false) => {
     if (!quiet) setLoading(true);
-    const res = await fetch("/api/admin/sms-agent", { cache: "no-store" });
+    const res = await fetch(`/api/admin/sms-agent?range=${dateRange}`, { cache: "no-store" });
     const data = (await res.json()) as ApiData & { error?: string };
     if (!res.ok) {
       setError(data.error || "Unable to load SMS Agent");
@@ -61,10 +65,11 @@ export default function SmsAgentPanel() {
         setReminderMessage((current) => current || data.defaultReminder);
       }
       setLogs(data.logs);
+      setStats(data.stats);
       setError("");
     }
     if (!quiet) setLoading(false);
-  }, []);
+  }, [dateRange]);
 
   useEffect(() => {
     void load();
@@ -192,6 +197,36 @@ export default function SmsAgentPanel() {
       </div>
 
       {error ? <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}. Run the SMS Agent Supabase migration, then refresh.</div> : null}
+
+      <div>
+        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="font-display text-lg text-gray-darkest">Summary</div>
+          <select
+            value={dateRange}
+            onChange={(event) => setDateRange(event.target.value as DateRange)}
+            aria-label="Summary time range"
+            className="w-full rounded-md border border-gray-lighter bg-white px-3 py-2 text-sm text-gray-darkest outline-none hover:border-accent-warm focus:border-accent-warm sm:w-auto"
+          >
+            <option value="7d">Last 7 days</option>
+            <option value="30d">Last 30 days</option>
+            <option value="90d">Last 90 days</option>
+            <option value="all">All time</option>
+          </select>
+        </div>
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {[
+            ["Active students", stats.activeStudents],
+            ["SMS sent", stats.smsSent],
+            ["Delivered", stats.delivered],
+            ["Opt-outs", stats.optedOut],
+          ].map(([label, value]) => (
+            <div key={label} className="rounded-lg border border-gray-lighter bg-white-warm px-4 py-4">
+              <div className="text-xs uppercase tracking-wide text-gray-darker">{label}</div>
+              <div className="mt-1 font-display text-3xl text-gray-darkest">{value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <input
         value={search}
