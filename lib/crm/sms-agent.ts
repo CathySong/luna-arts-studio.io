@@ -90,39 +90,34 @@ export function renderInitialSms(template: string, student: Student): string {
 
 export async function listSmsAgentData(since?: string) {
   const supabase = getSupabaseAdmin();
-  let outboundCount = supabase
-    .from("sms_message_logs")
-    .select("id", { count: "exact", head: true })
-    .eq("direction", "outbound")
-    .neq("status", "failed");
-  let deliveredCount = supabase
-    .from("sms_message_logs")
-    .select("id", { count: "exact", head: true })
-    .eq("direction", "outbound")
-    .eq("status", "delivered");
   let optedOutCount = supabase
     .from("sms_student_settings")
     .select("student_id", { count: "exact", head: true })
     .eq("consent_status", "opted_out");
   if (since) {
-    outboundCount = outboundCount.gte("created_at", since);
-    deliveredCount = deliveredCount.gte("created_at", since);
     optedOutCount = optedOutCount.gte("updated_at", since);
   }
 
-  const [students, settingsResult, logsResult, sentResult, deliveredResult, optedOutResult] = await Promise.all([
+  const accountSid = process.env.TWILIO_ACCOUNT_SID?.trim();
+  const authToken = process.env.TWILIO_AUTH_TOKEN?.trim();
+  const twilioMessages = accountSid && authToken
+    ? twilio(accountSid, authToken).messages.list({
+        ...(since ? { dateSentAfter: new Date(since) } : {}),
+        limit: 5000,
+      })
+    : Promise.resolve([]);
+
+  const [students, settingsResult, logsResult, messages, optedOutResult] = await Promise.all([
     listStudents(),
     supabase.from("sms_student_settings").select("*").order("updated_at", { ascending: false }),
     supabase.from("sms_message_logs").select("*").order("created_at", { ascending: false }).limit(100),
-    outboundCount,
-    deliveredCount,
+    twilioMessages,
     optedOutCount,
   ]);
   if (settingsResult.error) throw new Error(`Unable to load SMS settings: ${settingsResult.error.message}`);
   if (logsResult.error) throw new Error(`Unable to load SMS logs: ${logsResult.error.message}`);
-  if (sentResult.error) throw new Error(`Unable to load sent SMS count: ${sentResult.error.message}`);
-  if (deliveredResult.error) throw new Error(`Unable to load delivered SMS count: ${deliveredResult.error.message}`);
   if (optedOutResult.error) throw new Error(`Unable to load opt-out count: ${optedOutResult.error.message}`);
+  const outboundMessages = messages.filter((message) => message.direction.startsWith("outbound"));
   return {
     students,
     settings: (settingsResult.data ?? []).map((row) => settingFromRow(row)),
@@ -131,8 +126,8 @@ export async function listSmsAgentData(since?: string) {
     defaultReminder: DEFAULT_REMINDER_SMS,
     stats: {
       activeStudents: students.filter((student) => student.status === "active").length,
-      smsSent: sentResult.count ?? 0,
-      delivered: deliveredResult.count ?? 0,
+      smsSent: outboundMessages.length,
+      delivered: outboundMessages.filter((message) => message.status === "delivered").length,
       optedOut: optedOutResult.count ?? 0,
     } satisfies SmsAgentStats,
   };
