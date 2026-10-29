@@ -31,6 +31,7 @@ module.exports = {
         
         // 强调色 - 保持温暖但更柔和
         "accent-warm": "#d4b483",  // 柔和的米金色
+        "accent-warm-dark": "#8a5a1e", // 白色背景上的高对比暖金色
         "accent-cool": "#a8b8c8",  // 柔和的灰蓝色
         "accent-neutral": "#c0c0c0", // 中性灰色
         

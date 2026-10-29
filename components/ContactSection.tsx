@@ -68,20 +68,20 @@ export default function ContactSection() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-accent-warm/60" />
-            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm/60" style={{ letterSpacing: "0.35em" }}>
+            <span className="font-mono text-[10px] tracking-ultra uppercase text-accent-warm-dark" style={{ letterSpacing: "0.35em" }}>
               Get in Touch
             </span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl font-light text-gray-darkest leading-tight">
             Start Your{" "}
-            <span className="italic text-accent-warm">Journey</span>
+            <span className="italic text-accent-warm-dark">Journey</span>
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-16">
           {/* Info panel */}
           <div className="lg:col-span-2 flex flex-col gap-10">
-            <p className="font-body text-gray-dark leading-relaxed font-light">
+            <p className="font-body text-gray-darker leading-relaxed font-light">
               Whether you want to register for a class, inquire about a piece of artwork,
               arrange a studio visit, or simply say hello — we would love to hear from you.
             </p>
@@ -100,7 +100,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker mb-1">{label}</p>
-                    <p className="font-body text-sm text-gray-darkest/60 font-light">{value}</p>
+                    <p className="font-body text-sm text-gray-darker font-light">{value}</p>
                   </div>
                 </div>
               ))}
@@ -108,7 +108,7 @@ export default function ContactSection() {
 
             {/* Decorative quote */}
             <div className="border-l border-gray-light pl-6 mt-4">
-              <p className="font-display text-xl italic text-accent-warm/60 font-light leading-relaxed">
+              <p className="font-display text-xl italic text-gray-darkest font-light leading-relaxed">
                 "Every artist was first an amateur."
               </p>
               <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker-darker mt-3">— Ralph Waldo Emerson</p>
@@ -128,7 +128,7 @@ export default function ContactSection() {
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-8 font-mono text-[10px] tracking-widest uppercase text-accent-warm border-b border-gray-light pb-0.5 hover:border-accent-warm transition-colors"
+                  className="mt-8 font-mono text-[10px] tracking-widest uppercase text-accent-warm-dark border-b border-gray-light pb-0.5 hover:border-accent-warm-dark transition-colors"
                 >
                   Send Another →
                 </button>
@@ -212,8 +212,8 @@ export default function ContactSection() {
                     reminders, schedule changes, and service updates. Message frequency varies.
                     Message and data rates may apply. Consent is not a condition of purchase. Reply
                     STOP to opt out or HELP for help. See our{" "}
-                    <a className="text-accent-warm underline" href="/terms">Terms</a> and{" "}
-                    <a className="text-accent-warm underline" href="/privacy">Privacy Policy</a>.
+                    <a className="text-accent-warm-dark underline" href="/terms">Terms</a> and{" "}
+                    <a className="text-accent-warm-dark underline" href="/privacy">Privacy Policy</a>.
                   </span>
                 </label>
 
@@ -221,13 +221,13 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="group flex items-center gap-3 px-10 py-4 bg-accent-warm text-white font-body text-xs tracking-widest uppercase font-medium hover:bg-accent-warm/90 transition-all duration-300 disabled:opacity-50"
+                    className="group flex items-center gap-3 px-10 py-4 bg-accent-warm-dark text-white font-body text-xs tracking-widest uppercase font-medium hover:bg-[#714817] transition-all duration-300 disabled:opacity-50"
                   >
                     {status === "sending" ? "Sending..." : "Send Inquiry"}
                     <Send size={12} className="group-hover:translate-x-0.5 transition-transform" />
                   </button>
                   {status === "error" && (
-                    <p className="font-mono text-[9px] tracking-wide text-accent-warm uppercase">
+                    <p className="font-mono text-[9px] tracking-wide text-accent-warm-dark uppercase">
                       Something went wrong. Try again.
                     </p>
                   )}
