@@ -102,6 +102,14 @@ export default function ClassesPreview() {
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <a
+              href="https://www.gomry.com/calendar/luna-art-studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-gray-darkest text-gray-darkest font-body text-xs tracking-widest uppercase hover:bg-gray-darkest hover:text-white transition-all duration-300"
+            >
+              View Activity Calendar
+            </a>
+            <a
               href="#fall-enrollment"
               className="px-8 py-3 bg-gray-darkest text-white font-body text-xs tracking-widest uppercase hover:bg-accent-warm transition-all duration-300"
             >

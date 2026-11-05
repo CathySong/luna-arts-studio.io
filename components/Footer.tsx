@@ -36,7 +36,7 @@ export default function Footer() {
                   key={s}
                   href={
                     s === "Instagram"
-                      ? "https://www.instagram.com/luna_stitch_and_sketch?mdxt=MXVodjlmMnFpYnJoOA%3D%3D&utm_source=qr"
+                      ? "https://www.instagram.com/lunaart.studio_nj"
                       : s === "Facebook"
                         ? "https://www.facebook.com/share/1DdjSBUfwi/?mibextid=wwXIfr"
                       : s === "Pinterest"
