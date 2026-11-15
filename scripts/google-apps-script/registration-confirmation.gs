@@ -24,7 +24,7 @@ var CONFIG = {
   zellePayTo:    "7327180639",
   session1:      { label: "Session 1: Sep 9 – Nov 7",   rate: 360 },
   session2:      { label: "Session 2: Nov 11 – Feb 6",  rate: 400 },
-  privateLessonRate: "$85/hour",
+  privateLessonRate: "$80/lesson",
   replyTo:       "Ninglu1088@gmail.com",
 };
 

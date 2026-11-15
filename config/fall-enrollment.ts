@@ -142,7 +142,7 @@ export const fallEnrollmentConfig = {
 
   privateLesson: {
     title: "Private Lesson",
-    note: "Please contact us to schedule",
+    note: "$80 per lesson · Please contact us to schedule",
   },
 
   contact: {
