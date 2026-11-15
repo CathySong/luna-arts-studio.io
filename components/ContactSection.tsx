@@ -10,6 +10,7 @@ const interests = [
   "Drawing Fundamentals & Painting",
   "Creative Art",
   "Mixed Media",
+  "Digital Art Classes",
   "Private Lesson",
   "Winter Enrollment",
   "Gallery / Purchase",

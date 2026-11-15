@@ -7,6 +7,7 @@ import ClassesPreview from "@/components/ClassesPreview";
 import FallSessionsSection from "@/components/FallSessionsSection";
 import ContactSection from "@/components/ContactSection";
 import NewServicesPreview from "@/components/NewServicesPreview";
+import DigitalArtClasses from "@/components/DigitalArtClasses";
 
 export default function Home() {
   return (
@@ -18,6 +19,8 @@ export default function Home() {
       <FounderBio />
       <GalleryPreview />
       <ClassesPreview />
+
+      <DigitalArtClasses />
 
       <NewServicesPreview />
 
