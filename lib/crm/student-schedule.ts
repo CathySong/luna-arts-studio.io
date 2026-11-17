@@ -17,6 +17,38 @@ export function normalizeClassDay(value: string): string {
   return WEEKDAY_ALIASES[trimmed.toLowerCase()] ?? trimmed;
 }
 
+function parseTime(value: string, fallbackPeriod?: string): number | undefined {
+  const match = value.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/i);
+  if (!match) return undefined;
+  let hour = Number(match[1]);
+  const minute = Number(match[2] ?? 0);
+  const period = match[3]?.toUpperCase() ?? fallbackPeriod;
+  if (minute > 59 || hour > 23) return undefined;
+  if (period) {
+    if (hour < 1 || hour > 12) return undefined;
+    hour = (hour % 12) + (period === "PM" ? 12 : 0);
+  }
+  return hour * 60 + minute;
+}
+
+function formatTime(minutes: number): string {
+  return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+}
+
+export function normalizeClassTimeSlot(value: string): string {
+  const trimmed = value.trim();
+  const parts = trimmed.split(/\s*(?:-|–|—|－|~|～|to)\s*/i);
+  if (parts.length !== 2) return trimmed.replace(/\s+/g, " ");
+  const endPeriod = parts[1].match(/\b(AM|PM)\b/i)?.[1]?.toUpperCase();
+  const end = parseTime(parts[1]);
+  let start = parseTime(parts[0], endPeriod);
+  if (!/\b(?:AM|PM)\b/i.test(parts[0]) && endPeriod && start !== undefined && end !== undefined && start > end) {
+    start = parseTime(parts[0], endPeriod === "PM" ? "AM" : "PM");
+  }
+  if (start === undefined || end === undefined) return trimmed.replace(/\s+/g, " ");
+  return `${formatTime(start)}–${formatTime(end)}`;
+}
+
 export function getStudentSchedule(student: Pick<Student, "notes">): string {
   const scheduleLine = student.notes
     ?.split(/\r?\n/)
@@ -29,7 +61,10 @@ export function getStructuredStudentSchedule(
   student: Pick<Student, "notes" | "classDays" | "classTimeSlots">
 ): Array<{ day: string; time: string }> {
   const structured = (student.classDays ?? [])
-    .map((day, index) => ({ day: normalizeClassDay(day), time: student.classTimeSlots?.[index]?.trim() ?? "" }))
+    .map((day, index) => ({
+      day: normalizeClassDay(day),
+      time: normalizeClassTimeSlot(student.classTimeSlots?.[index] ?? ""),
+    }))
     .filter(({ day, time }) => day || time);
 
   if (structured.length > 0) return structured;

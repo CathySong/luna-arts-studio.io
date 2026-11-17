@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/crm/api-auth";
-import { normalizeClassDay } from "@/lib/crm/student-schedule";
+import { normalizeClassDay, normalizeClassTimeSlot } from "@/lib/crm/student-schedule";
 import { createStudent, getCrmStorageBackend, listStudents } from "@/lib/crm/db";
 import type { StudentInput } from "@/lib/crm/types";
 
@@ -57,7 +57,7 @@ function coerceStudent(candidate: Partial<StudentInput>): StudentInput {
     parentEmail: optionalString(candidate.parentEmail),
     parentPhone: optionalString(candidate.parentPhone),
     classDays: coerceStringArray(candidate.classDays ?? []).map(normalizeClassDay),
-    classTimeSlots: coerceStringArray(candidate.classTimeSlots ?? []),
+    classTimeSlots: coerceStringArray(candidate.classTimeSlots ?? []).map(normalizeClassTimeSlot),
     status: candidate.status === "inactive" ? "inactive" : "active",
     hobbies: coerceStringArray(candidate.hobbies ?? []),
     lovedArts: coerceStringArray(candidate.lovedArts ?? []),

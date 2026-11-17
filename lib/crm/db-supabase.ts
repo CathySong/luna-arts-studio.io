@@ -1,4 +1,5 @@
 import { computeEnrollmentSummary } from "./enrollment";
+import { normalizeClassDay, normalizeClassTimeSlot } from "./student-schedule";
 import { getSupabaseAdmin } from "./supabase-client";
 import type {
   Artwork,
@@ -68,8 +69,8 @@ function studentFromRow(r: Record<string, unknown>): Student {
     defaultPrice: r.default_price != null ? Number(r.default_price) : undefined,
     source: r.source != null ? String(r.source) : undefined,
     sourceCustom: r.source_custom != null ? String(r.source_custom) : undefined,
-    classDays: (r.class_days as string[]) ?? [],
-    classTimeSlots: (r.class_time_slots as string[]) ?? [],
+    classDays: ((r.class_days as string[]) ?? []).map(normalizeClassDay),
+    classTimeSlots: ((r.class_time_slots as string[]) ?? []).map(normalizeClassTimeSlot),
     status: r.status === "inactive" ? "inactive" : "active",
     createdAt: new Date(String(r.created_at)).toISOString(),
     updatedAt: new Date(String(r.updated_at)).toISOString(),
@@ -92,8 +93,8 @@ function studentToRow(s: Partial<Student> & { name?: string }) {
     default_price: s.defaultPrice ?? null,
     source: s.source ?? null,
     source_custom: s.sourceCustom ?? null,
-    class_days: s.classDays ?? [],
-    class_time_slots: s.classTimeSlots ?? [],
+    class_days: (s.classDays ?? []).map(normalizeClassDay),
+    class_time_slots: (s.classTimeSlots ?? []).map(normalizeClassTimeSlot),
     status: s.status ?? "active",
     updated_at: new Date().toISOString(),
   };
