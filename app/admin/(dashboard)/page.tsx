@@ -16,6 +16,19 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const fetchCache = "force-no-store";
 
+function scheduleStartMinutes(value: string): number {
+  const start = value.split(/[–—-]/)[0]?.trim() ?? "";
+  const suffix = value.match(/\b(AM|PM)\b/i)?.[1]?.toUpperCase();
+  const match = start.match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/i);
+  if (!match) return Number.MAX_SAFE_INTEGER;
+  let hour = Number(match[1]);
+  const minute = Number(match[2] ?? 0);
+  const period = match[3]?.toUpperCase() ?? suffix;
+  if (period === "PM" && hour < 12) hour += 12;
+  if (period === "AM" && hour === 12) hour = 0;
+  return hour * 60 + minute;
+}
+
 export default async function AdminDashboardHomePage() {
   const [students, sessions, artworks, reviews, attendances, payments] = await Promise.all([
     listStudents(),
@@ -53,16 +66,12 @@ export default async function AdminDashboardHomePage() {
   const totalPaymentsIn = payments.reduce((sum, p) => sum + p.amount, 0);
 
   const weekdayOrder = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
-  const weeklyClasses = weekdayOrder
-    .map((weekday) => ({
-      weekday,
-      classes: students.flatMap((student) =>
-        getStructuredStudentSchedule(student)
-          .filter((schedule) => schedule.day === weekday)
-          .map((schedule) => ({ student, schedule }))
-      ),
-    }))
-    .filter((group) => group.classes.length > 0);
+  const calendarEntries = students.flatMap((student) =>
+    getStructuredStudentSchedule(student).map((schedule) => ({ student, schedule }))
+  );
+  const timeSlots = Array.from(
+    new Set(calendarEntries.map(({ schedule }) => schedule.time).filter(Boolean))
+  ).sort((a, b) => scheduleStartMinutes(a) - scheduleStartMinutes(b) || a.localeCompare(b));
 
   const stats = [
     { label: "Students", value: students.length, href: "/admin/students" },
@@ -131,28 +140,60 @@ export default async function AdminDashboardHomePage() {
             View students →
           </Link>
         </div>
-        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {weeklyClasses.map((group) => (
-            <div key={group.weekday} className="rounded-lg border border-gray-lighter bg-white-warm/50 p-4">
-              <div className="text-xs font-semibold uppercase tracking-ultra text-accent-warm">
-                {group.weekday}
-              </div>
-              <div className="mt-3 space-y-3">
-                {group.classes.map(({ student, schedule }) => (
-                  <Link key={`${student.id}-${schedule.day}-${schedule.time}`} href={`/admin/students/${student.id}`} className="block group">
-                    <div className="text-sm font-medium text-gray-darkest group-hover:text-accent-warm">
-                      {student.name}
-                    </div>
-                    <div className="mt-0.5 text-xs text-gray-darker">{schedule.time}</div>
-                  </Link>
+        {timeSlots.length > 0 ? (
+          <div className="mt-5 overflow-x-auto rounded-lg border border-gray-lighter">
+            <table className="w-full min-w-[1120px] table-fixed border-collapse text-sm">
+              <thead>
+                <tr className="bg-white-warm">
+                  <th className="w-36 border-b border-r border-gray-lighter px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-dark">
+                    Time
+                  </th>
+                  {weekdayOrder.map((weekday) => (
+                    <th key={weekday} className="border-b border-r border-gray-lighter px-3 py-3 text-left text-xs font-semibold tracking-wide text-accent-warm last:border-r-0">
+                      {weekday}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {timeSlots.map((time) => (
+                  <tr key={time} className="align-top even:bg-white-warm/30">
+                    <th className="border-b border-r border-gray-lighter px-3 py-4 text-left text-xs font-semibold text-gray-darkest">
+                      {time}
+                    </th>
+                    {weekdayOrder.map((weekday) => {
+                      const studentsInSlot = calendarEntries
+                        .filter(({ schedule }) => schedule.day === weekday && schedule.time === time)
+                        .map(({ student }) => student)
+                        .sort((a, b) => a.name.localeCompare(b.name));
+                      return (
+                        <td key={`${weekday}-${time}`} className="border-b border-r border-gray-lighter px-3 py-3 last:border-r-0">
+                          {studentsInSlot.length > 0 ? (
+                            <div className="space-y-1.5">
+                              {studentsInSlot.map((student) => (
+                                <Link
+                                  key={student.id}
+                                  href={`/admin/students/${student.id}`}
+                                  className="block rounded-md bg-accent-warm/10 px-2.5 py-1.5 font-medium text-gray-darkest transition-colors hover:bg-accent-warm/20 hover:text-accent-warm"
+                                >
+                                  {student.name}
+                                </Link>
+                              ))}
+                            </div>
+                          ) : (
+                            <span className="text-gray-lighter">—</span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
                 ))}
-              </div>
-            </div>
-          ))}
-          {weeklyClasses.length === 0 ? (
-            <p className="text-sm text-gray-dark">No fixed class times saved yet.</p>
-          ) : null}
-        </div>
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="mt-5 text-sm text-gray-dark">No fixed class times saved yet.</p>
+        )}
       </section>
 
       <div className="rounded-xl border border-gray-lighter bg-white p-6 card-shadow flex flex-wrap gap-4">
