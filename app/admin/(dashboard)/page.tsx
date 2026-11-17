@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import StudentsAutoRefresh from "@/components/crm/StudentsAutoRefresh";
+
 import {
   listAllAttendances,
   listAllPayments,
@@ -9,6 +11,10 @@ import {
   listStudents,
 } from "@/lib/crm/db";
 import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const fetchCache = "force-no-store";
 
 export default async function AdminDashboardHomePage() {
   const [students, sessions, artworks, reviews, attendances, payments] = await Promise.all([
@@ -67,6 +73,7 @@ export default async function AdminDashboardHomePage() {
 
   return (
     <div className="space-y-10">
+      <StudentsAutoRefresh />
       <div>
         <div className="font-display text-3xl text-gray-darkest tracking-wide">Dashboard</div>
         <p className="mt-2 text-sm text-gray-darker max-w-2xl">
@@ -132,7 +139,7 @@ export default async function AdminDashboardHomePage() {
               </div>
               <div className="mt-3 space-y-3">
                 {group.classes.map(({ student, schedule }) => (
-                  <Link key={`${student.id}-${schedule}`} href={`/admin/students/${student.id}`} className="block group">
+                  <Link key={`${student.id}-${schedule.day}-${schedule.time}`} href={`/admin/students/${student.id}`} className="block group">
                     <div className="text-sm font-medium text-gray-darkest group-hover:text-accent-warm">
                       {student.name}
                     </div>

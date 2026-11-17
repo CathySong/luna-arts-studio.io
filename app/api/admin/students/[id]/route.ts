@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/crm/api-auth";
@@ -32,6 +33,8 @@ export async function PATCH(req: NextRequest, ctx: SegmentContext) {
     const patch = coercePatch(body);
     const updated = await updateStudent(ctx.params.id, patch);
     if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+    revalidatePath("/admin", "layout");
 
     return NextResponse.json({ student: updated });
   } catch (e) {
