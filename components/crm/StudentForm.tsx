@@ -7,7 +7,7 @@ import { LEAD_SOURCES, type Student } from "@/lib/crm/types";
 
 function splitTags(raw: string): string[] {
   return raw
-    .split(/[,|\n]/g)
+    .split(/[,，|\n]/g)
     .map((s) => s.trim())
     .filter(Boolean);
 }
@@ -56,6 +56,10 @@ export default function StudentForm({ student }: Props) {
 
     if (!payload.name) {
       setError("Name is required.");
+      return;
+    }
+    if (payload.classDays.length !== payload.classTimeSlots.length) {
+      setError("Each class day must have one matching time slot.");
       return;
     }
 

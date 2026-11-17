@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { listStudents } from "@/lib/crm/db";
 import { sendBulkReminderSms } from "@/lib/crm/sms-agent";
+import { getStructuredStudentSchedule } from "@/lib/crm/student-schedule";
 import { getSupabaseAdmin } from "@/lib/crm/supabase-client";
 import { listWebsiteClasses, type WebsiteClass } from "@/lib/crm/website-classes";
 
@@ -121,8 +122,8 @@ export async function GET(req: NextRequest) {
 
   for (const student of students) {
     if (alreadySent.has(student.id)) continue;
-    const times = student.classDays
-      .map((day, index) => day === classDay ? student.classTimeSlots[index] : "")
+    const times = getStructuredStudentSchedule(student)
+      .map((schedule) => schedule.day === classDay ? schedule.time : "")
       .filter(Boolean);
     if (!times.length) continue;
     for (const time of Array.from(new Set(times))) {

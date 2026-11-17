@@ -3,7 +3,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Consent = "unknown" | "opted_in" | "opted_out";
-type Student = { id: string; name: string; parentName?: string; parentPhone?: string };
+type Student = {
+  id: string;
+  name: string;
+  parentName?: string;
+  parentPhone?: string;
+  classDays: string[];
+  classTimeSlots: string[];
+};
 type Setting = {
   studentId: string;
   enabled: boolean;
@@ -63,6 +70,16 @@ export default function SmsAgentPanel() {
       if (!quiet) {
         setRows(buildRows(data));
         setReminderMessage((current) => current || data.defaultReminder);
+      } else {
+        const freshStudents = new Map(data.students.map((student) => [student.id, student]));
+        setRows((current) => current.map((row) => {
+          const fresh = freshStudents.get(row.id);
+          return fresh ? {
+            ...row,
+            classDays: fresh.classDays,
+            classTimeSlots: fresh.classTimeSlots,
+          } : row;
+        }));
       }
       setLogs(data.logs);
       setStats(data.stats);
@@ -260,10 +277,10 @@ export default function SmsAgentPanel() {
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-gray-lighter">
-        <table className="min-w-[1120px] w-full text-sm">
+        <table className="min-w-[1260px] w-full text-sm">
           <thead className="bg-white-warm text-left text-xs uppercase tracking-wide text-gray-dark">
             <tr>
-              <th className="px-3 py-3"><input type="checkbox" checked={allEligibleSelected} onChange={(e) => toggleAllEligible(e.target.checked)} aria-label="Select all eligible students" /></th><th className="px-3 py-3">Active</th><th className="px-3 py-3">Student</th><th className="px-3 py-3">Parent</th>
+              <th className="px-3 py-3"><input type="checkbox" checked={allEligibleSelected} onChange={(e) => toggleAllEligible(e.target.checked)} aria-label="Select all eligible students" /></th><th className="px-3 py-3">Active</th><th className="px-3 py-3">Student</th><th className="px-3 py-3">Schedule</th><th className="px-3 py-3">Parent</th>
               <th className="px-3 py-3">Phone</th><th className="px-3 py-3">Consent</th><th className="px-3 py-3 min-w-[360px]">Initial message template</th><th className="px-3 py-3">Action</th>
             </tr>
           </thead>
@@ -273,6 +290,9 @@ export default function SmsAgentPanel() {
                 <td className="px-3 py-3"><input type="checkbox" disabled={!row.enabled || row.consentStatus !== "opted_in" || !row.parentPhone} checked={selectedIds.has(row.id)} onChange={(e) => toggleSelected(row.id, e.target.checked)} aria-label={`Select ${row.name} for reminder`} /></td>
                 <td className="px-3 py-3"><input type="checkbox" checked={row.enabled} onChange={(e) => update(row.id, { enabled: e.target.checked })} aria-label={`Enable SMS for ${row.name}`} /></td>
                 <td className="px-3 py-3 font-medium text-gray-darkest">{row.name}</td>
+                <td className="px-3 py-3 text-xs text-gray-darker">
+                  {row.classDays.map((day, index) => `${day} ${row.classTimeSlots[index] || ""}`.trim()).join("; ") || "—"}
+                </td>
                 <td className="px-3 py-3"><input value={row.parentName || ""} onChange={(e) => update(row.id, { parentName: e.target.value })} className="w-36 rounded border border-gray-lighter px-2 py-1.5 outline-none focus:border-accent-warm" /></td>
                 <td className="px-3 py-3"><input value={row.parentPhone || ""} onChange={(e) => update(row.id, { parentPhone: e.target.value })} placeholder="+1…" className="w-36 rounded border border-gray-lighter px-2 py-1.5 outline-none focus:border-accent-warm" /></td>
                 <td className="px-3 py-3">

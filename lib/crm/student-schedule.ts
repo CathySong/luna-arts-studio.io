@@ -2,6 +2,21 @@ import type { Student } from "@/lib/crm/types";
 
 const SCHEDULE_PREFIX = "课程与时间：";
 
+const WEEKDAY_ALIASES: Record<string, string> = {
+  "周一": "周一", "星期一": "周一", monday: "周一", mon: "周一",
+  "周二": "周二", "星期二": "周二", tuesday: "周二", tue: "周二", tues: "周二",
+  "周三": "周三", "星期三": "周三", wednesday: "周三", wed: "周三",
+  "周四": "周四", "星期四": "周四", thursday: "周四", thu: "周四", thur: "周四", thurs: "周四",
+  "周五": "周五", "星期五": "周五", friday: "周五", fri: "周五",
+  "周六": "周六", "星期六": "周六", saturday: "周六", sat: "周六",
+  "周日": "周日", "周天": "周日", "星期日": "周日", "星期天": "周日", sunday: "周日", sun: "周日",
+};
+
+export function normalizeClassDay(value: string): string {
+  const trimmed = value.trim();
+  return WEEKDAY_ALIASES[trimmed.toLowerCase()] ?? trimmed;
+}
+
 export function getStudentSchedule(student: Pick<Student, "notes">): string {
   const scheduleLine = student.notes
     ?.split(/\r?\n/)
@@ -14,7 +29,7 @@ export function getStructuredStudentSchedule(
   student: Pick<Student, "notes" | "classDays" | "classTimeSlots">
 ): Array<{ day: string; time: string }> {
   const structured = (student.classDays ?? [])
-    .map((day, index) => ({ day, time: student.classTimeSlots?.[index] ?? "" }))
+    .map((day, index) => ({ day: normalizeClassDay(day), time: student.classTimeSlots?.[index]?.trim() ?? "" }))
     .filter(({ day, time }) => day || time);
 
   if (structured.length > 0) return structured;

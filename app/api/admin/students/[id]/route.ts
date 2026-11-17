@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/crm/api-auth";
+import { normalizeClassDay } from "@/lib/crm/student-schedule";
 import {
   deleteStudent,
   getStudent,
@@ -69,7 +70,7 @@ function coercePatch(body: Record<string, unknown>): Record<string, unknown> {
 
   if (body.hobbies !== undefined) patch.hobbies = stringArray(body.hobbies);
   if (body.lovedArts !== undefined) patch.lovedArts = stringArray(body.lovedArts);
-  if (body.classDays !== undefined) patch.classDays = stringArray(body.classDays);
+  if (body.classDays !== undefined) patch.classDays = stringArray(body.classDays).map(normalizeClassDay);
   if (body.classTimeSlots !== undefined) patch.classTimeSlots = stringArray(body.classTimeSlots);
   mapNumber(body, patch, "classesTaken");
 
