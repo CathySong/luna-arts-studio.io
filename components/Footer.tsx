@@ -91,7 +91,7 @@ export default function Footer() {
             <p className="font-mono text-[9px] tracking-widest uppercase text-gray-darker">
               Powered by{" "}
               <a
-                href="https://aboutme.goopenfield.com/"
+                href="https://songcathy.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent-warm hover:text-gray-darkest transition-colors"
