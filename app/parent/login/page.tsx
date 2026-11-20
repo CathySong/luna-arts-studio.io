@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 
 export default function ParentLoginPage() {
@@ -9,6 +9,12 @@ export default function ParentLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [next, setNext] = useState("/parent/portal");
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("next");
+    if (requested?.startsWith("/parent/")) setNext(requested);
+  }, []);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -20,7 +26,7 @@ export default function ParentLoginPage() {
       setBusy(false);
       return;
     }
-    window.location.href = "/parent/portal";
+    window.location.href = next;
   }
 
   return (

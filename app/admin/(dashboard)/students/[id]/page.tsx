@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import StudentRecordPanel from "@/components/crm/StudentRecordPanel";
 import StudentForm from "@/components/crm/StudentForm";
 import SyncKnowledgeButton from "@/components/crm/SyncKnowledgeButton";
+import RenewalLinkButton from "@/components/crm/RenewalLinkButton";
 import { getStudent, getStudentRecord } from "@/lib/crm/db";
 import { getNotebookLmMode, isNotebookLmConfigured } from "@/lib/crm/notebooklm";
 
@@ -50,6 +51,10 @@ export default async function AdminStudentDetailPage({ params }: Props) {
               {student.sourceCustom ? ` (${student.sourceCustom})` : ""}
             </span>
           ) : null}
+        </div>
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2">
+          <RenewalLinkButton studentId={student.id} disabled={!student.parentEmail} />
+          {!student.parentEmail ? <span className="text-xs text-gray-dark">请先填写家长邮箱</span> : null}
         </div>
       </div>
 
