@@ -77,6 +77,7 @@ export default function Navbar() {
   }, [updateActiveSection]);
 
   const isLinkActive = (link: NavLink) => {
+    if (link.href === "/parent/login") return pathname?.startsWith("/parent");
     if (link.href === "/sewing") return pathname?.startsWith("/sewing");
     if (link.href === "/events") return pathname?.startsWith("/events");
     if (link.sectionId) {
@@ -170,6 +171,19 @@ export default function Navbar() {
               </li>
             );
           })}
+          <li className="shrink-0">
+            <Link
+              href="/parent/login"
+              className={`inline-flex items-center px-4 lg:px-5 py-2.5 border font-body text-[11px] lg:text-xs tracking-widest uppercase transition-all duration-300 whitespace-nowrap ${
+                pathname?.startsWith("/parent")
+                  ? "border-accent-warm bg-accent-warm text-white"
+                  : "border-gray-light text-gray-dark hover:border-accent-warm hover:text-accent-warm"
+              }`}
+              aria-current={pathname?.startsWith("/parent") ? "page" : undefined}
+            >
+              Parent Login
+            </Link>
+          </li>
           <li className="shrink-0 pl-1 lg:pl-2">
             <a
               href="/#fall-enrollment"
@@ -225,6 +239,20 @@ export default function Navbar() {
               </li>
             );
           })}
+          <li>
+            <Link
+              href="/parent/login"
+              onClick={() => setOpen(false)}
+              className={`inline-flex w-full items-center justify-center border px-6 py-3 font-body text-xs tracking-widest uppercase transition-colors ${
+                pathname?.startsWith("/parent")
+                  ? "border-accent-warm bg-accent-warm text-white"
+                  : "border-gray-light text-gray-dark hover:border-accent-warm hover:text-accent-warm"
+              }`}
+              aria-current={pathname?.startsWith("/parent") ? "page" : undefined}
+            >
+              Parent Login
+            </Link>
+          </li>
           <li>
             <a
               href="/#fall-enrollment"
