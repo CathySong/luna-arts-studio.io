@@ -16,18 +16,31 @@ export default function ParentRegisterPage() {
     setBusy(true);
     setError("");
     setMessage("");
-    const { data, error: authError } = await createClient().auth.signUp({ email, password });
-    if (authError) {
-      setError(authError.message);
+
+    try {
+      const result = await Promise.race([
+        createClient().auth.signUp({ email: email.trim(), password }),
+        new Promise<never>((_, reject) =>
+          window.setTimeout(() => reject(new Error("注册请求超时，请检查网络后重试。")), 15000)
+        ),
+      ]);
+
+      if (result.error) {
+        setError(result.error.message);
+        return;
+      }
+
+      if (result.data.session) {
+        window.location.href = "/parent/portal";
+        return;
+      }
+
+      setMessage("注册成功。请先检查邮箱并完成验证，然后返回登录。");
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "注册失败，请稍后重试。");
+    } finally {
       setBusy(false);
-      return;
     }
-    if (data.session) {
-      window.location.href = "/parent/portal";
-      return;
-    }
-    setMessage("注册成功。请先检查邮箱并完成验证，然后返回登录。");
-    setBusy(false);
   }
 
   return (
