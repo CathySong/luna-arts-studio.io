@@ -95,6 +95,29 @@ export default function StudentEnrollmentPanel({ studentId }: Props) {
     router.refresh();
   }
 
+  async function renewFromLatest() {
+    const latest = data?.payments[0];
+    if (!latest) return;
+    const confirmed = confirm(
+      `按最近一次课包续报 ${latest.lessonsPurchased} 课时（$${latest.amount.toFixed(2)}）？\n\n这会新增一条 CRM 付款记录，不会自动扣款。`
+    );
+    if (!confirmed) return;
+
+    const res = await fetch(`/api/admin/students/${studentId}/renew`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      alert(json.error ?? "Failed to renew package");
+      return;
+    }
+    await load();
+    router.refresh();
+  }
+
   async function removePayment(id: string) {
     if (!confirm("Delete this payment record?")) return;
     await fetch(`/api/admin/students/${studentId}/payments/${id}`, {
@@ -125,6 +148,7 @@ export default function StudentEnrollmentPanel({ studentId }: Props) {
 
   const { summary, payments, attendances } = data;
   const today = new Date().toISOString().slice(0, 10);
+  const latestPayment = payments[0];
 
   return (
     <div className="space-y-8">
@@ -138,6 +162,24 @@ export default function StudentEnrollmentPanel({ studentId }: Props) {
         />
         <Stat label="累计付款" value={`$${summary.totalPaid.toFixed(2)}`} />
       </div>
+
+      {latestPayment ? (
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-lg border border-accent-warm/60 bg-accent-warm/10 px-4 py-3">
+          <div>
+            <p className="font-medium text-gray-darkest">快速续报</p>
+            <p className="text-sm text-gray-dark">
+              按最近课包续报 {latestPayment.lessonsPurchased} 课时 · ${latestPayment.amount.toFixed(2)}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => void renewFromLatest()}
+            className="rounded-md bg-accent-warm px-4 py-2 text-sm font-medium text-gray-darkest hover:bg-accent-warm-light shrink-0"
+          >
+            一键续报
+          </button>
+        </div>
+      ) : null}
 
       <div className="grid lg:grid-cols-2 gap-8">
         <section className="space-y-4">
